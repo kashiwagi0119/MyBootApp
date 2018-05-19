@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<th:block th:fragment="templatename">
+		<div class="form-group">
+			<label class="col-xs-2 control-label" for="name">名前：</label>
+			<div class="col-xs-10">
+				<input type="text" class="form-control" name="name" th:field="*{name}" />
+			</div>
+		</div>
+	</th:block>
+	
+	<th:block th:fragment="templatemail">
+		<div class="form-group">
+			<label class="col-xs-2 control-label" for="mail">メール：</label>
+			<div class="col-xs-10">
+				<input type="text" class="form-control" name="mail" th:field="*{mail}" />
+			</div>
+		</div>
+	</th:block>
+	
+	<th:block th:fragment="templateage">
+		<div class="form-group">
+			<label class="col-xs-2 control-label" for="age">年齢：</label>
+			<div class="col-xs-10">
+				<input type="text" class="form-control" name="age" th:field="*{age}" />
+			</div>
+		</div>
+	</th:block>
+	
+	<th:block th:fragment="templateageFrom">
+		<div class="form-group">
+			<label class="col-xs-2 control-label" for="ageFrom">年齢From：</label>
+			<div class="col-xs-10">
+				<input type="text" class="form-control" name="ageFrom" th:field="*{ageFrom}" />
+			</div>
+		</div>
+	</th:block>
+	
+	<th:block th:fragment="templateageTo">
+		<div class="form-group">
+			<label class="col-xs-2 control-label" for="ageTo">年齢To：</label>
+			<div class="col-xs-10">
+				<input type="text" class="form-control" name="ageTo" th:field="*{ageTo}" />
+			</div>
+		</div>
+	</th:block>
+	
+	<th:block th:fragment="templatememo">
+		<div class="form-group">
+			<label class="col-xs-2 control-label" for="memo">メモ：</label>
+			<div class="col-xs-10">
+				<input type="text" class="form-control" name="memo" th:field="*{memo}" />
+			</div>
+		</div>
+	</th:block>
+
+	
+	<th:block th:fragment="templateroom">
+		<div class="form-group">
+			<label class="col-xs-2 control-label" for="room.name">部屋：</label>
+			<div class="col-xs-10">
+		        <select class="form-control" id="room" name="room">
+		          <option value="">---</option>
+		          <option th:each="item : ${selectItems}" th:value="${item.id}" th:text="${item.name}" >pulldown</option>
+		        </select>
+			</div>
+		</div>
+	</th:block>
+	
+	<th:block th:fragment="template">
+		
+	</th:block>
+	
+	<th:block th:fragment="template">
+		
+	</th:block>
+	
+	<th:block th:fragment="template">
+		
+	</th:block>
+	
+	<th:block th:fragment="template">
+		
+	</th:block>
+	
+</body>
+</html>

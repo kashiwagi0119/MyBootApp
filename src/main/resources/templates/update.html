@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}"/>
+	
+	<title>top page</title>
+</head>
+
+<body>
+<div class="container-fluid" id="container">
+
+	<h1 >更新画面</h1>
+	<form class="form-horizontal" method="post" th:object="${formModel}">
+		<input type="hidden" name="id" th:field="*{id}" />
+		
+		<th:block th:include="templatebody :: templatename" />
+		<th:block th:include="templatebody :: templatemail" />
+		<th:block th:include="templatebody :: templateage" />
+		<th:block th:include="templatebody :: templatememo" />
+		<th:block th:include="templatebody :: templateroom" />
+	
+		<button class="btn btn-default" formaction="/insert">更新</button>
+		<button class="btn btn-default" formaction="/back" >戻る</button>
+	</form>
+	
+</div>
+</body>
+</html>

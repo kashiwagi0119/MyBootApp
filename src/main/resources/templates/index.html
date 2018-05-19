@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<th:block th:include="templatehead :: templatehead" />
+</head>
+
+<body>
+<div class="container-fluid" id="container">
+	<h1>検索画面</h1>
+	
+	<form class="form-horizontal" action="/" method="post" th:object="${formModel}">
+
+		<th:block th:include="templatebody :: templatename" />
+		<th:block th:include="templatebody :: templatemail" />
+		<th:block th:include="templatebody :: templateageFrom" />
+		<th:block th:include="templatebody :: templateageTo" />
+		<th:block th:include="templatebody :: templatememo" />
+		<th:block th:include="templatebody :: templateroom" />
+		
+		<div class="form-group">
+			<label class="col-xs-2 control-label">チェック1：</label>
+			<div class="col-xs-10">
+				<div class="checkbox-inline"><label><input type="checkbox" name="check1" th:field="*{check1}">チェックひとつ1</label></div>
+			</div>
+		</div>
+
+       	<div class="form-group">
+            <label class="col-xs-2 control-label">チェック複数：</label>
+            <div class="col-xs-10">
+	            <th:block th:each="item : ${checkItems}">
+		            <div class="checkbox-inline">
+		              <label>
+		                <input type="checkbox" name="check2" th:value="${item.value}" th:text="${item.key}" th:field="*{check2}">
+		              </label>
+		            </div>
+	            </th:block>
+            </div>
+        </div>
+               
+        <div class="form-group">
+            <label class="col-xs-2 control-label">ラジオ：</label>
+            <div class="col-xs-10">
+	            <th:block th:each="item : ${radioItems}">
+		            <div class="radio-inline">
+		              <label>
+		                <input type="radio" name="radio1" th:value="${item.value}" th:text="${item.key}" th:field="*{radio1}">
+		              </label>
+		            </div>
+	            </th:block>
+            </div>
+        </div>
+
+		<div class="form-group">
+			<label class="col-xs-2 control-label" for="name">日付：</label>
+			<div class="col-xs-3">
+                <div class='input-group date'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+			</div>
+		</div>
+				
+		<button class="btn btn-default" formaction="/search">検索</button>
+		<button class="btn btn-default" formaction="/insertwindow">新規登録画面へ</button>
+	
+	<table class="table table-striped">
+	<tr>
+		<th>ID</th>
+		<th>名前</th>
+		<th>メール</th>
+		<th>年齢</th>
+		<th>メモ</th>
+		<th>ルーム</th>
+		<th>削除</th>
+		<th>更新画面へ</th>
+	</tr>
+	<tr th:each="obj : ${datalist}" th:object="${obj}">
+		<td th:text="*{id}"></td>
+		<td th:text="*{name}"></td>
+		<td th:text="*{mail}"></td>
+		<td th:text="*{age}"></td>
+		<td th:text="*{memo}"></td>
+		<td th:text="*{room.name}"></td>
+		<td>
+			<button class="btn btn-default btn-xs" th:formaction="@{/delete/{id}(id=*{id})}">削除</button>
+        </td>      
+		<td>
+			<button class="btn btn-default btn-xs" th:formaction="@{/update/{id}(id=*{id})}">更新画面へ</button>
+        </td>      
+	</tr>
+	</table>
+
+	</form>
+</div>
+</body>
+
+</html>
