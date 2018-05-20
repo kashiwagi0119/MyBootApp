@@ -64,9 +64,13 @@
 			<label class="col-xs-2 control-label" for="room.name">部屋：</label>
 			<div class="col-xs-10">
 		        <select class="form-control" id="room" name="room">
-		          <option value="">---</option>
-		          
-		          <option th:each="item : ${selectItems}" th:value="${item.id}" th:text="${item.name}" th:selected="${item.id} == *{room.id}">
+		            <option value="">---</option>
+		            <th:block th:if="*{room}==null">
+		          		<option th:each="item : ${selectItems}" th:value="${item.id}" th:text="${item.name}" >
+		            </th:block>
+		            <th:block th:unless="*{room}==null">
+		          		<option th:each="item : ${selectItems}" th:value="${item.id}" th:text="${item.name}" th:selected="${item.id}==*{room.id}">
+		            </th:block>
 		        </select>
 			</div>
 		</div>
