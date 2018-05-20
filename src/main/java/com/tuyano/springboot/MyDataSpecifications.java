@@ -82,7 +82,7 @@ public class MyDataSpecifications {
      * 部屋（関連テーブルはJoinTypeがある）
      */
     public static Specification<MyData> roomSpecifications(Operator2Enum operator, Room room, JoinType joinType) {
-    	return room == null ? null : new Specification<MyData>() {
+    	return (room == null || StringUtils.isBlank(room.getName())) ? null : new Specification<MyData>() {
 			private static final long serialVersionUID = 1L;
 			@Override
             public Predicate toPredicate(Root<MyData> root, CriteriaQuery<?> query, CriteriaBuilder cb) {

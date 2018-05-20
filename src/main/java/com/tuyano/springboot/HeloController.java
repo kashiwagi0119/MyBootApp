@@ -95,9 +95,9 @@ public class HeloController {
 	}
 	
 	@RequestMapping(value = "/delete/{id}")
-	public String delete(Model model, @PathVariable Long id) {
+	public String delete(Model model, @ModelAttribute("formModel") MyDataForm mydataForm, @PathVariable Long id) {
 		repository.deleteById(id);
-		return "redirect:/";
+		return "redirect:/search";
 	}
 	
 	@RequestMapping(value = "/update/{id}")
