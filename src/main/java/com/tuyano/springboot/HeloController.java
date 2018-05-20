@@ -58,7 +58,7 @@ public class HeloController {
 	});
 	  
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(Model model, @ModelAttribute("formModel") MyDataForm mydataForm) {
+	public String index(Model model, @ModelAttribute("mydataForm") MyDataForm mydataForm) {
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
@@ -68,7 +68,7 @@ public class HeloController {
 	}
 
 	@RequestMapping(value = "/search")
-	public String search(Model model, @ModelAttribute("formModel") MyDataForm mydataForm) {
+	public String search(Model model, @ModelAttribute("mydataForm") MyDataForm mydataForm) {
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
@@ -78,14 +78,15 @@ public class HeloController {
 	}
 	
 	@RequestMapping(value = "/insertwindow")
-	public String insertwinddow(Model model, @ModelAttribute("formModel") MyDataForm mydataForm) {
+	public String insertwinddow(Model model) {
 		// セレクトボックス設定
 		model.addAttribute("selectItems", roomRepository.findAll());
+		model.addAttribute("mydata", new MyData());
 		return "insert";
 	}
 	
 	@RequestMapping(value = "/insert")
-	public String insert(Model model, @ModelAttribute("formModel") MyData mydata) {
+	public String insert(Model model, @ModelAttribute("mydata") MyData mydata) {
 		repository.saveAndFlush(mydata);
 		return "redirect:/";
 	}
@@ -98,24 +99,24 @@ public class HeloController {
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(Model model
 			, @PathVariable Long id
-			, @ModelAttribute("formModel") MyDataForm mydataForm
+			, @ModelAttribute("mydataForm") MyDataForm mydataForm
 			, RedirectAttributes redirectAttributes) {
 		repository.deleteById(id);
-		redirectAttributes.addFlashAttribute("formModel", mydataForm);
+		redirectAttributes.addFlashAttribute("mydataForm", mydataForm);
 		return "redirect:/search";
 	}
 	
 	@RequestMapping(value = "/update/{id}")
 	public String update(Model model, @PathVariable Long id) {
 		Optional<MyData> data = repository.findById(id);
-		model.addAttribute("formModel",data.get());
+		model.addAttribute("mydata",data.get());
 		// セレクトボックス設定
 		model.addAttribute("selectItems", roomRepository.findAll());
 		return "update";
 	}
     
 	@RequestMapping(value = "/update")
-	public String update(Model model, @ModelAttribute("formModel") MyData mydata) {
+	public String update(Model model, @ModelAttribute("mydata") MyData mydata) {
 		repository.saveAndFlush(mydata);
 		return "forward:/search";
 	}
