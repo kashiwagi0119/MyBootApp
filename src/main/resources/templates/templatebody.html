@@ -65,7 +65,8 @@
 			<div class="col-xs-10">
 		        <select class="form-control" id="room" name="room">
 		          <option value="">---</option>
-		          <option th:each="item : ${selectItems}" th:value="${item.id}" th:text="${item.name}" >pulldown</option>
+		          
+		          <option th:each="item : ${selectItems}" th:value="${item.id}" th:text="${item.name}" th:selected="${item} == *{room}">
 		        </select>
 			</div>
 		</div>
