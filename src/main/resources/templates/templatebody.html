@@ -66,7 +66,7 @@
 		        <select class="form-control" id="room" name="room">
 		          <option value="">---</option>
 		          
-		          <option th:each="item : ${selectItems}" th:value="${item.id}" th:text="${item.name}" th:selected="${item} == *{room}">
+		          <option th:each="item : ${selectItems}" th:value="${item.id}" th:text="${item.name}" th:selected="${item.id} == *{room.id}">
 		        </select>
 			</div>
 		</div>
