@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tuyano.springboot.repositories.MyDataRepository;
 import com.tuyano.springboot.repositories.RoomRepository;
@@ -95,8 +96,12 @@ public class HeloController {
 	}
 	
 	@RequestMapping(value = "/delete/{id}")
-	public String delete(Model model, @ModelAttribute("formModel") MyDataForm mydataForm, @PathVariable Long id) {
+	public String delete(Model model
+			, @PathVariable Long id
+			, @ModelAttribute("formModel") MyDataForm mydataForm
+			, RedirectAttributes redirectAttributes) {
 		repository.deleteById(id);
+		redirectAttributes.addFlashAttribute("formModel", mydataForm);
 		return "redirect:/search";
 	}
 	
