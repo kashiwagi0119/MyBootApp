@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tuyano.springboot.repositories.MyDataRepository;
 import com.tuyano.springboot.repositories.RoomRepository;
@@ -74,8 +73,14 @@ public class HeloController {
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
-		List<MyData> list = service.findMyDatas(mydataForm);
+		
+		// リダイレクトの場合、前回の検索条件で検索
+		if (mydataForm.getName() == null && session.getAttribute("mydataForm") != null) {
+			mydataForm = (MyDataForm) session.getAttribute("mydataForm");
+			model.addAttribute("mydataForm", mydataForm);
+		}
 		session.setAttribute("mydataForm", mydataForm);
+		List<MyData> list = service.findMyDatas(mydataForm);
 		model.addAttribute("datalist", list);
 		return "index";
 	}
@@ -89,25 +94,19 @@ public class HeloController {
 	}
 	
 	@RequestMapping(value = "/insert")
-	public String insert(Model model, @ModelAttribute("mydata") MyData mydata, RedirectAttributes redirectAttributes) {
+	public String insert(Model model, @ModelAttribute("mydata") MyData mydata) {
 		repository.saveAndFlush(mydata);
-		// 検索条件の保存
-		this.setSearchCondition(redirectAttributes);
 		return "redirect:/search";
 	}
 	
 	@RequestMapping(value = "/back")
-	public String back(Model model, RedirectAttributes redirectAttributes) {
-		// 検索条件の保存
-		this.setSearchCondition(redirectAttributes);
+	public String back(Model model) {
 		return "redirect:/search";
 	}
 	
 	@RequestMapping(value = "/delete/{id}")
-	public String delete(Model model, @PathVariable Long id, RedirectAttributes redirectAttributes) {
+	public String delete(Model model, @PathVariable Long id) {
 		repository.deleteById(id);
-		// 検索条件の保存
-		this.setSearchCondition(redirectAttributes);
 		return "redirect:/search";
 	}
 	
@@ -121,22 +120,11 @@ public class HeloController {
 	}
     
 	@RequestMapping(value = "/update")
-	public String update(Model model, @ModelAttribute("mydata") MyData mydata, RedirectAttributes redirectAttributes) {
+	public String update(Model model, @ModelAttribute("mydata") MyData mydata) {
 		repository.saveAndFlush(mydata);
-		// 検索条件の保存
-		this.setSearchCondition(redirectAttributes);
 		return "redirect:/search";
 	}
-	
-	/**
-	 * 検索条件の保存
-	 */
-	private void setSearchCondition(RedirectAttributes redirectAttributes) {
-		MyDataForm mydataForm = (MyDataForm) session.getAttribute("mydataForm");
-		if (mydataForm != null) {
-			redirectAttributes.addFlashAttribute("mydataForm", mydataForm);
-		}
-	}
+
 	@PostConstruct
 	public void init(){
 		Room r1 = new Room();
