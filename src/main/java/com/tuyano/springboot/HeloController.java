@@ -89,25 +89,25 @@ public class HeloController {
 	}
 	
 	@RequestMapping(value = "/insert")
-	public String insert(Model model, @ModelAttribute("mydata") MyData mydata) {
+	public String insert(Model model, @ModelAttribute("mydata") MyData mydata, RedirectAttributes redirectAttributes) {
 		repository.saveAndFlush(mydata);
-		return "redirect:/";
+		// 検索条件の保存
+		this.setSearchCondition(redirectAttributes);
+		return "redirect:/search";
 	}
 	
 	@RequestMapping(value = "/back")
-	public String back(Model model) {
-		return "redirect:/";
+	public String back(Model model, RedirectAttributes redirectAttributes) {
+		// 検索条件の保存
+		this.setSearchCondition(redirectAttributes);
+		return "redirect:/search";
 	}
 	
 	@RequestMapping(value = "/delete/{id}")
-	public String delete(Model model
-			, @PathVariable Long id
-			, RedirectAttributes redirectAttributes) {
+	public String delete(Model model, @PathVariable Long id, RedirectAttributes redirectAttributes) {
 		repository.deleteById(id);
-		MyDataForm mydataForm = (MyDataForm) session.getAttribute("mydataForm");
-		if (mydataForm != null) {
-			redirectAttributes.addFlashAttribute("mydataForm", mydataForm);
-		}
+		// 検索条件の保存
+		this.setSearchCondition(redirectAttributes);
 		return "redirect:/search";
 	}
 	
@@ -121,11 +121,22 @@ public class HeloController {
 	}
     
 	@RequestMapping(value = "/update")
-	public String update(Model model, @ModelAttribute("mydata") MyData mydata) {
+	public String update(Model model, @ModelAttribute("mydata") MyData mydata, RedirectAttributes redirectAttributes) {
 		repository.saveAndFlush(mydata);
-		return "forward:/search";
+		// 検索条件の保存
+		this.setSearchCondition(redirectAttributes);
+		return "redirect:/search";
 	}
 	
+	/**
+	 * 検索条件の保存
+	 */
+	private void setSearchCondition(RedirectAttributes redirectAttributes) {
+		MyDataForm mydataForm = (MyDataForm) session.getAttribute("mydataForm");
+		if (mydataForm != null) {
+			redirectAttributes.addFlashAttribute("mydataForm", mydataForm);
+		}
+	}
 	@PostConstruct
 	public void init(){
 		Room r1 = new Room();
