@@ -94,18 +94,18 @@ public class HeloController {
 	}
 	
 	@RequestMapping(value = "/insert")
-	public String insert(Model model, @ModelAttribute("mydata") MyData mydata) {
+	public String insert(@ModelAttribute("mydata") MyData mydata) {
 		repository.saveAndFlush(mydata);
 		return "redirect:/search";
 	}
 	
 	@RequestMapping(value = "/back")
-	public String back(Model model) {
+	public String back() {
 		return "redirect:/search";
 	}
 	
 	@RequestMapping(value = "/delete/{id}")
-	public String delete(Model model, @PathVariable Long id) {
+	public String delete(@PathVariable Long id) {
 		repository.deleteById(id);
 		return "redirect:/search";
 	}
@@ -120,7 +120,7 @@ public class HeloController {
 	}
     
 	@RequestMapping(value = "/update")
-	public String update(Model model, @ModelAttribute("mydata") MyData mydata) {
+	public String update(@ModelAttribute("mydata") MyData mydata) {
 		repository.saveAndFlush(mydata);
 		return "redirect:/search";
 	}
