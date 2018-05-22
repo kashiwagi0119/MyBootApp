@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,10 +28,11 @@ public class HeloController {
 	MyDataRepository repository;
 	@Autowired
 	RoomRepository roomRepository;
-	
 	@Autowired
 	private MyDataService service;
-
+	@Autowired
+	HttpSession session;
+	
 	/**
 	 * check boxの表示に使用するアイテム
 	 */
@@ -73,6 +75,7 @@ public class HeloController {
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
 		List<MyData> list = service.findMyDatas(mydataForm);
+		session.setAttribute("mydataForm", mydataForm);
 		model.addAttribute("datalist", list);
 		return "index";
 	}
@@ -99,10 +102,12 @@ public class HeloController {
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(Model model
 			, @PathVariable Long id
-			, @ModelAttribute("mydataForm") MyDataForm mydataForm
 			, RedirectAttributes redirectAttributes) {
 		repository.deleteById(id);
-		redirectAttributes.addFlashAttribute("mydataForm", mydataForm);
+		MyDataForm mydataForm = (MyDataForm) session.getAttribute("mydataForm");
+		if (mydataForm != null) {
+			redirectAttributes.addFlashAttribute("mydataForm", mydataForm);
+		}
 		return "redirect:/search";
 	}
 	
