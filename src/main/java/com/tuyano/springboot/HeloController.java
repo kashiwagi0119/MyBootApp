@@ -146,7 +146,8 @@ public class HeloController {
 		d2.setAge(15);
 		d2.setMail("hanako@flower");
 		d2.setMemo("080888888");
-		d2.setRoom(r1);
+		d2.setRoom(null);
+//		d2.setRoom(r1);
 		repository.saveAndFlush(d2);
 		MyData d3 = new MyData();
 		d3.setName("sachiko");

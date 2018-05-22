@@ -83,7 +83,8 @@
 		<td th:text="*{mail}"></td>
 		<td th:text="*{age}"></td>
 		<td th:text="*{memo}"></td>
-		<td th:text="*{room.name}"></td>
+		<td><p th:text="*{room != null} ? *{room.name}"></p></td>
+
 		<td>
 			<button class="btn btn-default btn-xs" th:formaction="@{/delete/{id}(id=*{id})}">削除</button>
         </td>      
