@@ -6,6 +6,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -25,7 +28,8 @@ public class MyDataService {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public List<MyData> findMyDatas(MyDataForm mydataForm) {
+	// repositoryで検索
+	public List<MyData> findRepository(MyDataForm mydataForm) {
 	    return repository.findAll(Specification
 	    		.where(nameSpecifications(LIKE, mydataForm.getName()))
 	    		.and(nameSpecifications(ISNOTNULL))
@@ -33,11 +37,24 @@ public class MyDataService {
 	    		.and(ageSpecifications(LE, mydataForm.getAgeTo()))
 	    		.and( roomSpecifications(LIKE, mydataForm.getRoom(), INNER))
 	    		);
+		}
 		
+	
 //	    return repository.findAll(Specification
 //	        .where(name(LIKE, mydataForm.getName()))
 //	        .and(room(LIKE, mydataForm.getRoom().getName(), INNER))
 //	    );
+	
+	// Criteriaで検索
+	public List<MyData> findCriteria(String fstr) {
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<MyData> query = builder.createQuery(MyData.class);
+		Root<MyData> root = query.from(MyData.class);
+		query.select(root).where(builder.equal(root.get("name"), fstr));
+		List<MyData> list = null;
+		list = (List<MyData>) entityManager.createQuery(query).getResultList();
+		return list;
+		
 	}
 	
 }

@@ -68,6 +68,7 @@ public class HeloController {
 		return "index";
 	}
 
+	// repositoryで検索
 	@RequestMapping(value = "/search")
 	public String search(Model model, @ModelAttribute("mydataForm") MyDataForm mydataForm) {
 		model.addAttribute("selectItems", roomRepository.findAll());
@@ -80,7 +81,25 @@ public class HeloController {
 			model.addAttribute("mydataForm", mydataForm);
 		}
 		session.setAttribute("mydataForm", mydataForm);
-		List<MyData> list = service.findMyDatas(mydataForm);
+		List<MyData> list = service.findRepository(mydataForm);
+		model.addAttribute("datalist", list);
+		return "index";
+	}
+	
+	// Criteriaで検索
+	@RequestMapping(value = "/searchCriteria")
+	public String searchCriteria(Model model, @ModelAttribute("mydataForm") MyDataForm mydataForm) {
+		model.addAttribute("selectItems", roomRepository.findAll());
+		model.addAttribute("checkItems", CHECK_ITEMS);
+		model.addAttribute("radioItems", RADIO_ITEMS);
+		
+		// リダイレクトの場合、前回の検索条件で検索
+		if (mydataForm.getName() == null && session.getAttribute("mydataForm") != null) {
+			mydataForm = (MyDataForm) session.getAttribute("mydataForm");
+			model.addAttribute("mydataForm", mydataForm);
+		}
+		session.setAttribute("mydataForm", mydataForm);
+		List<MyData> list = service.findCriteria(mydataForm.getName());
 		model.addAttribute("datalist", list);
 		return "index";
 	}
