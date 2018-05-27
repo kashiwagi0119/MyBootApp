@@ -40,12 +40,12 @@ public class MyDataService {
     		.and(ageSpecifications(LE, mydataForm.getAgeTo()))
     		.and(roomSpecifications(LIKE, mydataForm.getRoom(), INNER))
     		,
-//	    	new Sort(Sort.Direction.ASC, "myDataId")
-    		new Sort(Sort.Direction.ASC, "myDataId").and(new Sort(Sort.Direction.ASC, "name"))
+//	    	new Sort(Sort.Direction.ASC, "id")
+    		new Sort(Sort.Direction.ASC, "id").and(new Sort(Sort.Direction.ASC, "name"))
 	    );
 	    
 //		MyData myDataa = new MyData();
-//		myDataa.setMyDataId(4);
+//		myDataa.setId(4);
 //		myDataa.setRoom(null);
 //		Example<MyData> example = Example.of(myDataa);
 //	    return repository.findAll(example);

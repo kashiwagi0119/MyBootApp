@@ -15,7 +15,7 @@
 
 	<h1 >更新画面</h1>
 	<form class="form-horizontal" method="post" th:object="${mydata}">
-		<input type="hidden" name="myDataId" th:field="*{myDataId}" />
+		<input type="hidden" name="id" th:field="*{id}" />
 		
 		<th:block th:include="templatebody :: templatename" />
 		<th:block th:include="templatebody :: templatemail" />
