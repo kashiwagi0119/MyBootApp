@@ -35,8 +35,8 @@ public class HeloController {
 	HttpSession session;
 	
     @ModelAttribute("myDataForm")
-    MyDataForm setMyDataForm(MyDataForm myDataForm) {
-        return myDataForm;
+    public MyDataForm setMyDataForm() {
+        return new MyDataForm();
     }
     
 	/**
@@ -115,8 +115,7 @@ public class HeloController {
 	public String insertwinddow(Model model, MyDataForm myDataForm) {
 		// セレクトボックス設定
 		model.addAttribute("selectItems", roomRepository.findAll());
-		model.addAttribute("mydata", myDataForm);
-//		model.addAttribute("mydata", new MyData());
+		model.addAttribute("mydata", new MyData());
 		return "insert";
 	}
 	
@@ -127,7 +126,7 @@ public class HeloController {
 	}
 	
 	@RequestMapping(value = "/back")
-	public String back(MyDataForm myDataForm) {
+	public String back() {
 		return "redirect:/search";
 	}
 	
