@@ -11,6 +11,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -30,20 +32,26 @@ public class MyDataService {
 
 	// repositoryで検索
 	public List<MyData> findRepository(MyDataForm mydataForm) {
+	    
 	    return repository.findAll(Specification
-	    		.where(nameSpecifications(LIKE, mydataForm.getName()))
-	    		.and(nameSpecifications(ISNOTNULL))
-	    		.and(ageSpecifications(GE, mydataForm.getAgeFrom()))
-	    		.and(ageSpecifications(LE, mydataForm.getAgeTo()))
-	    		.and( roomSpecifications(LIKE, mydataForm.getRoom(), INNER))
-	    		);
-		}
-		
-	
-//	    return repository.findAll(Specification
-//	        .where(name(LIKE, mydataForm.getName()))
-//	        .and(room(LIKE, mydataForm.getRoom().getName(), INNER))
-//	    );
+    		.where(nameSpecifications(LIKE, mydataForm.getName()))
+    		.and(nameSpecifications(ISNOTNULL))
+    		.and(ageSpecifications(GE, mydataForm.getAgeFrom()))
+    		.and(ageSpecifications(LE, mydataForm.getAgeTo()))
+    		.and(roomSpecifications(LIKE, mydataForm.getRoom(), INNER))
+    		,
+//	    	new Sort(Sort.Direction.ASC, "id")
+    		new Sort(Sort.Direction.ASC, "id").and(new Sort(Sort.Direction.ASC, "name"))
+	    );
+	    
+//		MyData myDataa = new MyData();
+//		myDataa.setId(4);
+//		myDataa.setRoom(null);
+//		Example<MyData> example = Example.of(myDataa);
+//	    return repository.findAll(example);
+	    
+	    
+	}
 	
 	// Criteriaで検索
 	public List<MyData> findCriteria(String fstr) {
