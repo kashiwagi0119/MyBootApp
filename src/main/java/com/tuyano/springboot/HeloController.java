@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tuyano.springboot.repositories.MyDataRepository;
 import com.tuyano.springboot.repositories.RoomRepository;
 
 @Controller
+@SessionAttributes("myDataForm")
 public class HeloController {
 	  
 	@Autowired
@@ -32,6 +34,11 @@ public class HeloController {
 	@Autowired
 	HttpSession session;
 	
+    @ModelAttribute("myDataForm")
+    MyDataForm setMyDataForm(MyDataForm myDataForm) {
+        return myDataForm;
+    }
+    
 	/**
 	 * check boxの表示に使用するアイテム
 	 */
@@ -59,7 +66,7 @@ public class HeloController {
 	});
 	  
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(Model model, @ModelAttribute("mydataForm") MyDataForm mydataForm) {
+	public String index(Model model, MyDataForm myDataForm) {
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
@@ -70,45 +77,46 @@ public class HeloController {
 
 	// repositoryで検索
 	@RequestMapping(value = "/search")
-	public String search(Model model, @ModelAttribute("mydataForm") MyDataForm mydataForm) {
+	public String search(Model model, MyDataForm myDataForm) {
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
 		
 		// リダイレクトの場合、前回の検索条件で検索
-		if (mydataForm.getName() == null && session.getAttribute("mydataForm") != null) {
-			mydataForm = (MyDataForm) session.getAttribute("mydataForm");
-			model.addAttribute("mydataForm", mydataForm);
+		if (myDataForm.getName() == null && session.getAttribute("myDataForm") != null) {
+			myDataForm = (MyDataForm) session.getAttribute("myDataForm");
+			model.addAttribute("myDataForm", myDataForm);
 		}
-		session.setAttribute("mydataForm", mydataForm);
-		List<MyData> list = service.findRepository(mydataForm);
+		session.setAttribute("myDataForm", myDataForm);
+		List<MyData> list = service.findRepository(myDataForm);
 		model.addAttribute("datalist", list);
 		return "index";
 	}
 	
 	// Criteriaで検索
 	@RequestMapping(value = "/searchCriteria")
-	public String searchCriteria(Model model, @ModelAttribute("mydataForm") MyDataForm mydataForm) {
+	public String searchCriteria(Model model, MyDataForm myDataForm) {
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
 		
 		// リダイレクトの場合、前回の検索条件で検索
-		if (mydataForm.getName() == null && session.getAttribute("mydataForm") != null) {
-			mydataForm = (MyDataForm) session.getAttribute("mydataForm");
-			model.addAttribute("mydataForm", mydataForm);
+		if (myDataForm.getName() == null && session.getAttribute("myDataForm") != null) {
+			myDataForm = (MyDataForm) session.getAttribute("myDataForm");
+			model.addAttribute("myDataForm", myDataForm);
 		}
-		session.setAttribute("mydataForm", mydataForm);
-		List<MyData> list = service.findCriteria(mydataForm.getName());
+		session.setAttribute("myDataForm", myDataForm);
+		List<MyData> list = service.findCriteria(myDataForm.getName());
 		model.addAttribute("datalist", list);
 		return "index";
 	}
 	
 	@RequestMapping(value = "/insertwindow")
-	public String insertwinddow(Model model) {
+	public String insertwinddow(Model model, MyDataForm myDataForm) {
 		// セレクトボックス設定
 		model.addAttribute("selectItems", roomRepository.findAll());
-		model.addAttribute("mydata", new MyData());
+		model.addAttribute("mydata", myDataForm);
+//		model.addAttribute("mydata", new MyData());
 		return "insert";
 	}
 	
@@ -119,7 +127,7 @@ public class HeloController {
 	}
 	
 	@RequestMapping(value = "/back")
-	public String back() {
+	public String back(MyDataForm myDataForm) {
 		return "redirect:/search";
 	}
 	

@@ -31,14 +31,14 @@ public class MyDataService {
 	private EntityManager entityManager;
 
 	// repositoryで検索
-	public List<MyData> findRepository(MyDataForm mydataForm) {
+	public List<MyData> findRepository(MyDataForm myDataForm) {
 	    
 	    return repository.findAll(Specification
-    		.where(nameSpecifications(LIKE, mydataForm.getName()))
+    		.where(nameSpecifications(LIKE, myDataForm.getName()))
     		.and(nameSpecifications(ISNOTNULL))
-    		.and(ageSpecifications(GE, mydataForm.getAgeFrom()))
-    		.and(ageSpecifications(LE, mydataForm.getAgeTo()))
-    		.and(roomSpecifications(LIKE, mydataForm.getRoom(), INNER))
+    		.and(ageSpecifications(GE, myDataForm.getAgeFrom()))
+    		.and(ageSpecifications(LE, myDataForm.getAgeTo()))
+    		.and(roomSpecifications(LIKE, myDataForm.getRoom(), INNER))
     		,
 //	    	new Sort(Sort.Direction.ASC, "id")
     		new Sort(Sort.Direction.ASC, "id").and(new Sort(Sort.Direction.ASC, "name"))
