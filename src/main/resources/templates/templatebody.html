@@ -66,10 +66,10 @@
 		        <select class="form-control" id="room" name="room">
 		            <option value="">---</option>
 		            <th:block th:if="*{room}==null">
-		          		<option th:each="item : ${selectItems}" th:value="${item.id}" th:text="${item.name}" >
+		          		<option th:each="item : ${selectItems}" th:value="${item.roomId}" th:text="${item.name}" >
 		            </th:block>
 		            <th:block th:unless="*{room}==null">
-		          		<option th:each="item : ${selectItems}" th:value="${item.id}" th:text="${item.name}" th:selected="${item.id}==*{room.id}">
+		          		<option th:each="item : ${selectItems}" th:value="${item.roomId}" th:text="${item.name}" th:selected="${item.roomId}==*{room.roomId}">
 		            </th:block>
 		        </select>
 			</div>

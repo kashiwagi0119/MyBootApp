@@ -123,15 +123,15 @@ public class HeloController {
 		return "redirect:/search";
 	}
 	
-	@RequestMapping(value = "/delete/{id}")
-	public String delete(@PathVariable Long id) {
-		repository.deleteById(id);
+	@RequestMapping(value = "/delete/{myDataId}")
+	public String delete(@PathVariable Long myDataId) {
+		repository.deleteById(myDataId);
 		return "redirect:/search";
 	}
 	
-	@RequestMapping(value = "/update/{id}")
-	public String update(Model model, @PathVariable Long id) {
-		Optional<MyData> data = repository.findById(id);
+	@RequestMapping(value = "/update/{myDataId}")
+	public String update(Model model, @PathVariable Long myDataId) {
+		Optional<MyData> data = repository.findById(myDataId);
 		model.addAttribute("mydata",data.get());
 		// セレクトボックス設定
 		model.addAttribute("selectItems", roomRepository.findAll());

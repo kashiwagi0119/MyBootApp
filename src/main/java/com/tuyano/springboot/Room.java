@@ -11,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name="room")
 public class Room {
@@ -19,35 +21,13 @@ public class Room {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
-	private long id;
+	private Long roomId;
 
 	@Column(length = 50, nullable = false)
 	private String name;
 	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 	@OneToMany(cascade=CascadeType.ALL)
 	@Column(nullable = true)
 	private List<MyData> myDatas;
-	
-	public List<MyData> getMsgdatas() {
-		return myDatas;
-	}
-
-	public void setMsgdatas(List<MyData> myDatas) {
-		this.myDatas = myDatas;
-	}
 	
 }

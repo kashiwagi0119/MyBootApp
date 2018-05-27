@@ -18,7 +18,7 @@ public class MyData {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
-	private long id;
+	private Long myDataId;
 
 	@Column(length = 50, nullable = false)
 	private String name;

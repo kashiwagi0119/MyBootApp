@@ -79,7 +79,7 @@
 		<th>更新画面へ</th>
 	</tr>
 	<tr th:each="obj : ${datalist}" th:object="${obj}">
-		<td th:text="*{id}"></td>
+		<td th:text="*{myDataId}"></td>
 		<td th:text="*{name}"></td>
 		<td th:text="*{mail}"></td>
 		<td th:text="*{age}"></td>
@@ -87,10 +87,10 @@
 		<td><p th:text="*{room != null} ? *{room.name}"></p></td>
 
 		<td>
-			<button class="btn btn-default btn-xs" th:formaction="@{/delete/{id}(id=*{id})}">削除</button>
+			<button class="btn btn-default btn-xs" th:formaction="@{/delete/{myDataId}(myDataId=*{myDataId})}">削除</button>
         </td>      
 		<td>
-			<button class="btn btn-default btn-xs" th:formaction="@{/update/{id}(id=*{id})}">更新画面へ</button>
+			<button class="btn btn-default btn-xs" th:formaction="@{/update/{myDataId}(myDataId=*{myDataId})}">更新画面へ</button>
         </td>      
 	</tr>
 	</table>
