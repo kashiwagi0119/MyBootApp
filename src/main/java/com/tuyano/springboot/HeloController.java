@@ -22,7 +22,6 @@ import com.tuyano.springboot.repositories.MyDataRepository;
 import com.tuyano.springboot.repositories.RoomRepository;
 
 @Controller
-@SessionAttributes("myDataForm")
 public class HeloController {
 	  
 	@Autowired
@@ -33,10 +32,13 @@ public class HeloController {
 	private MyDataService service;
 	@Autowired
 	HttpSession session;
+	@Autowired
+	MyDataForm myDataForm;
 	
     @ModelAttribute("myDataForm")
     public MyDataForm setMyDataForm() {
-        return new MyDataForm();
+    	MyDataForm m = myDataForm;
+        return m;
     }
     
 	/**
@@ -72,23 +74,30 @@ public class HeloController {
 		model.addAttribute("radioItems", RADIO_ITEMS);
 		Iterable<MyData> list = repository.findAll();
 		model.addAttribute("datalist", list);
+		
+		model.addAttribute("myDataForm", myDataForm);
 		return "index";
 	}
 
 	// repositoryで検索
 	@RequestMapping(value = "/search")
-	public String search(Model model, MyDataForm myDataForm) {
+	public String search(Model model, MyDataForm form) {
+		
+//		if (form.getName() != null) {
+//			myDataForm = form;
+//		}
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
 		
-		// リダイレクトの場合、前回の検索条件で検索
-		if (myDataForm.getName() == null && session.getAttribute("myDataForm") != null) {
-			myDataForm = (MyDataForm) session.getAttribute("myDataForm");
-			model.addAttribute("myDataForm", myDataForm);
-		}
-		session.setAttribute("myDataForm", myDataForm);
-		List<MyData> list = service.findRepository(myDataForm);
+		
+//		// リダイレクトの場合、前回の検索条件で検索
+//		if (myDataForm.getName() == null && session.getAttribute("myDataForm") != null) {
+//			myDataForm = (MyDataForm) session.getAttribute("myDataForm");
+//			model.addAttribute("myDataForm", myDataForm);
+//		}
+//		session.setAttribute("myDataForm", myDataForm);
+		List<MyData> list = service.findRepository(form);
 		model.addAttribute("datalist", list);
 		return "index";
 	}
@@ -112,23 +121,23 @@ public class HeloController {
 	}
 	
 	@RequestMapping(value = "/insertwindow")
-	public String insertwinddow(Model model, MyDataForm myDataForm) {
+	public String insertwinddow(Model model, MyDataForm form) {
 		// セレクトボックス設定
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("mydata", new MyData());
 		return "insert";
 	}
-	
-	@RequestMapping(value = "/insert")
-	public String insert(@ModelAttribute("mydata") MyData mydata) {
-		repository.saveAndFlush(mydata);
-		return "redirect:/search";
-	}
-	
-	@RequestMapping(value = "/back")
-	public String back() {
-		return "redirect:/search";
-	}
+//	
+//	@RequestMapping(value = "/insert")
+//	public String insert(@ModelAttribute("mydata") MyData mydata) {
+//		repository.saveAndFlush(mydata);
+//		return "redirect:/search";
+//	}
+//	
+//	@RequestMapping(value = "/back")
+//	public String back() {
+//		return "redirect:/search";
+//	}
 	
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(@PathVariable Long id) {

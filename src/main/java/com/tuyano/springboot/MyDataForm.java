@@ -2,15 +2,39 @@ package com.tuyano.springboot;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
+
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.web.context.WebApplicationContext;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper=true)
-public class MyDataForm extends MyData implements Serializable {
+@SessionScope
+@Component
+public class MyDataForm implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public MyDataForm() {
+		super();
+		room = new Room();
+	}
+	
+	private String name;
+
+	private String mail;
+
+	private String memo;
+
+	private Room room;
+	
     /**
      * 年齢From
     */
