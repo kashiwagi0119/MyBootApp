@@ -35,14 +35,6 @@ public class InsertController {
 	@Autowired
 	MyDataForm myDataForm;
 	
-//	@RequestMapping(value = "/insertwindow")
-//	public String insertwinddow(Model model) {
-//		// セレクトボックス設定
-//		model.addAttribute("selectItems", roomRepository.findAll());
-//		model.addAttribute("mydata", new MyData());
-//		return "insert";
-//	}
-	
 	@RequestMapping(value = "/insert")
 	public String insert(@ModelAttribute("mydata") MyData mydata) {
 		repository.saveAndFlush(mydata);

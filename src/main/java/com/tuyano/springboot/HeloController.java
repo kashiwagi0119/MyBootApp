@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tuyano.springboot.repositories.MyDataRepository;
 import com.tuyano.springboot.repositories.RoomRepository;
@@ -33,12 +32,11 @@ public class HeloController {
 	@Autowired
 	HttpSession session;
 	@Autowired
-	MyDataForm myDataForm;
+	MyDataForm myDataFormSession;
 	
     @ModelAttribute("myDataForm")
     public MyDataForm setMyDataForm() {
-    	MyDataForm m = myDataForm;
-        return m;
+        return myDataFormSession;
     }
     
 	/**
@@ -75,28 +73,17 @@ public class HeloController {
 		Iterable<MyData> list = repository.findAll();
 		model.addAttribute("datalist", list);
 		
-		model.addAttribute("myDataForm", myDataForm);
+		model.addAttribute("myDataForm", new MyDataForm());
 		return "index";
 	}
 
 	// repositoryで検索
 	@RequestMapping(value = "/search")
 	public String search(Model model, MyDataForm form) {
-		
-//		if (form.getName() != null) {
-//			myDataForm = form;
-//		}
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
 		
-		
-//		// リダイレクトの場合、前回の検索条件で検索
-//		if (myDataForm.getName() == null && session.getAttribute("myDataForm") != null) {
-//			myDataForm = (MyDataForm) session.getAttribute("myDataForm");
-//			model.addAttribute("myDataForm", myDataForm);
-//		}
-//		session.setAttribute("myDataForm", myDataForm);
 		List<MyData> list = service.findRepository(form);
 		model.addAttribute("datalist", list);
 		return "index";
@@ -104,18 +91,12 @@ public class HeloController {
 	
 	// Criteriaで検索
 	@RequestMapping(value = "/searchCriteria")
-	public String searchCriteria(Model model, MyDataForm myDataForm) {
+	public String searchCriteria(Model model, MyDataForm form) {
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
 		
-		// リダイレクトの場合、前回の検索条件で検索
-		if (myDataForm.getName() == null && session.getAttribute("myDataForm") != null) {
-			myDataForm = (MyDataForm) session.getAttribute("myDataForm");
-			model.addAttribute("myDataForm", myDataForm);
-		}
-		session.setAttribute("myDataForm", myDataForm);
-		List<MyData> list = service.findCriteria(myDataForm.getName());
+		List<MyData> list = service.findCriteria(form.getName());
 		model.addAttribute("datalist", list);
 		return "index";
 	}
@@ -127,26 +108,15 @@ public class HeloController {
 		model.addAttribute("mydata", new MyData());
 		return "insert";
 	}
-//	
-//	@RequestMapping(value = "/insert")
-//	public String insert(@ModelAttribute("mydata") MyData mydata) {
-//		repository.saveAndFlush(mydata);
-//		return "redirect:/search";
-//	}
-//	
-//	@RequestMapping(value = "/back")
-//	public String back() {
-//		return "redirect:/search";
-//	}
 	
 	@RequestMapping(value = "/delete/{id}")
-	public String delete(@PathVariable Long id) {
+	public String delete(Model model, MyDataForm form, @PathVariable Long id) {
 		repository.deleteById(id);
 		return "redirect:/search";
 	}
 	
 	@RequestMapping(value = "/update/{id}")
-	public String update(Model model, @PathVariable Long id) {
+	public String update(Model model, MyDataForm form, @PathVariable Long id) {
 		Optional<MyData> data = repository.findById(id);
 		model.addAttribute("mydata",data.get());
 		// セレクトボックス設定
