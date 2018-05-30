@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,13 +29,11 @@ public class HeloController {
 	@Autowired
 	private MyDataService service;
 	@Autowired
-	HttpSession session;
-	@Autowired
-	MyDataForm myDataFormSession;
+	MyDataForm formSession;
 	
     @ModelAttribute("myDataForm")
     public MyDataForm setMyDataForm() {
-        return myDataFormSession;
+        return formSession;
     }
     
 	/**
