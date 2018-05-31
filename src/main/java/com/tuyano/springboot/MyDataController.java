@@ -7,19 +7,23 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tuyano.springboot.repositories.MyDataRepository;
 import com.tuyano.springboot.repositories.RoomRepository;
 
 @Controller
+@SessionAttributes(value = "myDataForm")
 public class MyDataController {
 	  
 	@Autowired
@@ -28,12 +32,10 @@ public class MyDataController {
 	RoomRepository roomRepository;
 	@Autowired
 	private MyDataService service;
-	@Autowired
-	MyDataForm formSession;
 	
-    @ModelAttribute("myDataForm")
-    public MyDataForm setMyDataForm() {
-        return formSession;
+    @ModelAttribute(value = "myDataForm")
+    public MyDataForm setMyDataForm(MyDataForm form) {
+        return form;
     }
     
 	/**
@@ -63,7 +65,7 @@ public class MyDataController {
 	});
 	  
 	@RequestMapping(value = "/MyData/list")
-	public String index(Model model, MyDataForm myDataForm) {
+	public String index(Model model) {
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
