@@ -126,14 +126,14 @@ public class MyDataController {
 	
 	// Insert
 	@RequestMapping(value = "/MyData/insert")
-	public String insert(Model model, @ModelAttribute("mydata") MyData mydata) {
+	public String insert(Model model, MyData mydata) {
 		repository.saveAndFlush(mydata);
 		return "redirect:/MyData/search";
 	}
 	
 	 // Update
 	@RequestMapping(value = "/MyData/update")
-	public String update(@ModelAttribute("mydata") MyData mydata) {
+	public String update(MyData mydata) {
 		repository.saveAndFlush(mydata);
 		return "redirect:/MyData/search";
 	}
