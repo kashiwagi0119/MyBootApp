@@ -33,10 +33,10 @@ public class MyDataController {
 	@Autowired
 	private MyDataService service;
 	
-    @ModelAttribute(value = "myDataForm")
-    public MyDataForm setMyDataForm(MyDataForm form) {
-        return form;
-    }
+//    @ModelAttribute(value = "myDataForm")
+//    public MyDataForm setMyDataForm(MyDataForm form) {
+//        return form;
+//    }
     
 	/**
 	 * check boxの表示に使用するアイテム

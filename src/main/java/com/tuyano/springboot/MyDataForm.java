@@ -7,7 +7,6 @@ import org.springframework.web.context.annotation.SessionScope;
 import lombok.Data;
 
 @Data
-@SessionScope
 @Component
 public class MyDataForm implements Serializable {
 
