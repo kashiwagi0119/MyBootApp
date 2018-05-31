@@ -10,13 +10,11 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tuyano.springboot.repositories.MyDataRepository;
@@ -115,8 +113,8 @@ public class MyDataController {
 	}
 	
 	
-	@RequestMapping(value = "/MyData/update/{id}")
-	public String update(Model model, MyDataForm form, @PathVariable Long id) {
+	@RequestMapping(value = "/MyData/updatewindow/{id}")
+	public String updatewindow(Model model, MyDataForm form, @PathVariable Long id) {
 		Optional<MyData> data = repository.findById(id);
 		model.addAttribute("mydata",data.get());
 		// セレクトボックス設定
