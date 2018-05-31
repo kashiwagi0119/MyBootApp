@@ -121,7 +121,27 @@ public class MyDataController {
 		model.addAttribute("selectItems", roomRepository.findAll());
 		return "update";
 	}
-
+	
+	// Insert
+	@RequestMapping(value = "/MyData/insert")
+	public String insert(Model model, @ModelAttribute("mydata") MyData mydata) {
+		repository.saveAndFlush(mydata);
+		return "redirect:/MyData/search";
+	}
+	
+	 // Update
+	@RequestMapping(value = "/MyData/update")
+	public String update(@ModelAttribute("mydata") MyData mydata) {
+		repository.saveAndFlush(mydata);
+		return "redirect:/MyData/search";
+	}
+	
+	// InsertUpdate
+	@RequestMapping(value = "/MyData/back")
+	public String back(Model model) {
+		return "redirect:/MyData/search";
+	}
+	
 	@PostConstruct
 	public void init(){
 		Room r1 = new Room();
