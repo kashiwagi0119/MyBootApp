@@ -20,7 +20,7 @@ import com.tuyano.springboot.repositories.MyDataRepository;
 import com.tuyano.springboot.repositories.RoomRepository;
 
 @Controller
-public class HeloController {
+public class MyDataController {
 	  
 	@Autowired
 	MyDataRepository repository;
@@ -62,7 +62,7 @@ public class HeloController {
 	    }
 	});
 	  
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/MyData/list")
 	public String index(Model model, MyDataForm myDataForm) {
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
@@ -75,7 +75,7 @@ public class HeloController {
 	}
 
 	// repositoryで検索
-	@RequestMapping(value = "/search")
+	@RequestMapping(value = "/MyData/search")
 	public String search(Model model, MyDataForm form) {
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
@@ -87,7 +87,7 @@ public class HeloController {
 	}
 	
 	// Criteriaで検索
-	@RequestMapping(value = "/searchCriteria")
+	@RequestMapping(value = "/MyData/searchCriteria")
 	public String searchCriteria(Model model, MyDataForm form) {
 		model.addAttribute("selectItems", roomRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
@@ -98,7 +98,7 @@ public class HeloController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/insertwindow")
+	@RequestMapping(value = "/MyData/insertwindow")
 	public String insertwinddow(Model model, MyDataForm form) {
 		// セレクトボックス設定
 		model.addAttribute("selectItems", roomRepository.findAll());
@@ -106,25 +106,20 @@ public class HeloController {
 		return "insert";
 	}
 	
-	@RequestMapping(value = "/delete/{id}")
+	@RequestMapping(value = "/MyData/delete/{id}")
 	public String delete(Model model, MyDataForm form, @PathVariable Long id) {
 		repository.deleteById(id);
-		return "redirect:/search";
+		return "redirect:/MyData/search";
 	}
 	
-	@RequestMapping(value = "/update/{id}")
+	
+	@RequestMapping(value = "/MyData/update/{id}")
 	public String update(Model model, MyDataForm form, @PathVariable Long id) {
 		Optional<MyData> data = repository.findById(id);
 		model.addAttribute("mydata",data.get());
 		// セレクトボックス設定
 		model.addAttribute("selectItems", roomRepository.findAll());
 		return "update";
-	}
-    
-	@RequestMapping(value = "/update")
-	public String update(@ModelAttribute("mydata") MyData mydata) {
-		repository.saveAndFlush(mydata);
-		return "redirect:/search";
 	}
 
 	@PostConstruct

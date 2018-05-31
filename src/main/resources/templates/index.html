@@ -63,9 +63,9 @@
 			</div>
 		</div>
 				
-		<button class="btn btn-default" formaction="/search">検索repository</button>
-		<button class="btn btn-default" formaction="/searchCriteria">検索Criteria</button>
-		<button class="btn btn-default" formaction="/insertwindow">新規登録画面へ</button>
+		<button class="btn btn-default" formaction="/MyData/search">検索repository</button>
+		<button class="btn btn-default" formaction="/MyData/searchCriteria">検索Criteria</button>
+		<button class="btn btn-default" formaction="/MyData/insertwindow">新規登録画面へ</button>
 	
 	<table class="table table-striped">
 	<tr>
@@ -87,10 +87,10 @@
 		<td><p th:text="*{room != null} ? *{room.name}"></p></td>
 
 		<td>
-			<button class="btn btn-default btn-xs" th:formaction="@{/delete/{id}(id=*{id})}">削除</button>
+			<button class="btn btn-default btn-xs" th:formaction="@{/MyData/delete/{id}(id=*{id})}">削除</button>
         </td>      
 		<td>
-			<button class="btn btn-default btn-xs" th:formaction="@{/update/{id}(id=*{id})}">更新画面へ</button>
+			<button class="btn btn-default btn-xs" th:formaction="@{/MyData/update/{id}(id=*{id})}">更新画面へ</button>
         </td>      
 	</tr>
 	</table>
