@@ -7,12 +7,10 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -30,11 +28,6 @@ public class MyDataController {
 	RoomRepository roomRepository;
 	@Autowired
 	private MyDataService service;
-	
-//    @ModelAttribute(value = "myDataForm")
-//    public MyDataForm setMyDataForm(MyDataForm form) {
-//        return form;
-//    }
     
 	/**
 	 * check boxの表示に使用するアイテム
@@ -61,7 +54,8 @@ public class MyDataController {
 	      put("ラジオ3", "3");
 	    }
 	});
-	  
+	
+	// 検索画面の初期表示
 	@RequestMapping(value = "/MyData/list")
 	public String index(Model model) {
 		model.addAttribute("selectItems", roomRepository.findAll());
@@ -98,6 +92,7 @@ public class MyDataController {
 		return "index";
 	}
 	
+	// 新規登録画面へ
 	@RequestMapping(value = "/MyData/insertwindow")
 	public String insertwinddow(Model model, MyDataForm form) {
 		// セレクトボックス設定
@@ -106,13 +101,14 @@ public class MyDataController {
 		return "insert";
 	}
 	
+	// 削除ボタン
 	@RequestMapping(value = "/MyData/delete/{id}")
 	public String delete(Model model, MyDataForm form, @PathVariable Long id) {
 		repository.deleteById(id);
 		return "redirect:/MyData/search";
 	}
 	
-	
+	// 更新画面へ
 	@RequestMapping(value = "/MyData/updatewindow/{id}")
 	public String updatewindow(Model model, MyDataForm form, @PathVariable Long id) {
 		Optional<MyData> data = repository.findById(id);
@@ -122,26 +118,27 @@ public class MyDataController {
 		return "update";
 	}
 	
-	// Insert
+	// 新規登録画面の登録ボタン
 	@RequestMapping(value = "/MyData/insert")
 	public String insert(Model model, MyData mydata) {
 		repository.saveAndFlush(mydata);
 		return "redirect:/MyData/search";
 	}
 	
-	 // Update
+	 // 更新画面の更新ボタン
 	@RequestMapping(value = "/MyData/update")
 	public String update(MyData mydata) {
 		repository.saveAndFlush(mydata);
 		return "redirect:/MyData/search";
 	}
 	
-	// InsertUpdate
+	// 新規登録画面・更新画面の戻るボタン
 	@RequestMapping(value = "/MyData/back")
 	public String back(Model model) {
 		return "redirect:/MyData/search";
 	}
 	
+	// 初期処理のDB登録
 	@PostConstruct
 	public void init(){
 		Room r1 = new Room();
