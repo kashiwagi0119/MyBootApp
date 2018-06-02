@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.tuyano.springboot.repositories.ItemRepository;
 import com.tuyano.springboot.repositories.MyDataRepository;
 import com.tuyano.springboot.repositories.RoomRepository;
 
@@ -26,6 +27,8 @@ public class MyDataController {
 	MyDataRepository repository;
 	@Autowired
 	RoomRepository roomRepository;
+	@Autowired
+	ItemRepository itemRepository;
 	@Autowired
 	private MyDataService service;
     
@@ -141,11 +144,22 @@ public class MyDataController {
 	// 初期処理のDB登録
 	@PostConstruct
 	public void init(){
+		
+		Item i1 = new Item();
+		i1.setItemname("アイテム1");
+		itemRepository.saveAndFlush(i1);
+		Item i2 = new Item();
+		i2.setItemname("アイテム2");
+		itemRepository.saveAndFlush(i2);
+		
+		
 		Room r1 = new Room();
 		r1.setName("いっかい");
+		r1.setItem(i1);
 		roomRepository.saveAndFlush(r1);
 		Room r2 = new Room();
 		r2.setName("にかい");
+		r2.setItem(i2);
 		roomRepository.saveAndFlush(r2);
 		
 		MyData d1 = new MyData();

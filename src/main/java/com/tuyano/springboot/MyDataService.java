@@ -35,10 +35,11 @@ public class MyDataService {
 	    return repository.findAll(Specification
     		.where(nameLike(myDataForm.getName()))
 //    		.where(nameSpecifications(LIKE, myDataForm.getName()))
-    		.and(nameSpecifications(ISNOTNULL))
-    		.and(ageSpecifications(GE, myDataForm.getAgeFrom()))
-    		.and(ageSpecifications(LE, myDataForm.getAgeTo()))
-    		.and(roomSpecifications(LIKE, myDataForm.getRoom(), INNER))
+//    		.and(nameSpecifications(ISNOTNULL))
+//    		.and(ageSpecifications(GE, myDataForm.getAgeFrom()))
+//    		.and(ageSpecifications(LE, myDataForm.getAgeTo()))
+//    		.and(roomSpecifications(LIKE, myDataForm.getRoom(), INNER))
+    		.and(itemSpecifications(LIKE, "アイテム1", INNER))
     		,
 //	    	new Sort(Sort.Direction.ASC, "id")
     		new Sort(Sort.Direction.ASC, "id").and(new Sort(Sort.Direction.ASC, "name"))
@@ -58,7 +59,8 @@ public class MyDataService {
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<MyData> query = builder.createQuery(MyData.class);
 		Root<MyData> root = query.from(MyData.class);
-		query.select(root).where(builder.equal(root.get("name"), fstr));
+//		query.select(root).where(builder.equal(root.get("name"), fstr));
+		query.select(root).where(builder.equal(root.join("room", INNER).join("item", INNER).get("itemname"), "アイテム2"));
 		List<MyData> list = null;
 		list = (List<MyData>) entityManager.createQuery(query).getResultList();
 		return list;
