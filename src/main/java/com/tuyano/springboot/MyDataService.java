@@ -61,60 +61,56 @@ public class MyDataService {
 	// repositoryで検索
 	public List<MyData> findRepository(MyDataForm form) {
 		return repository.findAll(Specification
-				.where(nameLike(form.getName()))
+			.where(nameLike(form.getName()))
 //    		.where(nameSpecifications(LIKE, form.getName()))
 //    		.and(nameSpecifications(ISNOTNULL))
-//    		.and(ageSpecifications(GE, form.getAgeFrom()))
-//    		.and(ageSpecifications(LE, form.getAgeTo()))
 //    		.and(roomSpecifications(LIKE, form.getRoom(), INNER))
-				.and(itemSpecifications(LIKE, "アイテム1", INNER))
-				,
+			.and(itemSpecifications(LIKE, "アイテム1", INNER))
+			,
 //	    	new Sort(Sort.Direction.ASC, "id")
 //    		new Sort(Sort.Direction.ASC, "id").and(new Sort(Sort.Direction.ASC, "name"))
-				new Sort(Sort.Direction.ASC, "room.item.itemname")
-				);
+			new Sort(Sort.Direction.ASC, "room.item.itemname")
+			);
 	}
 	
-	// JPQLで検索
+	// JPQLで検索 (NULLチェックを2回やらないといけない)
 	@SuppressWarnings("unchecked")
 	public List<MyData> findJPQL(MyDataForm form) {
-		// ■JPQL 単一テーブル
-		String jpql = "from MyData where 1=1";
-		if (StringUtils.isNotBlank(form.getName())) {
-			jpql = jpql + " and name = :name";
-		}
-		jpql = jpql + " order by id desc";
-		Query query = entityManager.createQuery(jpql);
-		if (StringUtils.isNotBlank(form.getName())) {
-			query.setParameter("name", form.getName());
-		}
-			
-//		// ■JPQL INNSERJOIN（エラーになるが使わなそうなのでほっておく）
-//		String jpql = "select m from MyData m";
-//		jpql = jpql + " inner join Room r";
-//		jpql = jpql + "   on m.room_id = r.id ";
-//		jpql = jpql + " inner join Item i";
-//		jpql = jpql + "   on r.item_id = i.id";
-//		jpql = jpql + " where 1=1";
-//		
-//		if (form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemname())) {
-//			jpql = jpql + " and i.itemname = :itemname";
+//		// ■JPQL 単一テーブル
+//		String jpql = "from MyData where 1=1";
+//		if (StringUtils.isNotBlank(form.getName())) {
+//			jpql = jpql + " and name = :name";
 //		}
 //		jpql = jpql + " order by id desc";
 //		Query query = entityManager.createQuery(jpql);
 //		if (StringUtils.isNotBlank(form.getName())) {
-//			query.setParameter("itemname", form.getRoom().getItem().getItemname());
+//			query.setParameter("name", form.getName());
 //		}
+		
+		// ■JPQL INNSERJOIN
+		String jpql = "select m from MyData m";
+		jpql = jpql + " inner join Room r";
+		jpql = jpql + "   on m.room = r.id ";
+		jpql = jpql + " inner join Item i";
+		jpql = jpql + "   on r.item = i.id";
+		jpql = jpql + " where 1=1";
+		if (form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemname())) {
+			jpql = jpql + " and i.itemname = :itemname";
+		}
+		jpql = jpql + " order by m.id desc";
+		Query query = entityManager.createQuery(jpql);
+		if (form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemname())) {
+			query.setParameter("itemname", form.getRoom().getItem().getItemname());
+		}
 		
 		List<MyData> list = query.getResultList();
 		return list;
 	}
 	
 	
-	// SQLで検索
+	// SQLで検索 (MyData型ではなくObjectで帰ってきてエラーになる)
 	@SuppressWarnings("unchecked")
 	public List<MyData> findSQL(MyDataForm form) {
-		// ■SQL MyData型ではなくObjectで帰ってきてエラーになる
 		String sql = "select * from MyData where 1=1";
 		if (StringUtils.isNotBlank(form.getName())) {
 			sql = sql + " and name = :name";
@@ -125,10 +121,8 @@ public class MyDataService {
 			query.setParameter("name", form.getName());
 		}
 		List<MyData> list = query.getResultList();
-		
 		// エラー回避用
 		list.clear();
-		
 		return list;
 	}
 	
