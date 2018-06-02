@@ -11,7 +11,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,8 @@ public class MyDataService {
 	public List<MyData> findRepository(MyDataForm myDataForm) {
 	    
 	    return repository.findAll(Specification
-    		.where(nameSpecifications(LIKE, myDataForm.getName()))
+    		.where(nameLike(myDataForm.getName()))
+//    		.where(nameSpecifications(LIKE, myDataForm.getName()))
     		.and(nameSpecifications(ISNOTNULL))
     		.and(ageSpecifications(GE, myDataForm.getAgeFrom()))
     		.and(ageSpecifications(LE, myDataForm.getAgeTo()))

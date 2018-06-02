@@ -1,9 +1,7 @@
 package com.tuyano.springboot;
 
 import java.io.Serializable;
-
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.SessionScope;
 import lombok.Data;
 
 @Data

@@ -15,6 +15,21 @@ public class MyDataSpecifications {
     /**
      * 名前
      */
+    public static Specification<MyData> nameLike(String name) {
+    	return StringUtils.isEmpty(name) ? null : new Specification<MyData>() {
+			private static final long serialVersionUID = 1L;
+			@Override
+            public Predicate toPredicate(Root<MyData> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				if (StringUtils.right(name, 1).equals("%")) {
+					return cb.like(root.get("name"), name);
+				} else {
+					return cb.like(root.get("name"), name + "%");
+				}
+            }
+        };
+    }
+
+    
     public static Specification<MyData> nameSpecifications(Operator2Enum operator, String name) {
     	return StringUtils.isEmpty(name) ? null : new Specification<MyData>() {
 			private static final long serialVersionUID = 1L;
