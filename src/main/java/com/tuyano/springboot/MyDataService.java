@@ -58,19 +58,19 @@ public class MyDataService {
 		
 	}
 	
-	// repositoryで検索
-	public List<MyData> findRepository(MyDataForm form) {
+	// Specificationで検索
+	public List<MyData> findSpecification(MyDataForm form) {
 		return repository.findAll(Specification
-			.where(nameLike(form.getName()))
+				.where(nameLike(form.getName()))
 //    		.where(nameSpecifications(LIKE, form.getName()))
 //    		.and(nameSpecifications(ISNOTNULL))
 //    		.and(roomSpecifications(LIKE, form.getRoom(), INNER))
-			.and(itemSpecifications(LIKE, "アイテム1", INNER))
-			,
+				.and(itemSpecifications(LIKE, "アイテム1", INNER))
+				,
 //	    	new Sort(Sort.Direction.ASC, "id")
 //    		new Sort(Sort.Direction.ASC, "id").and(new Sort(Sort.Direction.ASC, "name"))
-			new Sort(Sort.Direction.ASC, "room.item.itemname")
-			);
+				new Sort(Sort.Direction.ASC, "room.item.itemname")
+				);
 	}
 	
 	// JPQLで検索 (NULLチェックを2回やらないといけない)
@@ -106,7 +106,6 @@ public class MyDataService {
 		List<MyData> list = query.getResultList();
 		return list;
 	}
-	
 	
 	// SQLで検索 (MyData型ではなくObjectで帰ってきてエラーになる)
 	@SuppressWarnings("unchecked")

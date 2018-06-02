@@ -92,8 +92,21 @@ public class MyDataController {
 		model.addAttribute("selectItems", itemRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
+		// 単純な検索ならServiceを経由しなくもいいかな
+		List<MyData> list = repository.findByNameOrderByIdDesc(form.getName());
+		model.addAttribute("datalist", list);
+		return "index";
+	}
+	
+	// Specificationで検索
+	@RequestMapping(value = "/MyData/searchSpecification")
+	public String searchSpecification(Model model, MyDataForm form) {
+		model.addAttribute("selectRooms", roomRepository.findAll());
+		model.addAttribute("selectItems", itemRepository.findAll());
+		model.addAttribute("checkItems", CHECK_ITEMS);
+		model.addAttribute("radioItems", RADIO_ITEMS);
 		
-		List<MyData> list = service.findRepository(form);
+		List<MyData> list = service.findSpecification(form);
 		model.addAttribute("datalist", list);
 		return "index";
 	}
