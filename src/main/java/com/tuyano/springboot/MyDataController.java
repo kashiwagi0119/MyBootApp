@@ -71,19 +71,6 @@ public class MyDataController {
 		model.addAttribute("myDataForm", new MyDataForm());
 		return "index";
 	}
-
-	// repositoryで検索
-	@RequestMapping(value = "/MyData/searchRepository")
-	public String search(Model model, MyDataForm form) {
-		model.addAttribute("selectRooms", roomRepository.findAll());
-		model.addAttribute("selectItems", itemRepository.findAll());
-		model.addAttribute("checkItems", CHECK_ITEMS);
-		model.addAttribute("radioItems", RADIO_ITEMS);
-		
-		List<MyData> list = service.findRepository(form);
-		model.addAttribute("datalist", list);
-		return "index";
-	}
 	
 	// Criteriaで検索
 	@RequestMapping(value = "/MyData/search")
@@ -97,6 +84,47 @@ public class MyDataController {
 		model.addAttribute("datalist", list);
 		return "index";
 	}
+
+	// repositoryで検索
+	@RequestMapping(value = "/MyData/searchRepository")
+	public String searchRepository(Model model, MyDataForm form) {
+		model.addAttribute("selectRooms", roomRepository.findAll());
+		model.addAttribute("selectItems", itemRepository.findAll());
+		model.addAttribute("checkItems", CHECK_ITEMS);
+		model.addAttribute("radioItems", RADIO_ITEMS);
+		
+		List<MyData> list = service.findRepository(form);
+		model.addAttribute("datalist", list);
+		return "index";
+	}
+	
+	// JPQLで検索
+	@RequestMapping(value = "/MyData/searchJPQL")
+	public String searchJPQL(Model model, MyDataForm form) {
+		model.addAttribute("selectRooms", roomRepository.findAll());
+		model.addAttribute("selectItems", itemRepository.findAll());
+		model.addAttribute("checkItems", CHECK_ITEMS);
+		model.addAttribute("radioItems", RADIO_ITEMS);
+		
+		List<MyData> list = service.findJPQL(form);
+		model.addAttribute("datalist", list);
+		return "index";
+	}
+	
+	// SQLで検索
+	@RequestMapping(value = "/MyData/searchSQL")
+	public String searchSQL(Model model, MyDataForm form) {
+		model.addAttribute("selectRooms", roomRepository.findAll());
+		model.addAttribute("selectItems", itemRepository.findAll());
+		model.addAttribute("checkItems", CHECK_ITEMS);
+		model.addAttribute("radioItems", RADIO_ITEMS);
+		
+		List<MyData> list = service.findSQL(form);
+		model.addAttribute("datalist", list);
+		return "index";
+	}
+	
+	
 	
 	// 新規登録画面へ
 	@RequestMapping(value = "/MyData/insertwindow")
