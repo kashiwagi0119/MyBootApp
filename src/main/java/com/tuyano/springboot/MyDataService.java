@@ -58,7 +58,7 @@ public class MyDataService {
 		
 	}
 	
-	// Specificationで検索
+	// Specificationで検索 (Specificationsを用意しないと。。。)
 	public List<MyData> findSpecification(MyDataForm form) {
 		return repository.findAll(Specification
 				.where(nameLike(form.getName()))
@@ -76,32 +76,32 @@ public class MyDataService {
 	// JPQLで検索 (NULLチェックを2回やらないといけない)
 	@SuppressWarnings("unchecked")
 	public List<MyData> findJPQL(MyDataForm form) {
-//		// ■JPQL 単一テーブル
-//		String jpql = "from MyData where 1=1";
-//		if (StringUtils.isNotBlank(form.getName())) {
-//			jpql = jpql + " and name = :name";
-//		}
-//		jpql = jpql + " order by id desc";
-//		Query query = entityManager.createQuery(jpql);
-//		if (StringUtils.isNotBlank(form.getName())) {
-//			query.setParameter("name", form.getName());
-//		}
-		
-		// ■JPQL INNSERJOIN
-		String jpql = "select m from MyData m";
-		jpql = jpql + " inner join Room r";
-		jpql = jpql + "   on m.room = r.id ";
-		jpql = jpql + " inner join Item i";
-		jpql = jpql + "   on r.item = i.id";
-		jpql = jpql + " where 1=1";
-		if (form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemname())) {
-			jpql = jpql + " and i.itemname = :itemname";
+		// ■JPQL 単一テーブル
+		String jpql = "from MyData where 1=1";
+		if (StringUtils.isNotBlank(form.getName())) {
+			jpql = jpql + " and name = :name";
 		}
-		jpql = jpql + " order by m.id desc";
+		jpql = jpql + " order by id desc";
 		Query query = entityManager.createQuery(jpql);
-		if (form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemname())) {
-			query.setParameter("itemname", form.getRoom().getItem().getItemname());
+		if (StringUtils.isNotBlank(form.getName())) {
+			query.setParameter("name", form.getName());
 		}
+		
+//		// ■JPQL INNSERJOIN
+//		String jpql = "select m from MyData m";
+//		jpql = jpql + " inner join Room r";
+//		jpql = jpql + "   on m.room = r.id ";
+//		jpql = jpql + " inner join Item i";
+//		jpql = jpql + "   on r.item = i.id";
+//		jpql = jpql + " where 1=1";
+//		if (form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemname())) {
+//			jpql = jpql + " and i.itemname = :itemname";
+//		}
+//		jpql = jpql + " order by m.id desc";
+//		Query query = entityManager.createQuery(jpql);
+//		if (form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemname())) {
+//			query.setParameter("itemname", form.getRoom().getItem().getItemname());
+//		}
 		
 		List<MyData> list = query.getResultList();
 		return list;
