@@ -2,14 +2,17 @@ package com.tuyano.springboot;
 
 import static com.tuyano.springboot.MyDataSpecifications.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
@@ -31,7 +34,10 @@ public class MyDataService {
 
 	// repositoryで検索
 	public List<MyData> findRepository(MyDataForm myDataForm) {
-	    
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<MyData> query = builder.createQuery(MyData.class);
+		Root<MyData> root = query.from(MyData.class);
+		
 	    return repository.findAll(Specification
     		.where(nameLike(myDataForm.getName()))
 //    		.where(nameSpecifications(LIKE, myDataForm.getName()))
@@ -39,7 +45,7 @@ public class MyDataService {
 //    		.and(ageSpecifications(GE, myDataForm.getAgeFrom()))
 //    		.and(ageSpecifications(LE, myDataForm.getAgeTo()))
 //    		.and(roomSpecifications(LIKE, myDataForm.getRoom(), INNER))
-//    		.and(itemSpecifications(LIKE, "アイテム1", INNER))
+    		.and(itemSpecifications(LIKE, "アイテム1", INNER))
     		,
 //	    	new Sort(Sort.Direction.ASC, "id")
 //    		new Sort(Sort.Direction.ASC, "id").and(new Sort(Sort.Direction.ASC, "name"))
@@ -56,16 +62,29 @@ public class MyDataService {
 	}
 	
 	// Criteriaで検索
-	public List<MyData> findCriteria(String fstr) {
+	public List<MyData> findCriteria(MyDataForm form) {
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<MyData> query = builder.createQuery(MyData.class);
 		Root<MyData> root = query.from(MyData.class);
-		query.select(root).where(builder.equal(root.get("name"), fstr));
-//		query.select(root).where(builder.equal(root.join("room", INNER).join("item", INNER).get("itemname"), "アイテム2"));
 		
 		
-		List<MyData> list = null;
-		list = (List<MyData>) entityManager.createQuery(query).getResultList();
+	    final List<Predicate> where = new ArrayList<>();
+	    if (StringUtils.isNotBlank(form.getName())) {
+	        where.add(builder.equal(root.get("name"), form.getName()));
+	    }
+		
+	    // アイテム
+		if (form.getRoom() != null && form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemname())) {
+			where.add(builder.equal(root.join("room", INNER).join("item", INNER).get("itemname"), form.getRoom().getItem().getItemname()));
+		}
+		
+//		query.select(root).where(builder.equal(root.get("name"), name));
+//		query.select(root).where(builder.equal(root.join("room", INNER).join("item", INNER).get("itemname"), "アイテム1"));
+	    
+	    
+	    
+		query.where(where.toArray(new Predicate[where.size()]));
+	    List<MyData> list = (List<MyData>) entityManager.createQuery(query).getResultList();
 		return list;
 		
 	}

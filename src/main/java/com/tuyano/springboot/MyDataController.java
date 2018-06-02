@@ -61,7 +61,8 @@ public class MyDataController {
 	// 検索画面の初期表示
 	@RequestMapping(value = "/MyData/list")
 	public String index(Model model) {
-		model.addAttribute("selectItems", roomRepository.findAll());
+		model.addAttribute("selectRooms", roomRepository.findAll());
+		model.addAttribute("selectItems", itemRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
 		Iterable<MyData> list = repository.findAll();
@@ -72,9 +73,10 @@ public class MyDataController {
 	}
 
 	// repositoryで検索
-	@RequestMapping(value = "/MyData/search")
+	@RequestMapping(value = "/MyData/searchRepository")
 	public String search(Model model, MyDataForm form) {
-		model.addAttribute("selectItems", roomRepository.findAll());
+		model.addAttribute("selectRooms", roomRepository.findAll());
+		model.addAttribute("selectItems", itemRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
 		
@@ -84,13 +86,14 @@ public class MyDataController {
 	}
 	
 	// Criteriaで検索
-	@RequestMapping(value = "/MyData/searchCriteria")
+	@RequestMapping(value = "/MyData/search")
 	public String searchCriteria(Model model, MyDataForm form) {
-		model.addAttribute("selectItems", roomRepository.findAll());
+		model.addAttribute("selectRooms", roomRepository.findAll());
+		model.addAttribute("selectItems", itemRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
 		
-		List<MyData> list = service.findCriteria(form.getName());
+		List<MyData> list = service.findCriteria(form);
 		model.addAttribute("datalist", list);
 		return "index";
 	}
@@ -99,7 +102,8 @@ public class MyDataController {
 	@RequestMapping(value = "/MyData/insertwindow")
 	public String insertwinddow(Model model, MyDataForm form) {
 		// セレクトボックス設定
-		model.addAttribute("selectItems", roomRepository.findAll());
+		model.addAttribute("selectRooms", roomRepository.findAll());
+		model.addAttribute("selectItems", itemRepository.findAll());
 		model.addAttribute("mydata", new MyData());
 		return "insert";
 	}
@@ -117,7 +121,8 @@ public class MyDataController {
 		Optional<MyData> data = repository.findById(id);
 		model.addAttribute("mydata",data.get());
 		// セレクトボックス設定
-		model.addAttribute("selectItems", roomRepository.findAll());
+		model.addAttribute("selectRooms", roomRepository.findAll());
+		model.addAttribute("selectItems", itemRepository.findAll());
 		return "update";
 	}
 	

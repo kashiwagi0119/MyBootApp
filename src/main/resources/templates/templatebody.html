@@ -66,10 +66,27 @@
 		        <select class="form-control" id="room" name="room">
 		            <option value="">---</option>
 		            <th:block th:if="*{room}==null">
-		          		<option th:each="item : ${selectItems}" th:value="${item.id}" th:text="${item.name}" >
+		          		<option th:each="item : ${selectRooms}" th:value="${item.id}" th:text="${item.name}" >
 		            </th:block>
 		            <th:block th:unless="*{room}==null">
-		          		<option th:each="item : ${selectItems}" th:value="${item.id}" th:text="${item.name}" th:selected="${item.id}==*{room.id}">
+		          		<option th:each="item : ${selectRooms}" th:value="${item.id}" th:text="${item.name}" th:selected="${item.id}==*{room.id}">
+		            </th:block>
+		        </select>
+			</div>
+		</div>
+	</th:block>
+	
+	<th:block th:fragment="templateroomitem">
+		<div class="form-group">
+			<label class="col-xs-2 control-label" for="room.item">アイテム：</label>
+			<div class="col-xs-10">
+		        <select class="form-control" id="room.item" name="room.item">
+		            <option value="">---</option>
+		            <th:block th:if="*{room.item}==null">
+		          		<option th:each="selectItem : ${selectItems}" th:value="${selectItem.id}" th:text="${selectItem.itemname}" >
+		            </th:block>
+		            <th:block th:unless="*{room.item}==null">
+		          		<option th:each="selectItem : ${selectItems}" th:value="${selectItem.id}" th:text="${selectItem.itemname}" th:selected="${selectItem.id}==*{room.item.id}">
 		            </th:block>
 		        </select>
 			</div>

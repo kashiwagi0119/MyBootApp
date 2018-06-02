@@ -17,6 +17,7 @@
 		<th:block th:include="templatebody :: templateageTo" />
 		<th:block th:include="templatebody :: templatememo" />
 		<th:block th:include="templatebody :: templateroom" />
+		<th:block th:include="templatebody :: templateroomitem" />
 		
 		<div class="form-group">
 			<label class="col-xs-2 control-label">チェック1：</label>
@@ -63,8 +64,8 @@
 			</div>
 		</div>
 				
-		<button class="btn btn-default" formaction="/MyData/search">検索repository</button>
-		<button class="btn btn-default" formaction="/MyData/searchCriteria">検索Criteria</button>
+		<button class="btn btn-default" formaction="/MyData/search">検索Criteria</button>
+		<button class="btn btn-default" formaction="/MyData/searchRepository">検索repository</button>
 		<button class="btn btn-default" formaction="/MyData/insertwindow">新規登録画面へ</button>
 	
 	<table class="table table-striped">
@@ -75,6 +76,7 @@
 		<th>年齢</th>
 		<th>メモ</th>
 		<th>ルーム</th>
+		<th>アイテム</th>
 		<th>削除</th>
 		<th>更新画面へ</th>
 	</tr>
@@ -85,6 +87,7 @@
 		<td th:text="*{age}"></td>
 		<td th:text="*{memo}"></td>
 		<td><p th:text="*{room != null} ? *{room.name}"></p></td>
+		<td><p th:text="*{room != null} ? *{room.item.itemname}"></p></td>
 
 		<td>
 			<button class="btn btn-default btn-xs" th:formaction="@{/MyData/delete/{id}(id=*{id})}">削除</button>
