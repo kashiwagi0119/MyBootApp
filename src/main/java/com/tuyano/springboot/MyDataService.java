@@ -67,14 +67,15 @@ public class MyDataService {
 		CriteriaQuery<MyData> query = builder.createQuery(MyData.class);
 		Root<MyData> root = query.from(MyData.class);
 		
-		
 	    final List<Predicate> where = new ArrayList<>();
+	    
+	    // 名前
 	    if (StringUtils.isNotBlank(form.getName())) {
 	        where.add(builder.equal(root.get("name"), form.getName()));
 	    }
 		
 	    // アイテム
-		if (form.getRoom() != null && form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemname())) {
+		if (form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemname())) {
 			where.add(builder.equal(root.join("room", INNER).join("item", INNER).get("itemname"), form.getRoom().getItem().getItemname()));
 		}
 		
