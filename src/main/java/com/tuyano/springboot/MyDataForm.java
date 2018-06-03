@@ -58,6 +58,8 @@ public class MyDataForm implements Serializable {
     */
     private String[] select2;
     
+    private String select3;
+    
     /**
      * 日付1
     */

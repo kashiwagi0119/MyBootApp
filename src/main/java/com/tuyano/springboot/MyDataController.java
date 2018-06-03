@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.tuyano.springboot.constant.SelectEnum;
 import com.tuyano.springboot.repositories.ItemRepository;
 import com.tuyano.springboot.repositories.MyDataRepository;
 import com.tuyano.springboot.repositories.RoomRepository;
@@ -65,6 +66,8 @@ public class MyDataController {
 		model.addAttribute("selectItems", itemRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
+		model.addAttribute("selectEnums", SelectEnum.values());
+		
 		Iterable<MyData> list = repository.findAll();
 		model.addAttribute("datalist", list);
 		
@@ -79,6 +82,7 @@ public class MyDataController {
 		model.addAttribute("selectItems", itemRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
+		model.addAttribute("selectEnums", SelectEnum.values());
 		
 		List<MyData> list = service.findCriteria(form);
 		model.addAttribute("datalist", list);
@@ -92,6 +96,7 @@ public class MyDataController {
 		model.addAttribute("selectItems", itemRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
+		model.addAttribute("selectEnums", SelectEnum.values());
 		// 単純な検索ならServiceを経由しなくもいいかな
 		List<MyData> list = repository.findByNameOrderByIdDesc(form.getName());
 		model.addAttribute("datalist", list);
@@ -105,6 +110,7 @@ public class MyDataController {
 		model.addAttribute("selectItems", itemRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
+		model.addAttribute("selectEnums", SelectEnum.values());
 		
 		List<MyData> list = service.findSpecification(form);
 		model.addAttribute("datalist", list);
@@ -118,6 +124,7 @@ public class MyDataController {
 		model.addAttribute("selectItems", itemRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
+		model.addAttribute("selectEnums", SelectEnum.values());
 		
 		List<MyData> list = service.findJPQL(form);
 		model.addAttribute("datalist", list);
@@ -131,6 +138,7 @@ public class MyDataController {
 		model.addAttribute("selectItems", itemRepository.findAll());
 		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
+		model.addAttribute("selectEnums", SelectEnum.values());
 		
 		List<MyData> list = service.findSQL(form);
 		model.addAttribute("datalist", list);
