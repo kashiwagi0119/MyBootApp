@@ -82,10 +82,10 @@
 			<div class="col-xs-9">
 		        <select class="form-control" id="room.item" name="room.item">
 		            <option value="">---</option>
-		            <th:block th:if="*{room.item}==null">
+		            <th:block th:if="*{room.item}==null or *{room.item.itemname}==null">
 		          		<option th:each="selectItem : ${selectItems}" th:value="${selectItem.id}" th:text="${selectItem.itemname}" >
 		            </th:block>
-		            <th:block th:unless="*{room.item}==null">
+		            <th:block th:unless="*{room.item}==null or *{room.item.itemname}==null">
 		          		<option th:each="selectItem : ${selectItems}" th:value="${selectItem.id}" th:text="${selectItem.itemname}" th:selected="${selectItem.id}==*{room.item.id}">
 		            </th:block>
 		        </select>
