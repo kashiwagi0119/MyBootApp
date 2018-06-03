@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -32,19 +33,33 @@ public class MyDataController {
 	ItemRepository itemRepository;
 	@Autowired
 	private MyDataService service;
-    
-	/**
-	 * check boxの表示に使用するアイテム
-	 */
+	
+	@ModelAttribute("selectEnums")
+	SelectEnum[] selectEnum() {
+		return SelectEnum.values();
+	}
+	
 	@SuppressWarnings("serial")
-	final static Map<String, String> CHECK_ITEMS =
-		Collections.unmodifiableMap(new LinkedHashMap<String, String>() {
-		{
-		  put("チェック複数1", "1");
-		  put("チェック複数2", "2");
-		  put("チェック複数3", "3");
-		}
-	});
+	@ModelAttribute("checkItems")
+	Map<String, String> checkItems() {
+		return Collections.unmodifiableMap(new LinkedHashMap<String, String>() {
+			{
+			  put("チェック複数1", "1");
+			  put("チェック複数2", "2");
+			  put("チェック複数3", "3");
+			}
+		});
+	}
+	
+	@ModelAttribute("selectRooms")
+	List<Room> selectRooms() {
+		return roomRepository.findAll();
+	}
+	
+	@ModelAttribute("selectItems")
+	List<Item> selectItems() {
+		return itemRepository.findAll();
+	}
 	  
 	/**
 	 * radio buttonの表示に使用するアイテム
@@ -62,11 +77,7 @@ public class MyDataController {
 	// 検索画面の初期表示
 	@RequestMapping(value = "/MyData/list")
 	public String index(Model model) {
-		model.addAttribute("selectRooms", roomRepository.findAll());
-		model.addAttribute("selectItems", itemRepository.findAll());
-		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
-		model.addAttribute("selectEnums", SelectEnum.values());
 		
 		Iterable<MyData> list = repository.findAll();
 		model.addAttribute("datalist", list);
@@ -78,11 +89,7 @@ public class MyDataController {
 	// Criteriaで検索
 	@RequestMapping(value = "/MyData/search")
 	public String searchCriteria(Model model, MyDataForm form) {
-		model.addAttribute("selectRooms", roomRepository.findAll());
-		model.addAttribute("selectItems", itemRepository.findAll());
-		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
-		model.addAttribute("selectEnums", SelectEnum.values());
 		
 		List<MyData> list = service.findCriteria(form);
 		model.addAttribute("datalist", list);
@@ -92,11 +99,7 @@ public class MyDataController {
 	// repositoryで検索
 	@RequestMapping(value = "/MyData/searchRepository")
 	public String searchRepository(Model model, MyDataForm form) {
-		model.addAttribute("selectRooms", roomRepository.findAll());
-		model.addAttribute("selectItems", itemRepository.findAll());
-		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
-		model.addAttribute("selectEnums", SelectEnum.values());
 		// 単純な検索ならServiceを経由しなくもいいかな
 		List<MyData> list = repository.findByNameOrderByIdDesc(form.getName());
 		model.addAttribute("datalist", list);
@@ -106,11 +109,7 @@ public class MyDataController {
 	// Specificationで検索
 	@RequestMapping(value = "/MyData/searchSpecification")
 	public String searchSpecification(Model model, MyDataForm form) {
-		model.addAttribute("selectRooms", roomRepository.findAll());
-		model.addAttribute("selectItems", itemRepository.findAll());
-		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
-		model.addAttribute("selectEnums", SelectEnum.values());
 		
 		List<MyData> list = service.findSpecification(form);
 		model.addAttribute("datalist", list);
@@ -120,11 +119,7 @@ public class MyDataController {
 	// JPQLで検索
 	@RequestMapping(value = "/MyData/searchJPQL")
 	public String searchJPQL(Model model, MyDataForm form) {
-		model.addAttribute("selectRooms", roomRepository.findAll());
-		model.addAttribute("selectItems", itemRepository.findAll());
-		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
-		model.addAttribute("selectEnums", SelectEnum.values());
 		
 		List<MyData> list = service.findJPQL(form);
 		model.addAttribute("datalist", list);
@@ -134,25 +129,16 @@ public class MyDataController {
 	// SQLで検索
 	@RequestMapping(value = "/MyData/searchSQL")
 	public String searchSQL(Model model, MyDataForm form) {
-		model.addAttribute("selectRooms", roomRepository.findAll());
-		model.addAttribute("selectItems", itemRepository.findAll());
-		model.addAttribute("checkItems", CHECK_ITEMS);
 		model.addAttribute("radioItems", RADIO_ITEMS);
-		model.addAttribute("selectEnums", SelectEnum.values());
 		
 		List<MyData> list = service.findSQL(form);
 		model.addAttribute("datalist", list);
 		return "index";
 	}
 	
-	
-	
 	// 新規登録画面へ
 	@RequestMapping(value = "/MyData/insertwindow")
 	public String insertwinddow(Model model, MyDataForm form) {
-		// セレクトボックス設定
-		model.addAttribute("selectRooms", roomRepository.findAll());
-		model.addAttribute("selectItems", itemRepository.findAll());
 		model.addAttribute("mydata", new MyData());
 		return "insert";
 	}
@@ -169,9 +155,6 @@ public class MyDataController {
 	public String updatewindow(Model model, MyDataForm form, @PathVariable Long id) {
 		Optional<MyData> data = repository.findById(id);
 		model.addAttribute("mydata",data.get());
-		// セレクトボックス設定
-		model.addAttribute("selectRooms", roomRepository.findAll());
-		model.addAttribute("selectItems", itemRepository.findAll());
 		return "update";
 	}
 	
