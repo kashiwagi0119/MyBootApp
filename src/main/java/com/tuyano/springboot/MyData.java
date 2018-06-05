@@ -37,7 +37,6 @@ public class MyData {
 	
 	public MyData() {
 		super();
-		room = new Room();
 	}
 	
 }

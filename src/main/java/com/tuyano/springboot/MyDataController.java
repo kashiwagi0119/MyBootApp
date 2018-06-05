@@ -161,6 +161,9 @@ public class MyDataController {
 	// 新規登録画面の登録ボタン
 	@RequestMapping(value = "/MyData/insert")
 	public String insert(Model model, MyData mydata) {
+		
+//		roomRepository.saveAndFlush(mydata.getRoom());
+		
 		repository.saveAndFlush(mydata);
 		return "redirect:/MyData/search";
 	}

@@ -36,7 +36,6 @@ public class Room {
 	
 	public Room() {
 		super();
-		item = new Item();
 	}
 	
 }
