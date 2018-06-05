@@ -22,6 +22,8 @@ public class MyDataForm implements Serializable {
 	private String memo;
 
 	private Room room;
+
+	private Item item;
 	
     /**
      * 年齢From

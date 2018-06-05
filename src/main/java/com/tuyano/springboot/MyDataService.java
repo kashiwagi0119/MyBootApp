@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -39,13 +40,25 @@ public class MyDataService {
 		CriteriaQuery<MyData> query = builder.createQuery(MyData.class);
 		Root<MyData> root = query.from(MyData.class);
 	    final List<Predicate> where = new ArrayList<>();
+	    
+	    root.fetch("room", JoinType.LEFT); // 関連エンティティを同時に取ってくるように指定
+	    root.fetch("room", JoinType.LEFT).fetch("item", JoinType.LEFT); // 関連エンティティを同時に取ってくるように指定
+	    
 	    // 名前
 	    if (StringUtils.isNotBlank(form.getName())) {
 	        where.add(builder.equal(root.get("name"), form.getName()));
 	    }
-	    // アイテム
-		if (form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemname())) {
-			where.add(builder.equal(root.join("room", INNER).join("item", INNER).get("itemname"), form.getRoom().getItem().getItemname()));
+	    // 年齢From
+	    if (form.getAgeFrom() != null) {
+	    	where.add(builder.ge(root.get("age"), form.getAgeFrom()));
+	    }
+	    // 部屋
+		if (form.getRoom() != null && StringUtils.isNotBlank(form.getRoom().getName())) {
+			where.add(builder.equal(root.join("room", LEFT).get("name"), form.getRoom().getName()));
+		}
+		// アイテム
+		if (form.getItem() != null && StringUtils.isNotBlank(form.getItem().getItemname())) {
+			where.add(builder.equal(root.join("room", LEFT).join("item", LEFT).get("itemname"), form.getItem().getItemname()));
 		}
 		
 		// 条件１つなら以下でOK
@@ -124,8 +137,5 @@ public class MyDataService {
 		list.clear();
 		return list;
 	}
-	
-	
-	
 	
 }

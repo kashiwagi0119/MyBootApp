@@ -11,12 +11,12 @@
 	<h1 >新規登録画面</h1>
 	<form class="form-horizontal" method="post" th:object="${mydata}">
 		
-		<th:block th:include="templatebody :: templatename" />
-		<th:block th:include="templatebody :: templatemail" />
-		<th:block th:include="templatebody :: templateage" />
-		<th:block th:include="templatebody :: templatememo" />
-		<th:block th:include="templatebody :: templateroom" />
-		<th:block th:include="templatebody :: templateroomitem" />
+		<th:block th:include="templatebody :: templateName" />
+		<th:block th:include="templatebody :: templatEmail" />
+		<th:block th:include="templatebody :: templateAge" />
+		<th:block th:include="templatebody :: templateMemo" />
+		<th:block th:include="templatebody :: templateRoom" />
+		<th:block th:include="templatebody :: templateRoomItem" />
 		
 		<button class="btn btn-default" formaction="/MyData/insert">新規登録</button>
 		<button class="btn btn-default" formaction="/MyData/back" >戻る</button>

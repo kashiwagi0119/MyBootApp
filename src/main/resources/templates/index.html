@@ -11,13 +11,13 @@
 	
 	<form class="form-horizontal" action="/" method="post" th:object="${myDataForm}">
 
-		<th:block th:include="templatebody :: templatename" />
-		<th:block th:include="templatebody :: templatemail" />
-		<th:block th:include="templatebody :: templateageFrom" />
-		<th:block th:include="templatebody :: templateageTo" />
-		<th:block th:include="templatebody :: templatememo" />
-		<th:block th:include="templatebody :: templateroom" />
-		<th:block th:include="templatebody :: templateroomitem" />
+		<th:block th:include="templatebody :: templateName" />
+		<th:block th:include="templatebody :: templatEmail" />
+		<th:block th:include="templatebody :: templateAgeFrom" />
+		<th:block th:include="templatebody :: templateAgeTo" />
+		<th:block th:include="templatebody :: templateMemo" />
+		<th:block th:include="templatebody :: templateRoom" />
+		<th:block th:include="templatebody :: templateItem" />
 		
 		<div class="form-group">
 			<label class="col-xs-3 control-label">セレクトEnum：</label>
