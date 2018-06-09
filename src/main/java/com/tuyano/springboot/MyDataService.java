@@ -57,13 +57,13 @@ public class MyDataService {
 			where.add(builder.equal(root.join("room", LEFT).get("name"), form.getRoom().getName()));
 		}
 		// アイテム
-		if (form.getItem() != null && StringUtils.isNotBlank(form.getItem().getItemname())) {
-			where.add(builder.equal(root.join("room", LEFT).join("item", LEFT).get("itemname"), form.getItem().getItemname()));
+		if (form.getItem() != null && StringUtils.isNotBlank(form.getItem().getItemName())) {
+			where.add(builder.equal(root.join("room", LEFT).join("item", LEFT).get("itemName"), form.getItem().getItemName()));
 		}
 		
 		// 条件１つなら以下でOK
 //		query.select(root).where(builder.equal(root.get("name"), name));
-//		query.select(root).where(builder.equal(root.join("room", INNER).join("item", INNER).get("itemname"), "アイテム1"));
+//		query.select(root).where(builder.equal(root.join("room", INNER).join("item", INNER).get("itemName"), "アイテム1"));
 	    
 		query.where(where.toArray(new Predicate[where.size()]));
 	    List<MyData> list = (List<MyData>) entityManager.createQuery(query).getResultList();
@@ -82,7 +82,7 @@ public class MyDataService {
 				,
 //	    	new Sort(Sort.Direction.ASC, "id")
 //    		new Sort(Sort.Direction.ASC, "id").and(new Sort(Sort.Direction.ASC, "name"))
-				new Sort(Sort.Direction.ASC, "room.item.itemname")
+				new Sort(Sort.Direction.ASC, "room.item.itemName")
 				);
 	}
 	
@@ -107,13 +107,13 @@ public class MyDataService {
 //		jpql = jpql + " inner join Item i";
 //		jpql = jpql + "   on r.item = i.id";
 //		jpql = jpql + " where 1=1";
-//		if (form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemname())) {
-//			jpql = jpql + " and i.itemname = :itemname";
+//		if (form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemName())) {
+//			jpql = jpql + " and i.itemName = :itemName";
 //		}
 //		jpql = jpql + " order by m.id desc";
 //		Query query = entityManager.createQuery(jpql);
-//		if (form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemname())) {
-//			query.setParameter("itemname", form.getRoom().getItem().getItemname());
+//		if (form.getRoom().getItem() != null && StringUtils.isNotBlank(form.getRoom().getItem().getItemName())) {
+//			query.setParameter("itemName", form.getRoom().getItem().getItemName());
 //		}
 		
 		List<MyData> list = query.getResultList();

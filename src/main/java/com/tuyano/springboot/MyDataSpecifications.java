@@ -121,12 +121,12 @@ public class MyDataSpecifications {
         };
     }
     
-    public static Specification<MyData> itemSpecifications(Operator2Enum operator, String itemname, JoinType joinType) {
-    	return (itemname == null) ? null : new Specification<MyData>() {
+    public static Specification<MyData> itemSpecifications(Operator2Enum operator, String itemName, JoinType joinType) {
+    	return (itemName == null) ? null : new Specification<MyData>() {
 			private static final long serialVersionUID = 1L;
 			@Override
             public Predicate toPredicate(Root<MyData> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				return cb.equal(root.join("room", joinType).join("item", joinType).get("itemname"), "アイテム2");
+				return cb.equal(root.join("room", joinType).join("item", joinType).get("itemName"), "アイテム2");
 			}
         };
     }

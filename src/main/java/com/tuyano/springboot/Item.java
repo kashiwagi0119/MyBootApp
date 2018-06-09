@@ -1,5 +1,6 @@
 package com.tuyano.springboot;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,14 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import lombok.Data;
 
+@SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name="item")
-public class Item {
+public class Item implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,7 +24,7 @@ public class Item {
 	private Long id;
 
 	@Column(length = 50, nullable = false)
-	private String itemname;
+	private String itemName;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@Column(nullable = true)
