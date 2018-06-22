@@ -11,11 +11,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@SuppressWarnings("serial")
-@Data
 @Entity
+@Getter
+@Setter
+@SuppressWarnings("serial")
 public class Item implements Serializable {
 
 	@Id
