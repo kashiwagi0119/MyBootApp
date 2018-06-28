@@ -24,9 +24,9 @@
 		<div class="form-group row">
 			<label class="col-3 col-form-label text-right">セレクトEnum：</label>
 			<div class="col-9">
-				 <select class="form-control" id="select3" name="select3">
+				 <select class="form-control" th:field="*{select3}">
 				 	<option value="">---</option>
-				    <option th:each="selectEnum : ${selectEnums}" th:value="${selectEnum.value}" th:text="${selectEnum.text}" th:selected="${selectEnum.value}==*{select3}">>
+				    <option th:each="selectEnum : ${selectEnums}" th:value="${selectEnum.code}" th:text="${selectEnum.label}">>
 				 </select>
 			</div>
 		</div>

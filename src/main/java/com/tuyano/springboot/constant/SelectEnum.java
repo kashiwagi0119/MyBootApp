@@ -10,6 +10,6 @@ public enum SelectEnum {
 	SELECT2("2", "セレクトEnum2"),
 	SELECT3("3", "セレクトEnum3");
 
-	private final String value;
-	private final String text;
+	private final String code;
+	private final String label;
 }
