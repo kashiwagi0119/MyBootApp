@@ -94,7 +94,7 @@ public class MyDataController {
 		List<MyData> list = service.findCriteria(form);
 		model.addAttribute("datalist", list);
 		
-		model.addAttribute("movies", Movie.values());
+		model.addAttribute("Check2Enum", Check2Enum.values());
 		
 		return "index";
 	}
