@@ -1,4 +1,4 @@
-package com.tuyano.springboot;
+package com.tuyano.springboot.constant;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

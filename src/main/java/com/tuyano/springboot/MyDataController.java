@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.tuyano.springboot.constant.Check2Enum;
+import com.tuyano.springboot.constant.Radio1Enum;
 import com.tuyano.springboot.constant.SelectEnum;
 import com.tuyano.springboot.repositories.ItemRepository;
 import com.tuyano.springboot.repositories.MyDataRepository;
