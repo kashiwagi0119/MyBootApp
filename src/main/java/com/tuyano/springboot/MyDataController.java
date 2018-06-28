@@ -95,6 +95,7 @@ public class MyDataController {
 		model.addAttribute("datalist", list);
 		
 		model.addAttribute("Check2Enum", Check2Enum.values());
+		model.addAttribute("Radio1Enum", Radio1Enum.values());
 		
 		return "index";
 	}

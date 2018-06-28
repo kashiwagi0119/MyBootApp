@@ -56,6 +56,11 @@ public class MyDataForm implements Serializable {
     private String radio1;
     
     /**
+     * ラジオ2
+     */
+    private String radio2;
+    
+    /**
      * セレクト1
     */
     private String select1;
