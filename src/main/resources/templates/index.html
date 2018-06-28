@@ -105,13 +105,11 @@
 
 		<div class="form-group row">
 			<label class="col-3 col-form-label text-right" for="name">日付：</label>
-			<div class=" col-3">
-                <div class='input-group date'>
-                    <input type='text' class="form-control" th:field="*{date1}"　/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+		    <div class="col-sm-9">
+				<div class='input-group date'>
+			  		<input type='text' class="form-control" th:field="*{date1}" style="flex:none; width:110px" />
+			    	<span class="input-group-addon"><i class="fas fa-calendar-alt fa-2x ml-1"></i></span>
+			  	</div>
 			</div>
 		</div>
 				
