@@ -11,6 +11,8 @@
 	
 	<form class="form-horizontal" action="/" method="post" th:object="${myDataForm}">
   
+
+  
 		<th:block th:include="templatebody :: templateName" />
 		<th:block th:include="templatebody :: templatEmail" />
 		<th:block th:include="templatebody :: templateAgeFrom" />
@@ -32,32 +34,44 @@
 		<div class="form-group row">
 			<label class="col-3 col-form-label text-right">チェック1：</label>
 			<div class="col-9">
-				<div class="checkbox-inline"><label><input type="checkbox" th:field="*{check1}">チェックひとつ1</label></div>
+		        <div class="form-check-inline col-form-label">
+		          <input class="form-check-input" type="checkbox" th:field="*{check1}" th:value="*{check1}" />
+		          <label class="form-check-label" th:for="${#ids.prev('check1')}">チェック1</label>
+		        </div>
 			</div>
 		</div>
 
        	<div class="form-group row">
             <label class="col-3 col-form-label text-right">チェック複数：</label>
             <div class="col-9">
-	            <th:block th:each="item : ${checkItems}">
-		            <div class="checkbox-inline">
-		              <label>
-		                <input type="checkbox" name="check2" th:value="${item.value}" th:text="${item.key}" th:field="*{check2}">
-		              </label>
-		            </div>
+	            <th:block th:each="movie : ${movies}">
+			        <div class="form-check-inline col-form-label">
+			          <input class="form-check-input" type="checkbox" th:field="*{favariteMovies}" th:value="${movie.code}" />
+			          <label class="form-check-label" th:for="${#ids.prev('favariteMovies')}" th:text="${movie.label}">映画名</label>
+			        </div>
 	            </th:block>
             </div>
         </div>
-        
-        <div class="form-group row">
+
+       	<div class="form-group row">
             <label class="col-3 col-form-label text-right">チェック直：</label>
             <div class="col-9">
-	            <div class="checkbox-inline"><label><input type="checkbox" name="check3" value="1" >チェック複数直1</label></div>
-	            <div class="checkbox-inline"><label><input type="checkbox" name="check3" value="2" >チェック複数直2</label></div>
-	            <div class="checkbox-inline"><label><input type="checkbox" name="check3" value="3" >チェック複数直3</label></div>
+		        <div class="form-check-inline col-form-label">
+		          <input class="form-check-input" type="checkbox" th:field="*{check3}" value="1" />
+		          <label class="form-check-label" th:for="${#ids.prev('check3')}">チェック複数直1</label>
+		        </div>
+		        <div class="form-check-inline col-form-label">
+		          <input class="form-check-input" type="checkbox" th:field="*{check3}" value="2" />
+		          <label class="form-check-label" th:for="${#ids.prev('check3')}">チェック複数直2</label>
+		        </div>
+		        <div class="form-check-inline col-form-label">
+		          <input class="form-check-input" type="checkbox" th:field="*{check3}" value="3" />
+		          <label class="form-check-label" th:for="${#ids.prev('check3')}">チェック複数直3</label>
+		        </div>
             </div>
         </div>
         
+
                
         <div class="form-group row">
             <label class="col-3 col-form-label text-right">ラジオ：</label>

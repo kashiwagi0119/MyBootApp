@@ -46,6 +46,11 @@ public class MyDataForm implements Serializable {
     private String[] check2;
     
     /**
+     * チェック3
+     */
+    private String[] check3;
+    
+    /**
      * ラジオ1
     */
     private String radio1;
@@ -67,4 +72,5 @@ public class MyDataForm implements Serializable {
     */
     private String date1;
     
+    String[] favariteMovies;
 }

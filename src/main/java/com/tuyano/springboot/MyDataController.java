@@ -93,6 +93,9 @@ public class MyDataController {
 		
 		List<MyData> list = service.findCriteria(form);
 		model.addAttribute("datalist", list);
+		
+		model.addAttribute("movies", Movie.values());
+		
 		return "index";
 	}
 
