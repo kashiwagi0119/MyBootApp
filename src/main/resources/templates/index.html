@@ -20,8 +20,8 @@
 		<th:block th:include="templatebody :: templateItem" />
 		
 		<div class="form-group row">
-			<label class="col-2 col-form-label">セレクトEnum：</label>
-			<div class="col-10">
+			<label class="col-3 col-form-label text-right">セレクトEnum：</label>
+			<div class="col-9">
 				 <select class="form-control" id="select3" name="select3">
 				 	<option value="">---</option>
 				    <option th:each="selectEnum : ${selectEnums}" th:value="${selectEnum.value}" th:text="${selectEnum.text}" th:selected="${selectEnum.value}==*{select3}">>
@@ -30,15 +30,15 @@
 		</div>
 		  
 		<div class="form-group row">
-			<label class="col-2 col-form-label">チェック1：</label>
-			<div class="col-10">
+			<label class="col-3 col-form-label text-right">チェック1：</label>
+			<div class="col-9">
 				<div class="checkbox-inline"><label><input type="checkbox" th:field="*{check1}">チェックひとつ1</label></div>
 			</div>
 		</div>
 
        	<div class="form-group row">
-            <label class="col-2 col-form-label">チェック複数：</label>
-            <div class="col-10">
+            <label class="col-3 col-form-label text-right">チェック複数：</label>
+            <div class="col-9">
 	            <th:block th:each="item : ${checkItems}">
 		            <div class="checkbox-inline">
 		              <label>
@@ -50,8 +50,8 @@
         </div>
         
         <div class="form-group row">
-            <label class="col-2 col-form-label">チェック直：</label>
-            <div class="col-10">
+            <label class="col-3 col-form-label text-right">チェック直：</label>
+            <div class="col-9">
 	            <div class="checkbox-inline"><label><input type="checkbox" name="check3" value="1" >チェック複数直1</label></div>
 	            <div class="checkbox-inline"><label><input type="checkbox" name="check3" value="2" >チェック複数直2</label></div>
 	            <div class="checkbox-inline"><label><input type="checkbox" name="check3" value="3" >チェック複数直3</label></div>
@@ -60,8 +60,8 @@
         
                
         <div class="form-group row">
-            <label class="col-2 col-form-label">ラジオ：</label>
-            <div class="col-10">
+            <label class="col-3 col-form-label text-right">ラジオ：</label>
+            <div class="col-9">
 	            <th:block th:each="item : ${radioItems}">
 		            <div class="radio-inline">
 		              <label>
@@ -73,8 +73,8 @@
         </div>
 
 		<div class="form-group row">
-			<label class="col-2 col-form-label" for="name">日付：</label>
-			<div class=" col-2">
+			<label class="col-3 col-form-label text-right" for="name">日付：</label>
+			<div class=" col-3">
                 <div class='input-group date'>
                     <input type='text' class="form-control" th:field="*{date1}"　/>
                     <span class="input-group-addon">

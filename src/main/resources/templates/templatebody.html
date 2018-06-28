@@ -6,7 +6,7 @@
 <body>
 	<th:block th:fragment="templateName">
 		<div class="form-group row">
-			<label class="col-3 col-form-label" for="name">名前：</label>
+			<label class="col-3 col-form-label text-right" for="name">名前：</label>
 			<div class="col-9">
 				<input type="text" class="form-control" th:field="*{name}" />
 			</div>
@@ -15,7 +15,7 @@
 	
 	<th:block th:fragment="templatEmail">
 		<div class="form-group row">
-			<label class="col-3 col-form-label" for="mail">メール：</label>
+			<label class="col-3 col-form-label text-right" for="mail">メール：</label>
 			<div class="col-9">
 				<input type="text" class="form-control" th:field="*{mail}" />
 			</div>
@@ -24,7 +24,7 @@
 	
 	<th:block th:fragment="templateAge">
 		<div class="form-group row">
-			<label class="col-3 col-form-label" for="age">年齢：</label>
+			<label class="col-3 col-form-label text-right" for="age">年齢：</label>
 			<div class="col-9">
 				<input type="text" class="form-control" th:field="*{age}" />
 			</div>
@@ -33,7 +33,7 @@
 	
 	<th:block th:fragment="templateMemo">
 		<div class="form-group row">
-			<label class="col-3 col-form-label" for="memo">メモ：</label>
+			<label class="col-3 col-form-label text-right" for="memo">メモ：</label>
 			<div class="col-9">
 				<input type="text" class="form-control" th:field="*{memo}" />
 			</div>
@@ -43,7 +43,7 @@
 	
 	<th:block th:fragment="templateRoom">
 		<div class="form-group row">
-			<label class="col-3 col-form-label" for="room.name">部屋：</label>
+			<label class="col-3 col-form-label text-right" for="room.name">部屋：</label>
 			<div class="col-9">
 		        <select class="form-control" id="room" name="room">
 		            <option value="">---</option>
@@ -60,7 +60,7 @@
 
 	<th:block th:fragment="templateRoomItem">
 		<div class="form-group row">
-			<label class="col-3 col-form-label" for="room.item">アイテム：</label>
+			<label class="col-3 col-form-label text-right" for="room.item">アイテム：</label>
 			<div class="col-9">
 		        <select class="form-control" id="room.item" name="room.item">
 		            <option value="">---</option>
@@ -78,7 +78,7 @@
 	<!-- 年齢（検索用） -->
 	<th:block th:fragment="templateAgeFrom">
 		<div class="form-group row">
-			<label class="col-3 col-form-label" for="ageFrom">年齢From：</label>
+			<label class="col-3 col-form-label text-right" for="ageFrom">年齢From：</label>
 			<div class="col-9">
 				<input type="text" class="form-control" th:field="*{ageFrom}" />
 			</div>
@@ -87,7 +87,7 @@
 	
 	<th:block th:fragment="templateAgeTo">
 		<div class="form-group row">
-			<label class="col-3 col-form-label" for="ageTo">年齢To：</label>
+			<label class="col-3 col-form-label text-right" for="ageTo">年齢To：</label>
 			<div class="col-9">
 				<input type="text" class="form-control" th:field="*{ageTo}" />
 			</div>
@@ -97,7 +97,7 @@
 	<!-- アイテム（検索用） -->
 	<th:block th:fragment="templateItem">
 		<div class="form-group row">
-			<label class="col-3 col-form-label" for="item">アイテム：</label>
+			<label class="col-3 col-form-label text-right" for="item">アイテム：</label>
 			<div class="col-9">
 		        <select class="form-control" id="item" name="item">
 		            <option value="">---</option>
