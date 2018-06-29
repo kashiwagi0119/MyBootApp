@@ -78,4 +78,6 @@ public class MyDataForm implements Serializable {
     private String date1;
     
     String[] favariteMovies;
+    
+	private String name2;
 }

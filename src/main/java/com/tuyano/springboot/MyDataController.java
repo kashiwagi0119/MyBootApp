@@ -41,16 +41,14 @@ public class MyDataController {
 		return SelectEnum.values();
 	}
 	
-	@SuppressWarnings("serial")
-	@ModelAttribute("checkItems")
-	Map<String, String> checkItems() {
-		return Collections.unmodifiableMap(new LinkedHashMap<String, String>() {
-			{
-			  put("チェック複数1", "1");
-			  put("チェック複数2", "2");
-			  put("チェック複数3", "3");
-			}
-		});
+	@ModelAttribute("Check2Enum")
+	Check2Enum[] Check2Enum() {
+		return Check2Enum.values();
+	}
+	
+	@ModelAttribute("Radio1Enum")
+	Radio1Enum[] Radio1Enum() {
+		return Radio1Enum.values();
 	}
 	
 	@ModelAttribute("selectRooms")
@@ -62,28 +60,12 @@ public class MyDataController {
 	List<Item> selectItems() {
 		return itemRepository.findAll();
 	}
-	  
-	/**
-	 * radio buttonの表示に使用するアイテム
-	 */
-	@SuppressWarnings("serial")
-	final static Map<String, String> RADIO_ITEMS =
-	    Collections.unmodifiableMap(new LinkedHashMap<String, String>() {
-	    {
-	      put("ラジオ1", "1");
-	      put("ラジオ2", "2");
-	      put("ラジオ3", "3");
-	    }
-	});
 	
 	// 検索画面の初期表示
 	@RequestMapping(value = "/MyData/list")
 	public String index(Model model) {
-		model.addAttribute("radioItems", RADIO_ITEMS);
-		
 		Iterable<MyData> list = repository.findAll();
 		model.addAttribute("datalist", list);
-		
 		model.addAttribute("myDataForm", new MyDataForm());
 		return "index";
 	}
@@ -91,13 +73,10 @@ public class MyDataController {
 	// Criteriaで検索
 	@RequestMapping(value = "/MyData/search")
 	public String searchCriteria(Model model, MyDataForm form) {
-		model.addAttribute("radioItems", RADIO_ITEMS);
 		
 		List<MyData> list = service.findCriteria(form);
 		model.addAttribute("datalist", list);
-		
-		model.addAttribute("Check2Enum", Check2Enum.values());
-		model.addAttribute("Radio1Enum", Radio1Enum.values());
+		form.setName2("プレーンテキスト表示");
 		
 		return "index";
 	}
@@ -105,7 +84,6 @@ public class MyDataController {
 	// repositoryで検索
 	@RequestMapping(value = "/MyData/searchRepository")
 	public String searchRepository(Model model, MyDataForm form) {
-		model.addAttribute("radioItems", RADIO_ITEMS);
 		// 単純な検索ならServiceを経由しなくもいいかな
 		List<MyData> list = repository.findByNameOrderByIdDesc(form.getName());
 		model.addAttribute("datalist", list);
@@ -115,7 +93,6 @@ public class MyDataController {
 	// Specificationで検索
 	@RequestMapping(value = "/MyData/searchSpecification")
 	public String searchSpecification(Model model, MyDataForm form) {
-		model.addAttribute("radioItems", RADIO_ITEMS);
 		
 		List<MyData> list = service.findSpecification(form);
 		model.addAttribute("datalist", list);
@@ -125,7 +102,6 @@ public class MyDataController {
 	// JPQLで検索
 	@RequestMapping(value = "/MyData/searchJPQL")
 	public String searchJPQL(Model model, MyDataForm form) {
-		model.addAttribute("radioItems", RADIO_ITEMS);
 		
 		List<MyData> list = service.findJPQL(form);
 		model.addAttribute("datalist", list);
@@ -135,7 +111,6 @@ public class MyDataController {
 	// SQLで検索
 	@RequestMapping(value = "/MyData/searchSQL")
 	public String searchSQL(Model model, MyDataForm form) {
-		model.addAttribute("radioItems", RADIO_ITEMS);
 		
 		List<MyData> list = service.findSQL(form);
 		model.addAttribute("datalist", list);
