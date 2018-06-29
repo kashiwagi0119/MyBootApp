@@ -12,7 +12,7 @@
 	<form class="form-horizontal" action="/" method="post" th:object="${myDataForm}">
   	
   	<div class="row">
-	  	<div class="col">
+	  	<div class="col-5">
 			<th:block th:include="templatebody :: templateName" />
 			<th:block th:include="templatebody :: templatEmail" />
 			<th:block th:include="templatebody :: templateAgeFrom" />
@@ -22,7 +22,7 @@
 			<th:block th:include="templatebody :: templateItem" />
 	  	
 	  	</div>
-	  	<div class="col">
+	  	<div class="col-7">
 			<div class="form-group row">
 				<label class="col-3 col-form-label text-right">セレクトEnum：</label>
 				<div class="col-9">
