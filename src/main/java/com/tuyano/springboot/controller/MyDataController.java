@@ -1,9 +1,6 @@
 package com.tuyano.springboot.controller;
 
-import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -68,11 +65,11 @@ public class MyDataController {
 	
 	// 検索画面の初期表示
 	@RequestMapping(value = "/MyData/list")
-	public String index(Model model) {
+	public String myDataList(Model model) {
 		Iterable<MyData> list = repository.findAll();
 		model.addAttribute("datalist", list);
 		model.addAttribute("myDataForm", new MyDataForm());
-		return "index";
+		return "myDataList";
 	}
 	
 	// Criteriaで検索
@@ -83,7 +80,7 @@ public class MyDataController {
 		model.addAttribute("datalist", list);
 		form.setName2("プレーンテキスト表示");
 		
-		return "index";
+		return "myDataList";
 	}
 
 	// repositoryで検索
@@ -92,7 +89,7 @@ public class MyDataController {
 		// 単純な検索ならServiceを経由しなくもいいかな
 		List<MyData> list = repository.findByNameOrderByIdDesc(form.getName());
 		model.addAttribute("datalist", list);
-		return "index";
+		return "myDataList";
 	}
 	
 	// Specificationで検索
@@ -101,7 +98,7 @@ public class MyDataController {
 		
 		List<MyData> list = service.findSpecification(form);
 		model.addAttribute("datalist", list);
-		return "index";
+		return "myDataList";
 	}
 	
 	// JPQLで検索
@@ -110,7 +107,7 @@ public class MyDataController {
 		
 		List<MyData> list = service.findJPQL(form);
 		model.addAttribute("datalist", list);
-		return "index";
+		return "myDataList";
 	}
 	
 	// SQLで検索
@@ -119,14 +116,14 @@ public class MyDataController {
 		
 		List<MyData> list = service.findSQL(form);
 		model.addAttribute("datalist", list);
-		return "index";
+		return "myDataList";
 	}
 	
 	// 新規登録画面へ
 	@RequestMapping(value = "/MyData/insertwindow")
 	public String insertwinddow(Model model, MyDataForm form) {
 		model.addAttribute("mydata", new MyData());
-		return "insert";
+		return "myDataInsert";
 	}
 	
 	// 削除ボタン
@@ -141,7 +138,7 @@ public class MyDataController {
 	public String updatewindow(Model model, MyDataForm form, @PathVariable Long id) {
 		Optional<MyData> data = repository.findById(id);
 		model.addAttribute("mydata",data.get());
-		return "update";
+		return "myDataUpdate";
 	}
 	
 	// 新規登録画面の登録ボタン
