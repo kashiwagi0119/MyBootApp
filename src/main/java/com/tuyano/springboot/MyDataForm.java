@@ -2,6 +2,10 @@ package com.tuyano.springboot;
 
 import java.io.Serializable;
 import org.springframework.stereotype.Component;
+
+import com.tuyano.springboot.entity.Item;
+import com.tuyano.springboot.entity.Room;
+
 import lombok.Data;
 
 @Data

@@ -1,13 +1,15 @@
-package com.tuyano.springboot;
+package com.tuyano.springboot.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,30 +19,18 @@ import lombok.ToString;
 @Getter
 @Setter
 @SuppressWarnings("serial")
-public class MyData implements Serializable{
+public class Item implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private Long id;
 
 	@Column(length = 50, nullable = false)
-	private String name;
-
-	@Column(length = 200, nullable = true)
-	private String mail;
-
-	@Column(nullable = true)
-	private Integer age;
-
-	@Column(nullable = true)
-	private String memo;
-
-	@ManyToOne
-	private Room room;
+	private String itemName;
 	
-	public MyData() {
-		super();
-	}
+	@OneToMany(cascade=CascadeType.ALL)
+	@Column(nullable = true)
+	private List<Room> rooms;
 	
 }

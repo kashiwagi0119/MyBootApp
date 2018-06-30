@@ -1,4 +1,4 @@
-package com.tuyano.springboot;
+package com.tuyano.springboot.entity;
 
 import java.io.Serializable;
 import java.util.List;

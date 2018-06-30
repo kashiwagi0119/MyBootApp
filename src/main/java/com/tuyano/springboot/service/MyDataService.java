@@ -1,6 +1,10 @@
-package com.tuyano.springboot;
+package com.tuyano.springboot.service;
 
-import static com.tuyano.springboot.MyDataSpecifications.*;
+import static com.tuyano.springboot.MyDataSpecifications.itemSpecifications;
+import static com.tuyano.springboot.MyDataSpecifications.nameLike;
+import static com.tuyano.springboot.constant.Operator2Enum.LIKE;
+import static javax.persistence.criteria.JoinType.INNER;
+import static javax.persistence.criteria.JoinType.LEFT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +24,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.tuyano.springboot.MyDataForm;
+import com.tuyano.springboot.entity.MyData;
 import com.tuyano.springboot.repositories.MyDataRepository;
-import static com.tuyano.springboot.Operator1Enum.*;
-import static com.tuyano.springboot.Operator2Enum.*;
-import static javax.persistence.criteria.JoinType.*;
 
 @Service
 public class MyDataService {

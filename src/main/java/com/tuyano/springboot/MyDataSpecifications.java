@@ -10,6 +10,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.tuyano.springboot.constant.Operator1Enum;
+import com.tuyano.springboot.constant.Operator2Enum;
+import com.tuyano.springboot.entity.MyData;
+import com.tuyano.springboot.entity.Room;
+
 @Service
 public class MyDataSpecifications {
     /**
