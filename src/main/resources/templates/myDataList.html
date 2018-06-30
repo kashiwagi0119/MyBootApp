@@ -138,33 +138,37 @@
     <div class="form-group row">
       <div class="col">
 		<table class="table table-striped">
-		<tr>
-			<th>ID</th>
-			<th>名前</th>
-			<th>メール</th>
-			<th>年齢</th>
-			<th>メモ</th>
-			<th>ルーム</th>
-			<th>アイテム</th>
-			<th>削除</th>
-			<th>更新画面へ</th>
-		</tr>
-		<tr th:each="obj : ${datalist}" th:object="${obj}">
-			<td th:text="*{id}"></td>
-			<td th:text="*{name}"></td>
-			<td th:text="*{mail}"></td>
-			<td th:text="*{age}"></td>
-			<td th:text="*{memo}"></td>
-			<td><p th:text="*{room != null} ? *{room.name}"></p></td>
-			<td><p th:text="*{room != null} ? *{room.item.itemName}"></p></td>
-	
-			<td>
-				<button class="btn btn-sm btn-primary" th:formaction="@{/MyData/delete/{id}(id=*{id})}">削除</button>
-	        </td>      
-			<td>
-				<button class="btn btn-sm btn-primary" th:formaction="@{/MyData/updatewindow/{id}(id=*{id})}">更新画面へ</button>
-	        </td>      
-		</tr>
+		  <thead>
+			<tr class="table-primary">
+				<th>ID</th>
+				<th>名前</th>
+				<th>メール</th>
+				<th>年齢</th>
+				<th>メモ</th>
+				<th>ルーム</th>
+				<th>アイテム</th>
+				<th>削除</th>
+				<th>更新画面へ</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr th:each="obj : ${datalist}" th:object="${obj}">
+				<td th:text="*{id}"></td>
+				<td th:text="*{name}"></td>
+				<td th:text="*{mail}"></td>
+				<td th:text="*{age}"></td>
+				<td th:text="*{memo}"></td>
+				<td><p th:text="*{room != null} ? *{room.name}"></p></td>
+				<td><p th:text="*{room != null} ? *{room.item.itemName}"></p></td>
+		
+				<td>
+					<button class="btn btn-sm btn-primary" th:formaction="@{/MyData/delete/{id}(id=*{id})}">削除</button>
+		        </td>      
+				<td>
+					<button class="btn btn-sm btn-primary" th:formaction="@{/MyData/updatewindow/{id}(id=*{id})}">更新画面へ</button>
+		        </td>      
+			</tr>
+		  </tbody>
 		</table>
 	  </div>
 	</div>
