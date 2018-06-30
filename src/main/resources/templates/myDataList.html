@@ -126,12 +126,12 @@
 		
     <div class="form-group row">
       <div class="col">
-		<button class="btn " formaction="/MyData/search">検索Criteria</button>
-		<button class="btn" formaction="/MyData/searchRepository">検索repository</button>
-		<button class="btn" formaction="/MyData/searchSpecification">検索Specification</button>
-		<button class="btn" formaction="/MyData/searchJPQL">検索JPQL</button>
-		<button class="btn" formaction="/MyData/searchSQL">検索SQL</button>
-		<button class="btn" formaction="/MyData/insertwindow">新規登録画面へ</button>
+		<button class="btn btn-primary " formaction="/MyData/search">検索Criteria</button>
+		<button class="btn btn-primary" formaction="/MyData/searchRepository">検索repository</button>
+		<button class="btn btn-primary" formaction="/MyData/searchSpecification">検索Specification</button>
+		<button class="btn btn-primary" formaction="/MyData/searchJPQL">検索JPQL</button>
+		<button class="btn btn-primary" formaction="/MyData/searchSQL">検索SQL</button>
+		<button class="btn btn-primary" formaction="/MyData/insertwindow">新規登録画面へ</button>
 	  </div>
 	</div>
 	
@@ -159,13 +159,19 @@
 			<td><p th:text="*{room != null} ? *{room.item.itemName}"></p></td>
 	
 			<td>
-				<button class="btn btn-sm" th:formaction="@{/MyData/delete/{id}(id=*{id})}">削除</button>
+				<button class="btn btn-sm btn-primary" th:formaction="@{/MyData/delete/{id}(id=*{id})}">削除</button>
 	        </td>      
 			<td>
-				<button class="btn btn-sm" th:formaction="@{/MyData/updatewindow/{id}(id=*{id})}">更新画面へ</button>
+				<button class="btn btn-sm btn-primary" th:formaction="@{/MyData/updatewindow/{id}(id=*{id})}">更新画面へ</button>
 	        </td>      
 		</tr>
 		</table>
+	  </div>
+	</div>
+	
+    <div class="form-group row">
+      <div class="col">
+		<a class="btn btn-primary text-white" th:href="@{'/'}">戻る</a>
 	  </div>
 	</div>
 	
