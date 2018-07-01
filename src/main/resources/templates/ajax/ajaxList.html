@@ -24,18 +24,12 @@ $(function() {
             	displayGrid(data);
                         },
             error       : function(XMLHttpRequest, textStatus, errorThrown) {
-                            error(XMLHttpRequest, textStatus, errorThrown);
+                            ajaxerror(XMLHttpRequest, textStatus, errorThrown);
                         }
         });
     });
 });
 
-// Ajax通信失敗時処理
-function error(XMLHttpRequest, textStatus, errorThrown) {
-    alert("error:" + XMLHttpRequest);
-    alert("status:" + textStatus);
-    alert("errorThrown:" + errorThrown);
-}
 
 /**
  * グリッド表示
