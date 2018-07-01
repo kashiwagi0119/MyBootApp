@@ -3,6 +3,81 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<th:block th:include="templatehead :: templatehead" />
+
+    <style>
+
+	#griddiv .ui-jqgrid-sortable {
+		height : 35px;
+	}
+    </style>
+    
+
+<script type="text/javascript">
+$(function() {
+    // Ajax通信テスト ボタンクリック
+    $("#ajax_btn").click(function() {
+        $.ajax({
+            type        : "GET",
+            url         : "/Ajax/search",
+            dataType    : "json",
+            success     : function(data) {
+            	displayGrid(data);
+                        },
+            error       : function(XMLHttpRequest, textStatus, errorThrown) {
+                            error(XMLHttpRequest, textStatus, errorThrown);
+                        }
+        });
+    });
+});
+
+// Ajax通信失敗時処理
+function error(XMLHttpRequest, textStatus, errorThrown) {
+    alert("error:" + XMLHttpRequest);
+    alert("status:" + textStatus);
+    alert("errorThrown:" + errorThrown);
+}
+
+/**
+ * グリッド表示
+ */
+function displayGrid(data) {
+    // グリッドを削除
+    $('#griddiv').empty();
+    // グリッドを再挿入
+    $('#griddiv').append('<table class="table table-sm table-hover" id="grid"></table>');
+    // グリッドの表示
+    $('#grid').jqGrid( {
+        data : data,
+        rowNum : 99999999,
+        datatype : 'local',
+        width : '990',
+        shrinkToFit : false, // カラム幅の自動調整をしない
+        cmTemplate : { sortable : false }, // ソートを無効化
+        colNames : [ 'ID', '名前', 'メールアドレス', '年齢', 'メモ' ],
+        colModel : [
+            { name : 'id', index : 'id', align : 'left', width : 50 },
+            { name : 'name', index : 'name', align : 'left', width : 200 },
+            { name : 'mail', index : 'mail', align : 'left', width : 200 },
+            { name : 'age', index : 'age', align : 'left', width : 50 },
+            { name : 'memo', index : 'memo', align : 'left', width : 200 },
+            ],
+    });
+    // グリッドの高さ
+    $('#grid').parents('div.ui-jqgrid-bdiv').css('min-height', '330px');
+    $('#grid').parents('div.ui-jqgrid-bdiv').css('max-height', '330px');
+    
+    $('#griddiv thead tr').addClass('table-primary');  // テーブルヘッダを青に
+    $('#griddiv tr, td').css('font-size', '20px');  // フォントサイズ
+    $('#griddiv .ui-jqgrid-htable').attr('border', '1');  // 枠線
+    $('#grid').attr('border', '1');  // 枠線
+    
+    
+    
+}
+
+</script>
+
+
 </head>
 
 <body>
@@ -12,10 +87,17 @@
 <div class="card-body">
 <div class="container-fluid" id="container">
 
+    <div class="form-group row">
+      <div class="col">
+		<button class="btn btn-primary" id="ajax_btn">Ajax検索</button>
+	  </div>
+	</div>
 
-
-
-
+    <div class="form-group row mb-0">
+      <div class="col" id='griddiv'>
+		<table class="table-striped" id="grid"></table>
+	  </div>
+	</div>
 
 
 
