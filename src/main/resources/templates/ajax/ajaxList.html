@@ -4,14 +4,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<th:block th:include="templatehead :: templatehead" />
 
-    <style>
-
-	#griddiv .ui-jqgrid-sortable {
-		height : 35px;
-	}
-    </style>
-    
-
 <script type="text/javascript">
 $(function() {
     // Ajax通信テスト ボタンクリック
@@ -24,18 +16,12 @@ $(function() {
             	displayGrid(data);
                         },
             error       : function(XMLHttpRequest, textStatus, errorThrown) {
-                            error(XMLHttpRequest, textStatus, errorThrown);
+                            ajaxerror(XMLHttpRequest, textStatus, errorThrown);
                         }
         });
     });
 });
 
-// Ajax通信失敗時処理
-function error(XMLHttpRequest, textStatus, errorThrown) {
-    alert("error:" + XMLHttpRequest);
-    alert("status:" + textStatus);
-    alert("errorThrown:" + errorThrown);
-}
 
 /**
  * グリッド表示
@@ -66,7 +52,9 @@ function displayGrid(data) {
     $('#grid').parents('div.ui-jqgrid-bdiv').css('min-height', '330px');
     $('#grid').parents('div.ui-jqgrid-bdiv').css('max-height', '330px');
     
-    $('#griddiv thead tr').addClass('table-primary');  // テーブルヘッダを青に
+    
+    $('#griddiv thead tr').addClass('table-primary');  // ヘッダを青に
+    $('#griddiv .ui-jqgrid-sortable').css('height', '35px');  // ヘッダの高さ
     $('#griddiv tr, td').css('font-size', '20px');  // フォントサイズ
     $('#griddiv .ui-jqgrid-htable').attr('border', '1');  // 枠線
     $('#grid').attr('border', '1');  // 枠線
@@ -93,7 +81,7 @@ function displayGrid(data) {
 	  </div>
 	</div>
 
-    <div class="form-group row mb-0">
+    <div class="form-group row">
       <div class="col" id='griddiv'>
 		<table class="table-striped" id="grid"></table>
 	  </div>
