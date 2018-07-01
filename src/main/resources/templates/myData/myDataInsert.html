@@ -7,21 +7,27 @@
 
 <body>
 <div class="card" style="height: 100vh">
-<h3 class="card-header bg-success text-white text-center">更新画面</h3>
+<h3 class="card-header bg-success text-white text-center">新規登録画面</h3>
 <div class="card-body">
 <div class="container-fluid" id="container">
 
 	<form class="form-horizontal" method="post" th:object="${mydata}">
-		<input type="hidden" name="id" th:field="*{id}" />
 		
 		<th:block th:include="templatebody :: templateName" />
 		<th:block th:include="templatebody :: templatEmail" />
 		<th:block th:include="templatebody :: templateAge" />
 		<th:block th:include="templatebody :: templateMemo" />
 		<th:block th:include="templatebody :: templateRoom" />
-	
-		<button class="btn btn-primary" formaction="/MyData/update">更新</button>
-		<button class="btn btn-primary" formaction="/MyData/back" >戻る</button>
+		
+	    <div class="form-group row">
+	      <div class="col">
+	        <button class="btn btn-primary" formaction="/MyData/back" >戻る</button>
+	      </div>
+	      <div class="col text-right">
+	        <button class="btn btn-primary" formaction="/MyData/insert">新規登録</button>
+	      </div>
+	    </div>
+		
 	</form>
 	
 </div>
