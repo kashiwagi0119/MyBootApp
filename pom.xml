@@ -74,6 +74,27 @@
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-lang3</artifactId>
 		</dependency>
+		<dependency>
+		    <groupId>org.webjars.npm</groupId>
+		    <artifactId>alertify.js</artifactId>
+		    <version>1.0.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator</artifactId>
+			<version>0.34</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.webjars.bower</groupId>
+		    <artifactId>fontawesome</artifactId>
+		    <version>4.7.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>jqgrid</artifactId>
+		    <version>4.6.0</version>
+		</dependency>
+
 
 
     </dependencies>
