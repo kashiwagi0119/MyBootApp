@@ -28,7 +28,6 @@ public class MainController {
 	public String index() {
 		return "index";
 	}
-
 	
 	// 初期処理のDB登録
 	@PostConstruct
