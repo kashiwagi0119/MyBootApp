@@ -73,7 +73,7 @@ public class MainController {
 		d3.setRoom(r2);
 		repository.saveAndFlush(d3);
 		
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < 3; i++) {
 			MyData d9 = new MyData();
 			d9.setName("takayuki");
 			d9.setAge(37);
