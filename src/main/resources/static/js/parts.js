@@ -1,13 +1,6 @@
-$(function() {
+$(document).ready(function(){
     $("#alertbtn").click(function() {
-    	alertify.confirm("This is a confirm dialog.",
-    			  function(){
-    			    alertify.success('Ok');
-    			  },
-    			  function(){
-    			    alertify.error('Cancel');
-    			  });
-    	
+    	alertify.alert("This is an alert dialog.");  	  
     });
 });
 

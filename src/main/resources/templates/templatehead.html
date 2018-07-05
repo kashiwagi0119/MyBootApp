@@ -7,44 +7,36 @@
 		<link th:href="@{/webjars/bootstrap-datepicker/css/bootstrap-datepicker.min.css}" rel="stylesheet" />
 		<link th:href="@{/webjars/jqgrid/css/ui.jqgrid.css}" rel="stylesheet" />
 		<link th:href="@{/webjars/fontawesome/4.7.0/css/font-awesome.css}" rel="stylesheet" />
-
+		<!-- <link th:href="@{/webjars/alertify.js/1.0.10/src/css/alertify.css}" rel="stylesheet" /> -->
 		<!-- fontawesomeがwebjarsを参照できない !-->
  	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
 	    <link rel="/css/stylesheet" href="common.css">
+
+<!-- 		<link th:href="@{/webjars/alertifyjs/1.4.1/build/css/alertify.min.css}" rel="stylesheet" />
+		<link th:href="@{/webjars/alertifyjs/1.4.1/build/css/themes/default.min.css}" rel="stylesheet" /> -->
+     	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css"/>
+
+		
+		<title th:text="#{content.system.name}">タイトル</title>
+	</th:block>
+	
+	<th:block th:fragment="scripts">
     	
     	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    	<script th:src="@{/webjars/popper.js/popper.min.js}"></script>
+    	<!-- <script th:src="@{/webjars/popper.js/popper.min.js}"></script> -->
     	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     	<script th:src="@{/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
     	<script th:src="@{/webjars/bootstrap-datepicker/locales/bootstrap-datepicker.ja.min.js}"></script>
     	<script th:src="@{/webjars/jqgrid/js/minified/jquery.jqGrid.min.js}"></script>
     	<script th:src="@{/webjars/jqgrid/js/i18n/grid.locale-ja.js}"></script>
-    	<script th:src="@{/webjars/alertify.js/1.0.10/src/js/alertify.js}"></script>
     	
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/alertify.js/0.5.0/alertify.js"></script>
-
-
-		<!-- jqgridがwebjarsを参照できない -->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/css/ui.jqgrid.css" rel="stylesheet">
-		<!-- fontawesomeがwebjarsを参照できない -->
-	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
-	    <link rel="/css/stylesheet" href="common.css">
     	
-    	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    	<script th:src="@{/webjars/popper.js/popper.min.js}"></script>
-    	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-    	<script th:src="@{/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
-    	<script th:src="@{/webjars/bootstrap-datepicker/locales/bootstrap-datepicker.ja.min.js}"></script>
+<!--     	<script th:src="@{/webjars/alertifyjs/1.4.1/src/js/alertify.js}"></script> -->
+    	
+		<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
 
-		<!-- jqgridがwebjarsを参照できない -->
-<!--     	<script th:src="@{/webjars/jqgrid/4.6.0/js/jquery.jqGrid.js}"></script>
-    	<script th:src="@{/webjars/jqgrid/4.6.0/js/i18n/grid.locale-ja.js}"></script> -->
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/jquery.jqGrid.min.js"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/i18n/grid.locale-ja.js"></script>
-		
     	<script src="/js/common.js"></script>
-		
-		<title th:text="#{content.system.name}">タイトル</title>
 	</th:block>
 </head>
 </html>
