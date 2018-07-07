@@ -17,7 +17,6 @@ $(document).ready(function() {
 	];
 	//列の設定
 	var colModelSettings= [	
-	　　　　{name:"radio",index:"radio",width:50,align:"center",classes:"radio_class"},
 		{name:"no",index:"no",width:70,align:"center",classes:"no_class"},
 		{name:"name",index:"name",width:200,align:"center",classes:"name_class"},
 		{name:"age",index:"age",width:200,align:"center",classes:"age_class"},
@@ -25,7 +24,7 @@ $(document).ready(function() {
 		{name:"hobby",index:"hobby",width:200,align:"center",classes:"hobby_class"}
 	]
 	//列の表示名
-	var colNames = ["","No.","name","age","local","hobby"];
+	var colNames = ["No.","name","age","local","hobby"];
 	//テーブルの作成
 	$("#sample1").jqGrid({
 		data:date,  //表示したいデータ
