@@ -30,7 +30,7 @@ public class MainController {
 	}
 	
 	// テスト用
-	@RequestMapping(value = "/Test")
+	@RequestMapping(value = "/TestWindow")
 	public String test() {
 		return "test";
 	}
