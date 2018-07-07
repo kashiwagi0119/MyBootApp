@@ -29,6 +29,12 @@ public class MainController {
 		return "index";
 	}
 	
+	// テスト用
+	@RequestMapping(value = "/Test")
+	public String test() {
+		return "test";
+	}
+	
 	// 初期処理のDB登録
 	@PostConstruct
 	public void init(){
