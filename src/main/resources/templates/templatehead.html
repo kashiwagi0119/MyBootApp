@@ -2,7 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<th:block th:fragment="templatehead">
-
+		
+		
+		<link th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.css}" rel="stylesheet" />
 		<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 		<link th:href="@{/webjars/bootstrap-datepicker/css/bootstrap-datepicker.min.css}" rel="stylesheet" />
 		<link th:href="@{/webjars/jqgrid/css/ui.jqgrid.css}" rel="stylesheet" />
@@ -20,6 +22,7 @@
 	<th:block th:fragment="scripts">
     	
     	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    	<script th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
     	<!-- <script th:src="@{/webjars/popper.js/popper.min.js}"></script> -->
     	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     	<script th:src="@{/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
