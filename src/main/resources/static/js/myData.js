@@ -3,8 +3,10 @@ $(document).ready(function() {
 		event.preventDefault();  // デフォルト動作の抑止
 	    $.ajax({
 	    	type : "GET",
-	    	url : "/Ajax/search",
+<<<<<<< HEAD
+	    	url : "/MyData/search",
 	    	dataType : "json",
+	    	data : $('form').serialize(),
 	    	async : false,
 	    	success : function(data) {
 	    		displayGrid(data);
@@ -20,10 +22,9 @@ $(document).ready(function() {
  * グリッド表示
  */
 function displayGrid(data) {
-    // グリッドを削除
-    $('#griddiv').empty();
-    // グリッドを再挿入
-    $('#griddiv').append('<table class="table table-sm table-hover" id="grid"></table>');
+
+	　$("#grid").GridUnload(); // グリッドをクリア
+	
     // グリッドの表示
     $('#grid').jqGrid( {
         data : data,
@@ -43,7 +44,7 @@ function displayGrid(data) {
 		pager : 'pager1',              //footerのページャー要素のid
 		rowNum : 20,                   //一ページに表示する行数
 		rowList : [1, 10, 20, 100],         //変更可能な1ページ当たりの行数
-		viewrecords: true              //ページャーのページ数表示
+		viewrecords: true,              //ページャーのページ数表示
     });
 
 }

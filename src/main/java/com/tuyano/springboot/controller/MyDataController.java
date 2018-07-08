@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.tuyano.springboot.MyDataForm;
@@ -74,13 +75,10 @@ public class MyDataController {
 	
 	// Criteriaで検索
 	@RequestMapping(value = "/MyData/search")
-	public String searchCriteria(Model model, MyDataForm form) {
-		
+	@ResponseBody
+	public List<MyData> searchCriteria(Model model, MyDataForm form) {
 		List<MyData> list = service.findCriteria(form);
-		model.addAttribute("datalist", list);
-		form.setName2("プレーンテキスト表示");
-		
-		return "/myData/myDataList";
+		return list;
 	}
 
 	// repositoryで検索
