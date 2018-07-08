@@ -38,8 +38,6 @@ function displayGrid(data) {
             ],
     });
     // グリッドの高さ
-//    $('#grid').parents('div.ui-jqgrid-bdiv').css('min-height', '330px');
-    $('#grid').parents('div.ui-jqgrid-bdiv').css('max-height', '330px');
-    
+
 }
 
