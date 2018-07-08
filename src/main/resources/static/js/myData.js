@@ -2,8 +2,7 @@ $(document).ready(function() {
 	$('#myDataSearch').click( function(e) {
 		event.preventDefault();  // デフォルト動作の抑止
 	    $.ajax({
-	    	type : "GET",
-<<<<<<< HEAD
+	    	type : "GET",	
 	    	url : "/MyData/search",
 	    	dataType : "json",
 	    	data : $('form').serialize(),
@@ -33,13 +32,23 @@ function displayGrid(data) {
         width : '1000',
         shrinkToFit : true, // カラム幅の自動調整をしない
         cmTemplate : { sortable : false }, // ソートを無効化
-        colNames : [ 'ID', '名前', 'メールアドレス', '年齢', 'メモ' ],
+        colNames : [ 'ID', '名前', 'メールアドレス', '年齢', 'メモ', '削除', '更新画面へ' ],
         colModel : [
             { name : 'id', index : 'id', align : 'left', width : 50 },
-            { name : 'name', index : 'name', align : 'left', width : 200 },
-            { name : 'mail', index : 'mail', align : 'left', width : 200 },
+            { name : 'name', index : 'name', align : 'left', width : 100 },
+            { name : 'mail', index : 'mail', align : 'left', width : 100 },
             { name : 'age', index : 'age', align : 'left', width : 50 },
-            { name : 'memo', index : 'memo', align : 'left', width : 500 },
+            { name : 'memo', index : 'memo', align : 'left', width : 100 },
+            { name : 'delete', index : 'delete', align : 'center', width : 70,
+                formatter : function(cellvalue, options, rowObject) {
+                    return '<input type="button" class="btn btn-primary delete" value="削除" data-rowid="' + options.rowId + '" >'
+                }
+            },
+            { name : 'update', index : 'update', align : 'center', width : 100,
+                formatter : function(cellvalue, options, rowObject) {
+                    return '<input type="button" class="btn btn-info update" value="更新画面へ" data-rowid="' + options.rowId + '" >'
+                }
+            },
             ],
 		pager : 'pager1',              //footerのページャー要素のid
 		rowNum : 20,                   //一ページに表示する行数
