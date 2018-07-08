@@ -1,22 +1,29 @@
 $(document).ready(function() {
+	searchData();
 	$('#myDataSearch').click( function(e) {
 		event.preventDefault();  // デフォルト動作の抑止
-	    $.ajax({
-	    	type : "GET",	
-	    	url : "/MyData/search",
-	    	dataType : "json",
-	    	data : $('form').serialize(),
-	    	async : false,
-	    	success : function(data) {
-	    		displayGrid(data);
-	    	},
-	    	error : function(XMLHttpRequest, textStatus, errorThrown) {
-	    		ajaxerror(XMLHttpRequest, textStatus, errorThrown);
-	    	}
-	    });
+		searchData();
 	});
 });
 
+/**
+ * 検索
+ */
+function searchData() {
+    $.ajax({
+    	type : "GET",	
+    	url : "/MyData/search",
+    	dataType : "json",
+    	data : $('form').serialize(),
+    	async : false,
+    	success : function(data) {
+    		displayGrid(data);
+    	},
+    	error : function(XMLHttpRequest, textStatus, errorThrown) {
+    		ajaxerror(XMLHttpRequest, textStatus, errorThrown);
+    	}
+    });
+}
 /**
  * グリッド表示
  */

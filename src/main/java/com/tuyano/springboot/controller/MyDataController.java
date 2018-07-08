@@ -66,10 +66,7 @@ public class MyDataController {
 	
 	// 検索画面の初期表示
 	@RequestMapping(value = "/MyData/list")
-	public String myDataList(Model model) {
-		Iterable<MyData> list = repository.findAll();
-		model.addAttribute("datalist", list);
-		model.addAttribute("myDataForm", new MyDataForm());
+	public String myDataList(Model model, MyDataForm form) {
 		return "/myData/myDataList";
 	}
 	
@@ -156,7 +153,7 @@ public class MyDataController {
 	// 新規登録画面・更新画面の戻るボタン
 	@RequestMapping(value = "/MyData/back")
 	public String back(Model model) {
-		return "redirect:/MyData/search";
+		return "redirect:/MyData/list";
 	}
 
 }
