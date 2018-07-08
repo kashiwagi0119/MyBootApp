@@ -9,8 +9,8 @@
 
 <div class="card" style="height: 100vh">
 <h3 class="card-header bg-success text-white text-center">検索画面</h3>
-<div class="card-body">
-<div class="container-fluid" id="container">
+<div class="card-body p-0">
+<div class="container-fluid mt-3" id="container">
 
 	<form class="form-horizontal" action="/" method="post" th:object="${myDataForm}">
   	
@@ -20,12 +20,13 @@
 			<th:block th:include="templatebody :: templatEmail" />
 			<th:block th:include="templatebody :: templateAgeFrom" />
 			<th:block th:include="templatebody :: templateAgeTo" />
+		</div>
+		<div class="col">
 			<th:block th:include="templatebody :: templateMemo" />
 			<th:block th:include="templatebody :: templateRoom" />
 			<th:block th:include="templatebody :: templateItem" />
 	  	</div>
   	</div>
-	</form>
 		
     <div class="row mb-1">
       <div class="col">
@@ -41,12 +42,13 @@
 	  <div id = "pager1"></div>
 	</div>
 	
-    <div class="row mb-0">
+    <div class="row mb-1">
       <div class="col">
 		<a class="btn btn-primary text-white" th:href="@{'/'}">戻る</a>
 	  </div>
 	</div>
 	
+	</form>
 	
 </div>
 </div>

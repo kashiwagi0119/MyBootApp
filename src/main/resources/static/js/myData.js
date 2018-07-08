@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	searchData();
 	$('#myDataSearch').click( function(e) {
-//		event.preventDefault();  // デフォルト動作の抑止
+		event.preventDefault();  // デフォルト動作の抑止
 		searchData();
 	});
 });
