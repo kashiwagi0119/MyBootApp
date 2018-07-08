@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	searchData();
 	$('#myDataSearch').click( function(e) {
-		event.preventDefault();  // デフォルト動作の抑止
+//		event.preventDefault();  // デフォルト動作の抑止
 		searchData();
 	});
 });
@@ -71,7 +71,7 @@ function displayGrid(data) {
             },
             { name : 'update', index : 'update', align : 'center', width : 100,
                 formatter : function(cellvalue, options, rowObject) {
-                    return '<input type="button" class="btn btn-info update" value="更新画面へ" data-rowid="' + options.rowId + '" >'
+                    return '<input type="button" class="btn btn-primary update" value="更新画面へ" data-rowid="' + options.rowId + '" >'
                 }
             },
             ],
