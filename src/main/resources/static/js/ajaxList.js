@@ -41,11 +41,11 @@ function displayGrid(data) {
     $('#grid').parents('div.ui-jqgrid-bdiv').css('min-height', '330px');
     $('#grid').parents('div.ui-jqgrid-bdiv').css('max-height', '330px');
     
-    $('#griddiv thead tr').addClass('table-primary');  // ヘッダを青に
+//    $('#griddiv thead tr').addClass('table-primary');  // ヘッダを青に
     $('#griddiv .ui-jqgrid-sortable').css('height', '34px');  // ヘッダの高さ
     $('#griddiv tr, td').css('font-size', '20px');  // フォントサイズ
-    $('#griddiv .ui-jqgrid-htable').attr('border', '1');  // 枠線
-    $('#grid').attr('border', '1');  // 枠線
+//    $('#griddiv .ui-jqgrid-htable').attr('border', '1');  // 枠線
+//    $('#grid').attr('border', '1');  // 枠線
     
 }
 
