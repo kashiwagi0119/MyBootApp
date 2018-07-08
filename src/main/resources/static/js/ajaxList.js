@@ -1,6 +1,4 @@
-$(function() {
-    // Ajax通信テスト ボタンクリック
-    $("#ajax_btn").click(function() {
+$(document).ready(function() {
         $.ajax({
             type : "GET",
             url : "/Ajax/search",
@@ -12,7 +10,6 @@ $(function() {
             	ajaxerror(XMLHttpRequest, textStatus, errorThrown);
             }
         });
-    });
 });
 
 /**
