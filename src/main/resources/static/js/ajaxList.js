@@ -36,6 +36,10 @@ function displayGrid(data) {
             { name : 'age', index : 'age', align : 'left', width : 50 },
             { name : 'memo', index : 'memo', align : 'left', width : 500 },
             ],
+		pager : 'pager1',              //footerのページャー要素のid
+		rowNum : 10,                   //一ページに表示する行数
+		rowList : [1, 10, 20],         //変更可能な1ページ当たりの行数
+		viewrecords: true              //ページャーのページ数表示
     });
     // グリッドの高さ
 

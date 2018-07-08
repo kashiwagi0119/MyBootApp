@@ -57,13 +57,13 @@ $(document).ready(function() {
 	                                       //しかし、私はlocalが推奨です。
 		colNames : colNames,           //列の表示名
 		colModel : colModelSettings,   //列ごとの設定
-		rowNum : 10,                   //一ページに表示する行数
-		rowList : [1, 10, 20],         //変更可能な1ページ当たりの行数
 		height : 200,                  //高さ
 		width : 800,                   //幅
+		shrinkToFit : true,　　        	   //画面サイズに依存せず固定の大きさを表示する設定
 		pager : 'pager1',              //footerのページャー要素のid
-		shrinkToFit : true,　　        //画面サイズに依存せず固定の大きさを表示する設定
-		viewrecords: true              //footerの右下に表示する。
+		rowNum : 10,                   //一ページに表示する行数
+		rowList : [1, 10, 20],         //変更可能な1ページ当たりの行数
+		viewrecords: true              //ページャーのページ数表示
 	});
 	
 
