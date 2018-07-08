@@ -3,6 +3,7 @@
 }
 #griddiv .ui-jqgrid-bdiv {
 	min-height: 500px;  // グリッドの高さ
+	max-height: 500px;  // グリッドの高さ
 }
 #griddiv tr, td {
 	font-size: 20px;  // グリッドのフォントサイズ
