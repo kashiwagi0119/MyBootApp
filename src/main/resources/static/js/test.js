@@ -26,7 +26,7 @@ $(document).ready(function() {
 	//列の表示名
 	var colNames = ["No.","name","age","local","hobby"];
 	//テーブルの作成
-	$("#sample1").jqGrid({
+	$("#grid").jqGrid({
 		data:date,  //表示したいデータ
 		datatype : "local",            //データの種別 他にjsonやxmlも選べます。
 	                                       //しかし、私はlocalが推奨です。
@@ -40,5 +40,8 @@ $(document).ready(function() {
 		shrinkToFit : true,　　        //画面サイズに依存せず固定の大きさを表示する設定
 		viewrecords: true              //footerの右下に表示する。
 	});
+	
+
+
 	
 });

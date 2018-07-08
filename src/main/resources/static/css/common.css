@@ -1,3 +1,22 @@
 .custom-file-input ~ .custom-file-label::after {
-  content: "参照";
+  content: "参照";  // ファイル選択
 }
+#griddiv tr, td {
+	font-size: 20px;  // グリッドのフォントサイズ
+}
+#griddiv .ui-jqgrid-sortable {
+	height: 32px;  // グリッドのヘッダの高さ
+}
+#pager1 {
+	height: 40px;  // グリッドのヘッダの高さ
+}
+#griddiv .ui-pg-input {
+	height: 30px;  // ページャーのページ数の高さ
+}
+#griddiv .ui-pg-selbox {
+	height: 30px;  // ページャーのページ数の高さ
+}
+
+
+
+

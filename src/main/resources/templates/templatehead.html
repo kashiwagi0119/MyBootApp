@@ -12,9 +12,8 @@
  		<link th:href="@{/webjars/alertifyjs/1.4.1/build/css/alertify.min.css}" rel="stylesheet" />
 		<link th:href="@{/webjars/alertifyjs/1.4.1/build/css/themes/default.min.css}" rel="stylesheet" />
 		<!-- fontawesomeがwebjarsを参照できない !-->
- 	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
-	    <link rel="/css/stylesheet" href="common.css">
-
+ 	    <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet">
+		<link th:href="@{/css/common.css}" rel="stylesheet" />
 		
 		<title th:text="#{content.system.name}">タイトル</title>
 	</th:block>
