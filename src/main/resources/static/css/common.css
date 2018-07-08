@@ -2,8 +2,8 @@
   content: "参照";  // ファイル選択
 }
 #griddiv .ui-jqgrid-bdiv {
-	min-height: 500px;  // グリッドの高さ
-	max-height: 500px;  // グリッドの高さ
+	min-height: 330px;  // グリッドの高さ
+	max-height: 330px;  // グリッドの高さ
 }
 #griddiv tr, td {
 	font-size: 20px;  // グリッドのフォントサイズ
