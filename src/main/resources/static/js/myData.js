@@ -79,12 +79,12 @@ function displayGrid(data) {
             },
             { name : 'delete', index : 'delete', align : 'center', width : 70,
                 formatter : function(cellvalue, options, rowObject) {
-                    return '<input type="button" class="btn btn-primary delete" value="削除" data-rowid="' + options.rowId + '" >'
+                    return '<button class="btn btn-primary delete" data-rowid="' + options.rowId + '" >削除</button>'
                 }
             },
             { name : 'update', index : 'update', align : 'center', width : 100,
                 formatter : function(cellvalue, options, rowObject) {
-                    return '<input type="button" class="btn btn-primary update" value="更新画面へ" data-rowid="' + options.rowId + '" >'
+                    return '<button class="btn btn-primary update" formaction="/MyData/updatewindow/' + options.rowId + '">更新画面へ</button>'
                 }
             },
             ],

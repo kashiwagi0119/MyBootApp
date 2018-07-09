@@ -147,7 +147,7 @@ public class MyDataController {
 	@RequestMapping(value = "/MyData/update")
 	public String update(MyData mydata) {
 		repository.saveAndFlush(mydata);
-		return "redirect:/MyData/search";
+		return "redirect:/MyData/list";
 	}
 	
 	// 新規登録画面・更新画面の戻るボタン
