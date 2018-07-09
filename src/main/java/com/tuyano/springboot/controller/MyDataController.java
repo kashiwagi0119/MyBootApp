@@ -140,7 +140,7 @@ public class MyDataController {
 	@RequestMapping(value = "/MyData/insert")
 	public String insert(Model model, MyData mydata) {
 		repository.saveAndFlush(mydata);
-		return "redirect:/MyData/search";
+		return "redirect:/MyData/list";
 	}
 	
 	 // 更新画面の更新ボタン
