@@ -4,6 +4,20 @@ $(document).ready(function() {
 		event.preventDefault();  // デフォルト動作の抑止
 		searchData();
 	});
+	// 削除ボタン
+	$(document).on("click", ".delete", function(){
+	    $.ajax({
+	    	url : "/MyData/delete/" + $(this).data('rowid'),
+	    	async : false,
+	    	success : function() {
+	    		// 再検索
+	    		searchData();
+	    	},
+	    	error : function() {
+	    		alertify.alert('システムエラー', 'システムエラーが発生しました。');
+	    	}
+	    });
+	});
 });
 
 /**
@@ -11,7 +25,6 @@ $(document).ready(function() {
  */
 function searchData() {
     $.ajax({
-    	type : "GET",	
     	url : "/MyData/search",
     	dataType : "json",
     	data : $('form').serialize(),
@@ -19,8 +32,8 @@ function searchData() {
     	success : function(data) {
     		displayGrid(data);
     	},
-    	error : function(XMLHttpRequest, textStatus, errorThrown) {
-    		ajaxerror(XMLHttpRequest, textStatus, errorThrown);
+    	error : function() {
+    		alertify.alert('システムエラー', 'システムエラーが発生しました。');
     	}
     });
 }
@@ -82,4 +95,3 @@ function displayGrid(data) {
     });
 
 }
-
