@@ -55,6 +55,10 @@ public class MyDataService {
 	    if (form.getAgeFrom() != null) {
 	    	where.add(builder.ge(root.get("age"), form.getAgeFrom()));
 	    }
+	    // 年齢To
+	    if (form.getAgeTo() != null) {
+	    	where.add(builder.le(root.get("age"), form.getAgeTo()));
+	    }
 	    // 部屋
 		if (form.getRoom() != null && StringUtils.isNotBlank(form.getRoom().getName())) {
 			where.add(builder.equal(root.join("room", LEFT).get("name"), form.getRoom().getName()));
