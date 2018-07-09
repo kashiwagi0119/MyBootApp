@@ -4,19 +4,24 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<th:block th:include="templatehead :: templatehead" />
 	
-		    
+
+<!-- jQuery Modal -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </head>
 <h3>テスト</h3>
 <!-- ●●●●●●●●●●●●●●●●●●●●●●●●● -->
 
 
 
-    <div class="form-group row">
-      <div class="col" id='griddiv'>
-		<table id="grid"></table>
-	  </div>
-	  <div id = "pager1"></div>
-	</div>
+<!-- Modal HTML embedded directly into document -->
+<div id="ex1" class="modal">
+  <p>Thanks for clicking. That felt good.</p>
+  <a href="#" rel="modal:close">Close</a>
+</div>
+
+<!-- Link to open the modal -->
+<p><a href="#ex1" rel="modal:open">Open Modal</a></p>
 	
 
 
@@ -28,5 +33,6 @@
 	</div>
 
 <th:block th:include="templatehead :: scripts" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <script src="/js/test.js"></script>
 </html>
