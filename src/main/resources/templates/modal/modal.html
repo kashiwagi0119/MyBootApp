@@ -13,13 +13,28 @@
   	
     <div class="form-group row">
       <div class="col">
-		<button class="btn btn-primary" data-toggle="modal" data-target="#modal01">モーダル1</button>
+<<<<<<< HEAD
+		<button class="btn btn-primary" data-toggle="modal" data-target="#modal1">モーダル1</button>
+	  </div>
+	</div>
+	<div class="form-group row">
+	  <div class="col">
 		<button class="btn btn-primary" data-toggle="modal" data-target="#modal21">モーダル2</button>
 	  </div>
 	</div>
+	<div class="form-group row">
+	  <div class="col">
+		<button class="btn btn-primary" data-toggle="modal" data-target="#modal31">モーダル3</button>
+		<input type="text" readonly class="form-control-plaintext modal31Code" value="モーダル31の選択結果">
+=======
+		<button class="btn btn-primary" data-toggle="modal" data-target="#modal01">モーダル1</button>
+		<button class="btn btn-primary" data-toggle="modal" data-target="#modal21">モーダル2</button>
+>>>>>>> branch 'master' of https://github.com/kashiwagi0119/MyBootApp.git
+	  </div>
+	</div>
 
-	<!-- モーダルの設定 -->
-	<div class="modal" id="modal01" tabindex="-1">
+	<!-- モーダル1 -->
+	<div class="modal" id="modal1" tabindex="-1">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -32,8 +47,12 @@
 	        <p>モーダルのコンテンツ文。</p>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-	        <button type="button" class="btn btn-primary">変更を保存</button>
+          	<div class="col">
+        	  <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+            </div>
+            <div class="col text-right">
+              <button type="button" class="btn btn-primary">保存</button>
+            </div>
 	      </div>
 	    </div>
 	  </div>
@@ -47,11 +66,18 @@
 	
 </div>
 </div>
-<th:block th:include="templatefoot :: templatefoot" />
 </div>
 
+<<<<<<< HEAD
+<th:block th:include="templatefoot :: templatefoot" />
 <th:block th:include="templatebody :: templateModal21" />
 <th:block th:include="templatebody :: templateModal22" />
+<th:block th:include="templatebody :: templateModal31" />
+<th:block th:include="templatebody :: templateModal32" />
+=======
+<th:block th:include="templatebody :: templateModal21" />
+<th:block th:include="templatebody :: templateModal22" />
+>>>>>>> branch 'master' of https://github.com/kashiwagi0119/MyBootApp.git
 
 </body>
 <th:block th:include="templatehead :: scripts" />
