@@ -3,36 +3,53 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<th:block th:include="templatehead :: templatehead" />
-	
-
-<!-- jQuery Modal -->
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </head>
-<h3>テスト</h3>
-<!-- ●●●●●●●●●●●●●●●●●●●●●●●●● -->
+
+<body>
+
+	<button class="btn btn-primary" data-toggle="modal" data-target="#modal21">モーダル2</button>
 
 
-
-<!-- Modal HTML embedded directly into document -->
-<div id="ex1" class="modal">
-  <p>Thanks for clicking. That felt good.</p>
-  <a href="#" rel="modal:close">Close</a>
-</div>
-
-<!-- Link to open the modal -->
-<p><a href="#ex1" rel="modal:open">Open Modal</a></p>
-	
-
-
-<!-- ●●●●●●●●●●●●●●●●●●●●●●●●● -->
-    <div class="form-group row mb-0">
-      <div class="col">
-		<a class="btn btn-primary text-white" th:href="@{'/'}">戻る</a>
-	  </div>
-	</div>
-
+    <div class="modal" id="modal21" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+	        <h5 class="modal-title">モーダル21のタイトル</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+          </div>
+          <div class="modal-body">
+          	<p>モーダル21の内容</p>
+          </div>
+          <div class="modal-footer">
+          	<button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+          	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal22">モーダル22へ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="modal" id="modal22" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+	        <h5 class="modal-title">モーダル22のタイトル</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+          </div>
+          <div class="modal-body">
+            <p>モーダル22の内容</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
 <th:block th:include="templatehead :: scripts" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<script src="/js/test.js"></script>
+<script src="/js/parts.js"></script>
 </html>
