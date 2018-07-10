@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<th:block th:include="templatehead :: templatehead" />
+</head>
+
+<body>
+<div class="card" style="height: 100vh">
+<h3 class="card-header bg-success text-white text-center">モーダル</h3>
+<div class="card-body">
+<div class="container-fluid" id="container">
+  	
+    <div class="form-group row">
+      <div class="col">
+		<button class="btn btn-primary" data-toggle="modal" data-target="#modal01">モーダル1</button>
+	  </div>
+	</div>
+
+	<!-- モーダルの設定 -->
+	<div class="modal fade" id="modal01" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">モーダルのタイトル</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <p>モーダルのコンテンツ文。</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+	        <button type="button" class="btn btn-primary">変更を保存</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+    <div class="form-group row mb-0">
+      <div class="col">
+		<a class="btn btn-primary text-white" th:href="@{'/'}">戻る</a>
+	  </div>
+	</div>
+	
+</div>
+</div>
+<th:block th:include="templatefoot :: templatefoot" />
+</div>
+
+</body>
+<th:block th:include="templatehead :: scripts" />
+<script src="/js/parts.js"></script>
+</html>
