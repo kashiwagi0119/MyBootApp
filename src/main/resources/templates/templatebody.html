@@ -174,15 +174,15 @@
 		        </button>
 	          </div>
 	          <div class="modal-body">
-	          	<p>モーダル31の内容</p>
-	          	<input type="text" class="form-control" />
+	          	<p>モーダル311の内容</p>
+	          	<input type="text" class="form-control" id="modal31Code"/>
 	          </div>
 	          <div class="modal-footer">
 	          	<div class="col">
 	        	  <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
 	            </div>
 	            <div class="col text-right">
-	              <button type="button" class="btn btn-primary" onclick="$('.modal31Code').val('abcd')">保存</button>
+	              <button type="button" class="btn btn-primary" onclick="modal31Save()">保存</button>
 	              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal32">モーダル32へ</button>
 	            </div>
 	          </div>
@@ -190,7 +190,10 @@
 	      </div>
 	    </div>
 	    <script>
-	      
+	      function modal31Save() {
+	    	  $('.modal31CodeLabel').val($('#modal31Code').val());
+	    	  $('#modal31').modal('hide');
+	      }
 	    </script>
 	</th:block>
 
