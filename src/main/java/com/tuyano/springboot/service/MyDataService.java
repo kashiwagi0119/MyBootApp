@@ -24,8 +24,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import com.tuyano.springboot.MyDataForm;
 import com.tuyano.springboot.entity.MyData;
+import com.tuyano.springboot.form.MyDataForm;
 import com.tuyano.springboot.repositories.MyDataRepository;
 
 @Service

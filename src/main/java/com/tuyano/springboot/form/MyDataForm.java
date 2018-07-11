@@ -1,4 +1,4 @@
-package com.tuyano.springboot;
+package com.tuyano.springboot.form;
 
 import java.io.Serializable;
 import org.springframework.stereotype.Component;

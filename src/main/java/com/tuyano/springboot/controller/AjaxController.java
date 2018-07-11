@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tuyano.springboot.MyDataForm;
 import com.tuyano.springboot.entity.MyData;
+import com.tuyano.springboot.form.MyDataForm;
 import com.tuyano.springboot.service.MyDataService;
 
 @Controller
