@@ -16,9 +16,6 @@ $(document).ready(function(){
   });
 });
 
-//Ajax通信失敗時処理
-function ajaxerror(XMLHttpRequest, textStatus, errorThrown) {
- alert("error:" + XMLHttpRequest);
- alert("status:" + textStatus);
- alert("errorThrown:" + errorThrown);
+function alertSystemError() {
+	alertify.alert('システムエラー', 'システムエラーが発生しました。');
 }

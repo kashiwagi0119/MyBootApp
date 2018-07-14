@@ -9,12 +9,10 @@ $(document).ready(function() {
 			data: new FormData($('form')[0]),
 			processData: false,
 			contentType: false,
-	    	success : function(data) {
-	    		alert(data[0]);
-	    	},
-	    	error : function() {
-	    		alertify.alert('システムエラー', 'システムエラーが発生しました。');
-	    	}
+		}).done(function(data){
+	    	alert(data[0]);
+		}).fail(function(){
+			alertSystemError();
 		});
 	});
 	

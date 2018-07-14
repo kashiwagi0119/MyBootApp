@@ -3,13 +3,11 @@ $(document).ready(function() {
         type : "GET",
         url : "/Ajax/search",
         dataType : "json",
-        success : function(data) {
-        	displayGrid(data);
-        },
-        error : function(XMLHttpRequest, textStatus, errorThrown) {
-        	ajaxerror(XMLHttpRequest, textStatus, errorThrown);
-        }
-    });
+	}).done(function(data){
+		displayGrid(data);
+	}).fail(function(){
+		alertSystemError();
+	});
 });
 
 /**

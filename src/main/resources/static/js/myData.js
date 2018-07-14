@@ -10,14 +10,11 @@ $(document).ready(function() {
 	    $.ajax({
 	    	url : "/MyData/delete/" + $(this).data('rowid'),
 	    	async : false,
-	    	success : function() {
-	    		// 再検索
-	    		searchData();
-	    	},
-	    	error : function() {
-	    		alertify.alert('システムエラー', 'システムエラーが発生しました。');
-	    	}
-	    });
+		}).done(function(data){
+			searchData();
+		}).fail(function(){
+			alertSystemError();
+		});
 	});
 });
 
@@ -30,13 +27,11 @@ function searchData() {
     	dataType : "json",
     	data : $('form').serialize(),
     	async : false,
-    	success : function(data) {
-    		displayGrid(data);
-    	},
-    	error : function() {
-    		alertify.alert('システムエラー', 'システムエラーが発生しました。');
-    	}
-    });
+	}).done(function(data){
+		displayGrid(data);
+	}).fail(function(){
+		alertSystemError();
+	});
 }
 /**
  * グリッド表示

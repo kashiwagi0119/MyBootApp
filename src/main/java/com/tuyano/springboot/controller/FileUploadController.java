@@ -76,7 +76,7 @@ public class FileUploadController {
         for (CSVRecord record : list2) {
             System.out.println(record.get(0) + " - " + record.get(1) + " - " + record.get(2));
         }
-	        
+        
 		return list;
 	}
 
