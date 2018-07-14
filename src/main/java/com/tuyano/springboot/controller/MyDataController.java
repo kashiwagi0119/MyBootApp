@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.tuyano.springboot.constant.Check2Enum;
 import com.tuyano.springboot.constant.Radio1Enum;
 import com.tuyano.springboot.constant.SelectEnum;
+import com.tuyano.springboot.dto.JsonResultDTO;
 import com.tuyano.springboot.entity.Item;
 import com.tuyano.springboot.entity.MyData;
 import com.tuyano.springboot.entity.Room;
@@ -73,9 +74,17 @@ public class MyDataController {
 	// Criteriaで検索
 	@RequestMapping(value = "/MyData/search")
 	@ResponseBody
-	public List<MyData> searchCriteria(Model model, MyDataForm form) {
+	public JsonResultDTO searchCriteria(Model model, MyDataForm form) {
 		List<MyData> list = service.findCriteria(form);
-		return list;
+		JsonResultDTO jsonResult = new JsonResultDTO();
+//		jsonResult.addMessage("メッセージ１");
+//		jsonResult.addMessage("メッセージ２");
+//		jsonResult.addMessage("メッセージ３");
+//		jsonResult.addError("エラーメッセージ１");
+//		jsonResult.addError("エラーメッセージ２");
+//		jsonResult.addError("エラーメッセージ３");
+		jsonResult.setDataList(list); 
+		return jsonResult;
 	}
 
 	// repositoryで検索

@@ -27,8 +27,10 @@ function searchData() {
     	dataType : "json",
     	data : $('form').serialize(),
     	async : false,
-	}).done(function(data){
-		displayGrid(data);
+	}).done(function(json){
+		if (!isJsonError(json)) {
+			displayGrid(json.dataList);
+		}
 	}).fail(function(){
 		alertSystemError();
 	});

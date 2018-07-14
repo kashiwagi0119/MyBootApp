@@ -19,3 +19,21 @@ $(document).ready(function(){
 function alertSystemError() {
 	alertify.alert('システムエラー', 'システムエラーが発生しました。');
 }
+
+/**
+ * エラー確認 メッセージ表示
+ * エラーの場合、trueを返す
+ */
+function isJsonError(json) {
+	
+	if (json.errorList.length > 0) {
+		alertify.alert('メッセージ', json.errorList.join('<br/>'));
+		return true;
+	}
+	if (json.messageList.length > 0) {
+		alertify.alert('メッセージ', json.messageList.join('<br/>'));
+	}
+	return false;
+}
+
+
