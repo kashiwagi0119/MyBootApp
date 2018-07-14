@@ -10,7 +10,7 @@ $(document).ready(function() {
 			processData: false,
 			contentType: false,
 	    	success : function(data) {
-	    		
+	    		alert(data[0]);
 	    	},
 	    	error : function() {
 	    		alertify.alert('システムエラー', 'システムエラーが発生しました。');
