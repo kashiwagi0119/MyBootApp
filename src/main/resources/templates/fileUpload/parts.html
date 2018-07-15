@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<th:block th:include="templatehead :: templatehead" />
+</head>
+
+<body>
+<div class="card" style="height: 100vh">
+<h3 class="card-header bg-success text-white text-center">部品集</h3>
+<div class="card-body">
+<div class="container-fluid" id="container">
+  	
+  	<form class="form-horizontal" method="post" th:object="${myDataForm}">
+  	
+		<div class="form-group row">
+			<label class="col-3 col-form-label text-right" for="name">テキスト：</label>
+			<div class="col-9">
+				<input type="text" class="form-control" th:field="*{name}" />
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-3 col-form-label text-right">セレクトEnum：</label>
+			<div class="col-9">
+				 <select class="form-control" th:field="*{select3}">
+				 	<option value="">---</option>
+				    <option th:each="selectEnum : ${selectEnums}" th:value="${selectEnum.code}" th:text="${selectEnum.label}">>
+				 </select>
+			</div>
+		</div>
+		  
+		<div class="form-group row">
+			<label class="col-3 col-form-label text-right">チェック1：</label>
+			<div class="col-9">
+		        <div class="form-check-inline col-form-label">
+		          <input class="form-check-input" type="checkbox" th:field="*{check1}" th:value="*{check1}" />
+		          <label class="form-check-label" th:for="${#ids.prev('check1')}">チェック1</label>
+		        </div>
+			</div>
+		</div>
+
+       	<div class="form-group row">
+            <label class="col-3 col-form-label text-right">チェック複数：</label>
+            <div class="col-9">
+	            <th:block th:each="check2Enum : ${Check2Enum}">
+			        <div class="form-check-inline col-form-label">
+			          <input class="form-check-input" type="checkbox" th:field="*{check2}" th:value="${check2Enum.code}" />
+			          <label class="form-check-label" th:for="${#ids.prev('check2')}" th:text="${check2Enum.label}"></label>
+			        </div>
+	            </th:block>
+            </div>
+        </div>
+
+       	<div class="form-group row">
+            <label class="col-3 col-form-label text-right">チェック直：</label>
+            <div class="col-9">
+		        <div class="form-check-inline col-form-label">
+		          <input class="form-check-input" type="checkbox" th:field="*{check3}" value="1" />
+		          <label class="form-check-label" th:for="${#ids.prev('check3')}">チェック直1</label>
+		        </div>
+		        <div class="form-check-inline col-form-label">
+		          <input class="form-check-input" type="checkbox" th:field="*{check3}" value="2" />
+		          <label class="form-check-label" th:for="${#ids.prev('check3')}">チェック直2</label>
+		        </div>
+		        <div class="form-check-inline col-form-label">
+		          <input class="form-check-input" type="checkbox" th:field="*{check3}" value="3" />
+		          <label class="form-check-label" th:for="${#ids.prev('check3')}">チェック直3</label>
+		        </div>
+            </div>
+        </div>
+        
+       	<div class="form-group row">
+            <label class="col-3 col-form-label text-right">ラジオ：</label>
+            <div class="col-9">
+	            <th:block th:each="radio1Enum : ${Radio1Enum}">
+			        <div class="form-check-inline col-form-label">
+			          <input class="form-check-input" type="radio" th:field="*{radio1}" th:value="${radio1Enum.code}" />
+			          <label class="form-check-label" th:for="${#ids.prev('radio1')}" th:text="${radio1Enum.label}"></label>
+			        </div>
+	            </th:block>
+            </div>
+        </div>
+        
+       	<div class="form-group row">
+            <label class="col-3 col-form-label text-right">ラジオ直：</label>
+            <div class="col-9">
+		        <div class="form-check-inline col-form-label">
+		          <input class="form-check-input" type="radio" th:field="*{radio2}" value="1" />
+		          <label class="form-check-label" th:for="${#ids.prev('radio2')}">ラジオ直1</label>
+		        </div>
+		        <div class="form-check-inline col-form-label">
+		          <input class="form-check-input" type="radio" th:field="*{radio2}" value="2" />
+		          <label class="form-check-label" th:for="${#ids.prev('radio2')}">ラジオ直2</label>
+		        </div>
+		        <div class="form-check-inline col-form-label">
+		          <input class="form-check-input" type="radio" th:field="*{radio2}" value="3" />
+		          <label class="form-check-label" th:for="${#ids.prev('radio2')}">ラジオ直3</label>
+		        </div>
+            </div>
+        </div>
+
+		<div class="form-group row">
+			<label class="col-3 col-form-label text-right" for="name">日付：</label>
+		    <div class="col-sm-9">
+				<div class='input-group date'>
+			  		<input type='text' class="form-control" th:field="*{date1}" style="flex:none; width:110px" />
+			    	<span class="input-group-addon"><i class="fas fa-calendar-alt fa-2x ml-1"></i></span>
+			  	</div>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-3 col-form-label text-right" for="name2">プレーンテキスト：</label>
+			<div class="col-9">
+				<input type="text" readonly class="form-control-plaintext" th:field="*{name2}">
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<label class="col-3 col-form-label text-right" for="fileselect">ファイル選択：</label>
+			<div class="col-9">
+				<div class="custom-file">
+				  <input type="file" class="custom-file-input" id="customFile" lang="ja">
+				  <label class="custom-file-label" for="customFile">ファイル選択...</label>
+				</div>
+			</div>
+		</div>
+	
+	</form>
+
+    <div class="form-group row">
+      <div class="col">
+		<button class="btn btn-primary" id="alertbtn">メッセージボックス</button>
+		<button class="btn btn-primary" id="confirmbtn">確認メッセージ</button>
+		<button class="btn btn-primary" id="inputbtn">インプットボックス</button>
+	  </div>
+	</div>
+
+    <div class="form-group row mb-0">
+      <div class="col">
+		<a class="btn btn-primary text-white" th:href="@{'/'}">戻る</a>
+	  </div>
+	</div>
+	
+</div>
+</div>
+<th:block th:include="templatefoot :: templatefoot" />
+</div>
+
+</body>
+<th:block th:include="templatehead :: scripts" />
+<script src="/js/parts.js"></script>
+</html>
