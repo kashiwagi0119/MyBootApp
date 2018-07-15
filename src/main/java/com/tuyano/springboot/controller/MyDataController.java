@@ -83,7 +83,7 @@ public class MyDataController {
 //		jsonResult.addError("エラーメッセージ１");
 //		jsonResult.addError("エラーメッセージ２");
 //		jsonResult.addError("エラーメッセージ３");
-		jsonResult.setDataList(list); 
+		jsonResult.setDataList(list);
 		return jsonResult;
 	}
 
