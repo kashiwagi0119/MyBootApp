@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Getter
@@ -30,7 +29,7 @@ public class Room implements Serializable {
 	@Column(length = 50, nullable = false)
 	private String name;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany
 	@Column(nullable = true)
 	private List<MyData> myDatas;
 	
