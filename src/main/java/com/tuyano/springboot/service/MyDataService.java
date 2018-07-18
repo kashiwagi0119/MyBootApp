@@ -25,6 +25,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.tuyano.springboot.entity.MyData;
+import com.tuyano.springboot.entity.QMyData;
 import com.tuyano.springboot.form.MyDataForm;
 import com.tuyano.springboot.repositories.MyDataRepository;
 
@@ -36,6 +37,15 @@ public class MyDataService {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	// DSLで検索
+	public Iterable<MyData> findDSL(MyDataForm form) {
+	    Iterable<MyData> list = repository.findAll(
+	    		QMyData.myData.name.eq("takayuki")
+	    		.and(QMyData.myData.age.eq(47))
+	    		);
+		return list;
+	}
 	
 	// Criteriaで検索
 	public List<MyData> findCriteria(MyDataForm form) {

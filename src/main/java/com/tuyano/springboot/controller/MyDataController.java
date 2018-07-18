@@ -71,6 +71,22 @@ public class MyDataController {
 		return "/myData/myDataList";
 	}
 	
+	// DSLで検索
+	@RequestMapping(value = "/MyData/searchDSL")
+	@ResponseBody
+	public JsonResultDTO searchDSL(Model model, MyDataForm form) {
+		Iterable<MyData> list = service.findDSL(form);
+		JsonResultDTO jsonResult = new JsonResultDTO();
+//		jsonResult.addMessage("メッセージ１");
+//		jsonResult.addMessage("メッセージ２");
+//		jsonResult.addMessage("メッセージ３");
+//		jsonResult.addError("エラーメッセージ１");
+//		jsonResult.addError("エラーメッセージ２");
+//		jsonResult.addError("エラーメッセージ３");
+		jsonResult.setDataList(list);
+		return jsonResult;
+	}
+	
 	// Criteriaで検索
 	@RequestMapping(value = "/MyData/search")
 	@ResponseBody

@@ -23,7 +23,7 @@ $(document).ready(function() {
  */
 function searchData() {
     $.ajax({
-    	url : "/MyData/search",
+    	url : "/MyData/searchDSL",
     	dataType : "json",
     	data : $('form').serialize(),
     	async : false,
