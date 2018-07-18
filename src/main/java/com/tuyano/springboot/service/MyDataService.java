@@ -24,6 +24,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.querydsl.core.BooleanBuilder;
 import com.tuyano.springboot.entity.MyData;
 import com.tuyano.springboot.entity.QMyData;
 import com.tuyano.springboot.form.MyDataForm;
@@ -40,11 +41,36 @@ public class MyDataService {
 	
 	// DSLで検索
 	public Iterable<MyData> findDSL(MyDataForm form) {
-	    Iterable<MyData> list = repository.findAll(
-	    		QMyData.myData.name.eq("takayuki")
-	    		.and(QMyData.myData.age.eq(47))
-	    		);
-		return list;
+		BooleanBuilder predicate = new BooleanBuilder();
+		// 名前
+		if (StringUtils.isNotBlank(form.getName())) {
+			predicate.and(QMyData.myData.name.startsWith(form.getName()));
+		}
+		// メール
+		if (StringUtils.isNotBlank(form.getMail())) {
+			predicate.and(QMyData.myData.mail.eq(form.getMail()));
+		}
+		// 年齢From
+		if (form.getAgeFrom() != null) {
+			predicate.and(QMyData.myData.age.goe(form.getAgeFrom()));
+		}
+		// 年齢To
+		if (form.getAgeTo() != null) {
+			predicate.and(QMyData.myData.age.loe(form.getAgeTo()));
+		}
+		// メモ
+		if (StringUtils.isNotBlank(form.getMemo())) {
+			predicate.and(QMyData.myData.memo.eq(form.getMemo()));
+		}
+	    // 部屋
+		if (form.getRoom() != null) {
+			predicate.and(QMyData.myData.room.name.eq(form.getRoom().getName()));
+		}
+		// アイテム
+		if (form.getItem() != null) {
+			predicate.and(QMyData.myData.room.item.itemName.eq(form.getItem().getItemName()));
+		}
+		return repository.findAll(predicate);
 	}
 	
 	// Criteriaで検索
