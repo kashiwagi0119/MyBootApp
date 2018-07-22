@@ -26,6 +26,7 @@ public class MyBootAppApplication {
 	public JpaVendorAdapter jpaVenderAdapter() {
 	  HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 	  vendorAdapter.setDatabase(Database.MYSQL);
+//	  vendorAdapter.setDatabase(Database.ORACLE);
 	  vendorAdapter.setShowSql(true);
 	  return vendorAdapter;
 	}
@@ -37,10 +38,10 @@ public class MyBootAppApplication {
       em.setPackagesToScan("com.tuyano.springboot");
       em.setJpaVendorAdapter(jpaVenderAdapter());
       Map<String, Object> properties = new HashMap<>();
-      properties.put("hibernate.id.new_generator_mappings", "true");
-      properties.put("hibernate.physical_naming_strategy", "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy");
-      properties.put("hibernate.connection.handling_mode", "DELAYED_ACQUISITION_AND_HOLD");
+      properties.put("hibernate.physical_naming_strategy", "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy"); // ネーミングルールを適用
+//      properties.put("hibernate.connection.handling_mode", "DELAYED_ACQUISITION_AND_HOLD");
       properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+//    →ORACLEに変更する  properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
       properties.put("hibernate.implicit_naming_strategy", "org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy");
       properties.put("hibernate.show_sql", "true");
       em.setJpaPropertyMap(properties);
