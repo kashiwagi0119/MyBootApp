@@ -39,9 +39,9 @@ public class MyBootAppApplication {
       em.setJpaVendorAdapter(jpaVenderAdapter());
       Map<String, Object> properties = new HashMap<>();
       properties.put("hibernate.physical_naming_strategy", "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy"); // ネーミングルールを適用
-//      properties.put("hibernate.connection.handling_mode", "DELAYED_ACQUISITION_AND_HOLD");
+//    不要っぽい  properties.put("hibernate.connection.handling_mode", "DELAYED_ACQUISITION_AND_HOLD");
       properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-//    →ORACLEに変更する  properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+//    →ORACLEに変更する  properties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
       properties.put("hibernate.implicit_naming_strategy", "org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy");
       properties.put("hibernate.show_sql", "true");
       em.setJpaPropertyMap(properties);
