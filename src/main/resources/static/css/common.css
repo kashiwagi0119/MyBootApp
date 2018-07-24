@@ -5,7 +5,7 @@
 	min-height: 330px;  // グリッドの高さ
 	max-height: 330px;  // グリッドの高さ
 }
-#griddiv tr, td {
+#griddiv tr, #griddiv td, #griddiv td input {
 	font-size: 20px;  // グリッドのフォントサイズ
 }
 #griddiv .ui-jqgrid button {

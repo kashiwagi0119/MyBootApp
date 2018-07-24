@@ -1,7 +1,8 @@
 
 
-CSVを読んで
-画面に表示
+jqgrid→JSON→FORM
+
+Gridを編集可能に
 
 
 削除確認画面

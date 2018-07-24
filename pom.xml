@@ -124,6 +124,11 @@
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		<dependency>
+		    <groupId>net.arnx</groupId>
+		    <artifactId>jsonic</artifactId>
+		    <version>1.3.10</version>
+		</dependency>
 
 	    <!-- QueryDsl 本体 -->
 	    <dependency>
