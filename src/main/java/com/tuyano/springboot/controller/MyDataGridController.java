@@ -81,7 +81,7 @@ public class MyDataGridController {
 	// 送信ボタン
 	@RequestMapping(value = "/MyData/myDataGridSend")
 	@ResponseBody
-	public JsonResultDTO searchDSL(String json, String orderStatus) throws JsonParseException, JsonMappingException, IOException {
+	public JsonResultDTO searchDSL(String json, String orderStatus)  {
 		
 		// 複数行LIST
 		List<MyDataFormMini> dtoList = new ArrayList<MyDataFormMini>();

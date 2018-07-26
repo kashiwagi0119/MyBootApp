@@ -91,10 +91,15 @@ function displayGrid(data) {
             { name : 'memo', index : 'memo', align : 'left', width : 100 },
             { name : 'room', index : 'room', align : 'left', width : 70,
                 formatter : function(cellvalue, options, rowObject) {
-                    var result = "";
-                    if (rowObject.room != null && rowObject.room.name != null) {
-                        result = result + rowObject.room.name
-                    }
+                    var result = '';
+                    result = result + '<select class="form-control form-control-sm p-0" name="example">';
+                    result = result + '<option value="サンプル1">サンプル1</option>';
+                    result = result + '<option value="サンプル2">サンプル2</option>';
+                    result = result + '<option value="サンプル3" selected>サンプル3</option>';
+                    result = result + '</select>';
+//                    if (rowObject.room != null && rowObject.room.name != null) {
+//                        result = result + rowObject.room.name
+//                    }
                     return result;
                 }
             },
