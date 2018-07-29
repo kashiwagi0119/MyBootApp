@@ -77,6 +77,10 @@ function displayGrid(data) {
         width : '1000',
         shrinkToFit : true, // カラム幅の自動調整をしない
         cmTemplate : { sortable : false }, // ソートを無効化
+        cellsubmit: 'clientArray', // セル編集時にsubmitする先。ローカルの場合は'clientArray'
+
+        cellEdit: true,
+        
         colNames : [ 'ID', '名前', 'メールアドレス', '年齢', 'メモ', 'ルーム', 'アイテム' ],
         colModel : [
             { name : 'id', index : 'id', align : 'left', width : 50 },
@@ -87,7 +91,7 @@ function displayGrid(data) {
                 }
             },
             { name : 'mail', index : 'mail', align : 'left', width : 100 , editable:true},
-            { name : 'age', index : 'age', align : 'left', width : 50 },
+            { name : 'age', index : 'age', align : 'left', width : 50  , editable:true},
             { name : 'memo', index : 'memo', align : 'left', width : 100 },
             { name : 'room', index : 'room', align : 'left', width : 70,
                 formatter : function(cellvalue, options, rowObject) {
@@ -120,4 +124,5 @@ function displayGrid(data) {
 		cellEdit: true,
     });
 
+    $('#grid').jqGrid('setSelection', 0);
 }
