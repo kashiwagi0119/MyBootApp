@@ -11,7 +11,7 @@ jQuery(document).ready(function()
 	}
 	
 	jQuery("#grid").jqGrid({
-//		data: mydata,
+		data: mydata,
 		rowNum : 99999999,
 		datatype: "local",
 		colNames:['コード', '会社名', 'カナ'],
@@ -102,7 +102,7 @@ jQuery(document).ready(function()
 
 //		var b = $('#grid').getCell(2, 'comp_kana');
 //		var b = $('#grid').getCol('comp_kana');
-		var b = $('#grid')[0].addJSONData(mydata);
+//		var b = $('#grid')[0].addJSONData(mydata);
 		
 		alert(b);
 	});
