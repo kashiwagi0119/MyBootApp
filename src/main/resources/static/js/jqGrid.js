@@ -88,8 +88,10 @@ jQuery(document).ready(function()
 //		var colNames = $("#grid").getGridParam("colNames");
 //		var colNames = $("#grid").getGridParam("colModel");
 		
-//	    var a = $('#grid').getGridParam("data"); //グリッドのデータを取得する
-//	    alert(a);
+		var wk = $('#grid').getRowData(2);
+	    var a = $('#grid').getGridParam("data"); //グリッドのデータを取得する
+	    alert(a);
+	    
 	    
 //	    var recCnt = $('#grid').getGridParam('records');
 //	    var b = $('#grid').getGridParam('records');
@@ -104,7 +106,7 @@ jQuery(document).ready(function()
 //		var b = $('#grid').getCol('comp_kana');
 //		var b = $('#grid')[0].addJSONData(mydata);
 		
-		alert(b);
+//		alert(b);
 	});
 	
 	// テスト2

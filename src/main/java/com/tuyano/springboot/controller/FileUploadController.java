@@ -29,8 +29,11 @@ import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.csv.QuoteMode;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -80,15 +83,17 @@ public class FileUploadController {
 		return list;
 	}
 
+	// ダウンロードSubmit既存ファイル
     @RequestMapping(value = "/FileDownloadKizon")
     public String downloadKizon(HttpServletResponse response) throws IOException {
         File file = new File("C:\\Users\\kashi\\Desktop\\今やっている勉強\\あいう.csv");
-        response.addHeader("Content-Type", "application/octet-stream");
+//        response.addHeader("Content-Type", "application/octet-stream");
         response.addHeader("Content-Disposition", "attachment; filename*=UTF-8''" + URLEncoder.encode(file.getName(), StandardCharsets.UTF_8.name()));
         Files.copy(file.toPath(), response.getOutputStream());
         return null;
     }
     
+    // ダウンロードSubmit新規ファイル
     @RequestMapping(value = "/FileDownloadSinki")
     public String downloadSinki(HttpServletResponse response) throws IOException {
     	File file = new File("かきく.csv");
@@ -107,4 +112,12 @@ public class FileUploadController {
     	Files.copy(file.toPath(), response.getOutputStream());
     	return null;
     }
+    
+	// ダウンロードテスト
+    @RequestMapping(value = "/FileDownloadTest", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @ResponseBody
+    public Resource downloadTest() {
+    	return new FileSystemResource(new File("C:\\Users\\kashi\\Desktop\\今やっている勉強\\あいう.csv"));
+    }
+    
 }
