@@ -18,7 +18,7 @@ jQuery(document).ready(function()
 		colModel:[
 			{index:'xid', name:'xid', width:'60px'},
 			{index:'comp_name', name:'comp_name', width:'150px'},
-			{index:'comp_kana', name:'comp_kana', width:'500px', editable:true},
+			{index:'comp_kana', name:'comp_kana', width:'150px', editable:true},
 			{name:'date', index:'date', sorttype:'date', editable:true, edittype:'custom', editoptions:{custom_element:elmDate, custom_value:valDate}},
 
 		],
@@ -27,7 +27,6 @@ jQuery(document).ready(function()
         cellEdit: true,
         cellsubmit: 'clientArray',
         
-        onSelectRow: onSelectRowFunc,
 	});	
 	
 	// テスト1
@@ -128,29 +127,49 @@ function testfunc() {
 	alert('aaa');
 }
 
-var lastSel;
-function onSelectRowFunc(id) {
-  if(id && id!==lastSel){ // 別の行選択時
-     //$(this).restoreRow(lastSel); // 前の編集行をキャンセル
-     $(this).saveRow(lastSel); // 前の編集行を確定
-     lastSel = id;
-  } 
-  $(this).editRow(id, true);
-}
-
 /**
  * edittype:customの要素を生成する関数
  * @param value 現在の値
  * @param options 要素のオプション
  */
 function elmDate(value, options) {
-  var elm = $('<input>', {type:'text', value:value}).datepicker({
-      language: 'ja',
-      format: 'yyyy/mm/dd',
-      autoclose: true,
-      todayHighlight : true
-	  	  
-  });
+	
+	var result = '';
+	var result = result + '<div class="input-group date">';
+	var result = result + '<input type="text" class="form-control" style="flex:none; width:110px" />';
+	var result = result + '<span class="input-group-addon">';
+	var result = result + '<i class="fas fa-calendar-alt fa-2x ml-1"></i>';
+	var result = result + '</span></div>';
+	var result = result + '';
+	var elm = $(result).datepicker({
+		  language: 'ja',
+		  format: 'yyyy/mm/dd',
+		  autoclose: true,
+		  todayHighlight : true
+		  
+	  });
+	
+//	var result = '';
+//	var result = result + '<div class="input-group date">';
+//	var result = result + '<input type="text" class="form-control" style="flex:none; width:110px" />';
+//	var result = result + '<span class="input-group-addon">';
+//	var result = result + '<i class="fas fa-calendar-alt fa-2x ml-1"></i>';
+//	var result = result + '</span></div>';
+//	var result = result + '';
+//	var elm = $(result);
+	
+	
+//	var elm = $('<div class="input-group date"><input type="text" class="form-control" style="flex:none; width:110px" /><span class="input-group-addon"><i class="fas fa-calendar-alt fa-2x ml-1"></i></span></div>');
+	
+//  var elm = $('<div><select></select><button>ボタン</button></div>');
+  
+//  var elm = $('<input>', {type:'text', value:value}).datepicker({
+//	  language: 'ja',
+//	  format: 'yyyy/mm/dd',
+//	  autoclose: true,
+//	  todayHighlight : true
+//	  
+//  });
   return elm;
 }
 /**
