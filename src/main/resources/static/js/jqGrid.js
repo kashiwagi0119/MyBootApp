@@ -14,16 +14,20 @@ jQuery(document).ready(function()
 		data: mydata,
 		rowNum : 99999999,
 		datatype: "local",
-		colNames:['コード', '会社名', 'カナ'],
+		colNames:['コード', '会社名', 'カナ', '誕生日'],
 		colModel:[
 			{index:'xid', name:'xid', width:'60px'},
 			{index:'comp_name', name:'comp_name', width:'150px'},
 			{index:'comp_kana', name:'comp_kana', width:'500px', editable:true},
+			{name:'date', index:'date', sorttype:'date', editable:true, edittype:'custom', editoptions:{custom_element:elmDate, custom_value:valDate}},
+
 		],
 		height: '300px',
 		multiselect: true,
         cellEdit: true,
         cellsubmit: 'clientArray',
+        
+        onSelectRow: onSelectRowFunc,
 	});	
 	
 	// テスト1
@@ -116,11 +120,45 @@ jQuery(document).ready(function()
 //		$('#grid').showCol(['comp_name','comp_kana']);
 	});
 	
-	
 });
-	
+
+
 function testfunc() {
 	
 	alert('aaa');
 }
 
+var lastSel;
+function onSelectRowFunc(id) {
+  if(id && id!==lastSel){ // 別の行選択時
+     //$(this).restoreRow(lastSel); // 前の編集行をキャンセル
+     $(this).saveRow(lastSel); // 前の編集行を確定
+     lastSel = id;
+  } 
+  $(this).editRow(id, true);
+}
+
+/**
+ * edittype:customの要素を生成する関数
+ * @param value 現在の値
+ * @param options 要素のオプション
+ */
+function elmDate(value, options) {
+  var elm = $('<input>', {type:'text', value:value}).datepicker({
+      language: 'ja',
+      format: 'yyyy/mm/dd',
+      autoclose: true,
+      todayHighlight : true
+	  	  
+  });
+  return elm;
+}
+/**
+ * edittype:customの値確定時に送信する値
+ * @param elem 編集中の要素
+ * @param operation "get"or"set"
+ * @param value ? operationがsetのときに何かくる
+ */
+function valDate(elem, operation, value) {
+  return $(elem).val();
+}
