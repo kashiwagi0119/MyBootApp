@@ -29,9 +29,14 @@ import com.tuyano.springboot.service.MyDataService;
 @SessionAttributes(value = "myDataForm")
 public class ModalController {
 	  
-	@RequestMapping(value = "/Modal")
-	public String parts(Model model) {
-		return "modal/modal";
+	@RequestMapping(value = "/ModalBootStrap")
+	public String modalBootStrap(Model model) {
+		return "modal/modalBootStrap";
+	}
+	
+	@RequestMapping(value = "/ModalJQueryUI")
+	public String modalJQueryUI(Model model) {
+		return "modal/modalJQueryUI";
 	}
 
 }
