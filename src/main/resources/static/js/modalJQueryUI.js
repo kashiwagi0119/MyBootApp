@@ -6,11 +6,11 @@ $(document).ready(function(){
     	width: 500,
     	buttons: {
     		'確定': function() {
-    			alert('確定がクリックされました。');
+    			$('#resultText').val('確定がクリックされました。');
     			$(this).dialog('close');
     		},
     		'キャンセル': function() {
-    			alert('キャンセルがクリックされました。');
+    			$('#resultText').val('キャンセルがクリックされました。');
     			$(this).dialog('close');
     		}
     	}
