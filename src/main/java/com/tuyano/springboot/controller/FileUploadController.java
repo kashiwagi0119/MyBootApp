@@ -113,6 +113,26 @@ public class FileUploadController {
     	return null;
     }
     
+    // ダウンロードAjax
+	@RequestMapping(value = "/FileDownloadAjax")
+	public List<String> fileDownloadAjax(Model model, FileUploadForm fileUploadForm, HttpServletResponse response) throws Exception {
+		// 
+    	File file = new File("かきく.csv");
+    	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));
+	    CSVPrinter printer = CSVFormat.EXCEL	// ExcelのCSV形式を指定
+//	        .withQuoteMode(QuoteMode.ALL) 		// ダブルコーテーションでくくる
+	        .withEscape('"').withQuoteMode(QuoteMode.NONE) // ダブルコーテーションでくくらない
+	        .withHeader("ヘッダ1", "ヘッダ2", "ヘッダ3")  // ヘッダの指定
+	        .print(bw);
+	    printer.printRecord("あああ", "いいい", "ううう");
+	    printer.printRecord("１１１", "２２２", "３３３");
+	    printer.flush();
+    	    
+	    response.addHeader("Content-Type", "application/octet-stream");
+	    response.addHeader("Content-Disposition", "attachment; filename*=UTF-8''" + URLEncoder.encode(file.getName(), StandardCharsets.UTF_8.name()));
+    	Files.copy(file.toPath(), response.getOutputStream());
+    	return null;
+	}
 	// ダウンロードテスト
     @RequestMapping(value = "/FileDownloadTest", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @ResponseBody

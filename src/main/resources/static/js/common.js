@@ -26,6 +26,9 @@ $(document).ready(function(){
 function alertSystemError() {
 	alertify.alert('システムエラー', 'システムエラーが発生しました。');
 }
+function alertSystemError(err) {
+	alertify.alert('システムエラー', 'システムエラーが発生しました。<br/>' + err.responseJSON);
+}
 
 /**
  * エラー確認 メッセージ表示
