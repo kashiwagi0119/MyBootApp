@@ -1,27 +1,30 @@
+/* ファイル選択 */
 .custom-file-input ~ .custom-file-label::after {
-  content: "参照";  // ファイル選択
+  content: "参照";  
 }
+/* グリッドの高さ */
 #griddiv .ui-jqgrid-bdiv {
-	min-height: 330px;  // グリッドの高さ
-	max-height: 330px;  // グリッドの高さ
+	min-height: 330px;
+	max-height: 330px;
 }
+/* グリッドのフォントサイズ */
 #griddiv tr, #griddiv td, #griddiv td input, #griddiv select {
-	font-size: 20px;  // グリッドのフォントサイズ
+	font-size: 20px;
 }
+/* グリッドのボタン */
 #griddiv .ui-jqgrid button {
 	font-size: 16px; padding-top: 1px; padding-bottom : 1px;
 }
+/* グリッドのヘッダの高さ */
 #griddiv .ui-jqgrid-sortable {
-	height: 32px;  // グリッドのヘッダの高さ
+	height: 32px;
 }
 #pager1 {
-	height: 40px;  // グリッドのヘッダの高さ
+	height: 40px;
 }
-#griddiv .ui-pg-input {
-	height: 30px;  // ページャーのページ数の高さ
-}
-#griddiv .ui-pg-selbox {
-	height: 30px;  // ページャーのページ数の高さ
+/* ページャーのページ数の高さ */
+#griddiv .ui-pg-input, #griddiv .ui-pg-selbox {
+	height: 30px;
 }
 
 

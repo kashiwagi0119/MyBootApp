@@ -1,5 +1,7 @@
 
 
+datepickerで初期日付を設定
+
 jqgrid→JSON→FORM
 
 Gridを編集可能に

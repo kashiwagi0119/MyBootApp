@@ -16,10 +16,12 @@ $(document).ready(function(){
   $(function () {
     $('.date').datepicker({
       language: 'ja',
-      format: 'yyyy/mm/dd',
+      format: 'yymmdd',
       autoclose: true,
       todayHighlight : true
     });
+	// 終了
+	$('#bbb').text(new Date());
   });
 });
 
