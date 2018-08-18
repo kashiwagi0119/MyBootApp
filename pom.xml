@@ -66,11 +66,17 @@
 			<artifactId>jquery</artifactId>
 			<version>3.3.1</version>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 		    <groupId>org.webjars.bower</groupId>
 		    <artifactId>jquery.ui</artifactId>
 		    <version>1.12.1</version>
-		</dependency>
+		</dependency> -->
+<!-- https://mvnrepository.com/artifact/org.webjars.bowergithub.components/jqueryui -->
+<dependency>
+    <groupId>org.webjars.bowergithub.components</groupId>
+    <artifactId>jqueryui</artifactId>
+    <version>1.12.1</version>
+</dependency>
 
 
 		

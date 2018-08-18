@@ -3,47 +3,32 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<th:block th:include="templatehead :: templatehead" />
+	<th:block th:include="templatehead :: scripts" />
+	<script src="/js/modalJQueryUI.js"></script>
+	
+<script>
+$(function() {
+	// 1.ボタン1を押したとき
+	$("#id1").click(function() {
+		$("#test1").dialog({
+			modal:true, //モーダル表示
+			title:"テストダイアログ1", //タイトル
+			buttons: { //ボタン
+			"確認": function() {
+				$(this).dialog("close");
+				}
+			}
+		});
+	});
+});
+</script>
 </head>
-
-<body>
-<div class="card" style="height: 100vh">
-<h3 class="card-header bg-success text-white text-center">モーダル</h3>
-<div class="card-body">
-<div class="container-fluid" id="container">
-  	
-    <div class="form-group row">
-      <div class="col">
-		<button class="btn btn-primary" id="btn1">モーダル1</button>
-		<input type="text" id="resultText" readonly class="form-control-plaintext">
-	  </div>
-	</div>
-	
-	<!-- モーダル1 -->
-	<div id="mdl1" title="モーダル１タイトル">
-		内容のヘッダ
-		<div>
-			内容の内容
-		</div>
-	</div>
-	
-
-    <div class="form-group row mb-0">
-      <div class="col">
-		<a class="btn btn-primary text-white" th:href="@{'/'}">戻る</a>
-	  </div>
-	</div>
-	
+<body >
+<div id="test1" style="display:none;">
+<p>メッセージ</p>
 </div>
-</div>
-</div>
-
-<th:block th:include="templatefoot :: templatefoot" />
-<th:block th:include="templatebody :: templateModal21" />
-<th:block th:include="templatebody :: templateModal22" />
-<th:block th:include="templatebody :: templateModal31" />
-<th:block th:include="templatebody :: templateModal32" />
+<input type="button" id="id1" value="ボタン1(BootStrapのほうが見た目がいいし移動もできた)" />
 
 </body>
-<th:block th:include="templatehead :: scripts" />
-<script src="/js/modalJQueryUI.js"></script>
+
 </html>
