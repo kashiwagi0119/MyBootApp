@@ -24,9 +24,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import com.querydsl.core.BooleanBuilder;
+//import com.querydsl.core.BooleanBuilder;
 import com.tuyano.springboot.entity.MyData;
-import com.tuyano.springboot.entity.QMyData;
+//import com.tuyano.springboot.entity.QMyData;
 import com.tuyano.springboot.form.MyDataForm;
 import com.tuyano.springboot.repositories.MyDataRepository;
 
@@ -39,39 +39,39 @@ public class MyDataService {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	// DSLで検索
-	public Iterable<MyData> findDSL(MyDataForm form) {
-		BooleanBuilder predicate = new BooleanBuilder();
-		// 名前
-		if (StringUtils.isNotBlank(form.getName())) {
-			predicate.and(QMyData.myData.name.startsWith(form.getName()));
-		}
-		// メール
-		if (StringUtils.isNotBlank(form.getMail())) {
-			predicate.and(QMyData.myData.mail.eq(form.getMail()));
-		}
-		// 年齢From
-		if (form.getAgeFrom() != null) {
-			predicate.and(QMyData.myData.age.goe(form.getAgeFrom()));
-		}
-		// 年齢To
-		if (form.getAgeTo() != null) {
-			predicate.and(QMyData.myData.age.loe(form.getAgeTo()));
-		}
-		// メモ
-		if (StringUtils.isNotBlank(form.getMemo())) {
-			predicate.and(QMyData.myData.memo.eq(form.getMemo()));
-		}
-	    // 部屋
-		if (form.getRoom() != null) {
-			predicate.and(QMyData.myData.room.name.eq(form.getRoom().getName()));
-		}
-		// アイテム
-		if (form.getItem() != null) {
-			predicate.and(QMyData.myData.room.item.itemName.eq(form.getItem().getItemName()));
-		}
-		return repository.findAll(predicate);
-	}
+//	// DSLで検索
+//	public Iterable<MyData> findDSL(MyDataForm form) {
+//		BooleanBuilder predicate = new BooleanBuilder();
+//		// 名前
+//		if (StringUtils.isNotBlank(form.getName())) {
+//			predicate.and(QMyData.myData.name.startsWith(form.getName()));
+//		}
+//		// メール
+//		if (StringUtils.isNotBlank(form.getMail())) {
+//			predicate.and(QMyData.myData.mail.eq(form.getMail()));
+//		}
+//		// 年齢From
+//		if (form.getAgeFrom() != null) {
+//			predicate.and(QMyData.myData.age.goe(form.getAgeFrom()));
+//		}
+//		// 年齢To
+//		if (form.getAgeTo() != null) {
+//			predicate.and(QMyData.myData.age.loe(form.getAgeTo()));
+//		}
+//		// メモ
+//		if (StringUtils.isNotBlank(form.getMemo())) {
+//			predicate.and(QMyData.myData.memo.eq(form.getMemo()));
+//		}
+//	    // 部屋
+//		if (form.getRoom() != null) {
+//			predicate.and(QMyData.myData.room.name.eq(form.getRoom().getName()));
+//		}
+//		// アイテム
+//		if (form.getItem() != null) {
+//			predicate.and(QMyData.myData.room.item.itemName.eq(form.getItem().getItemName()));
+//		}
+//		return repository.findAll(predicate);
+//	}
 	
 	// Criteriaで検索
 	public List<MyData> findCriteria(MyDataForm form) {
@@ -114,20 +114,20 @@ public class MyDataService {
 		
 	}
 	
-	// Specificationで検索 (Specificationsを用意しないと。。。)
-	public List<MyData> findSpecification(MyDataForm form) {
-		return repository.findAll(Specification
-				.where(nameLike(form.getName()))
-//    		.where(nameSpecifications(LIKE, form.getName()))
-//    		.and(nameSpecifications(ISNOTNULL))
-//    		.and(roomSpecifications(LIKE, form.getRoom(), INNER))
-				.and(itemSpecifications(LIKE, "アイテム1", INNER))
-				,
-//	    	new Sort(Sort.Direction.ASC, "id")
-//    		new Sort(Sort.Direction.ASC, "id").and(new Sort(Sort.Direction.ASC, "name"))
-				new Sort(Sort.Direction.ASC, "room.item.itemName")
-				);
-	}
+//	// Specificationで検索 (Specificationsを用意しないと。。。)
+//	public List<MyData> findSpecification(MyDataForm form) {
+//		return repository.findAll(Specification
+//				.where(nameLike(form.getName()))
+////    		.where(nameSpecifications(LIKE, form.getName()))
+////    		.and(nameSpecifications(ISNOTNULL))
+////    		.and(roomSpecifications(LIKE, form.getRoom(), INNER))
+//				.and(itemSpecifications(LIKE, "アイテム1", INNER))
+//				,
+////	    	new Sort(Sort.Direction.ASC, "id")
+////    		new Sort(Sort.Direction.ASC, "id").and(new Sort(Sort.Direction.ASC, "name"))
+//				new Sort(Sort.Direction.ASC, "room.item.itemName")
+//				);
+//	}
 	
 	// JPQLで検索 (NULLチェックを2回やらないといけない)
 	@SuppressWarnings("unchecked")

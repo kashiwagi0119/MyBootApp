@@ -1,5 +1,6 @@
 package com.tuyano.springboot.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,7 +76,8 @@ public class MyDataController {
 	@RequestMapping(value = "/MyData/searchDSL")
 	@ResponseBody
 	public JsonResultDTO searchDSL(Model model, MyDataForm form) {
-		Iterable<MyData> list = service.findDSL(form);
+		Iterable<MyData> list = new ArrayList<MyData>();
+//		Iterable<MyData> list = service.findDSL(form);
 		JsonResultDTO jsonResult = new JsonResultDTO();
 //		jsonResult.addMessage("メッセージ１");
 //		jsonResult.addMessage("メッセージ２");
@@ -116,7 +118,8 @@ public class MyDataController {
 	@RequestMapping(value = "/MyData/searchSpecification")
 	public String searchSpecification(Model model, MyDataForm form) {
 		
-		List<MyData> list = service.findSpecification(form);
+		List<MyData> list = new ArrayList<MyData>();
+//		List<MyData> list = service.findSpecification(form);
 		model.addAttribute("datalist", list);
 		return "/myData/myDataList";
 	}
