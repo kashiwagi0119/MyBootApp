@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
+//import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -44,7 +44,7 @@ public class ExcelController {
     /**
      * [dummy] 帳票データを読み込むためのobjectMapper
      */
-    @Inject
+//    @Inject
     ObjectMapper objectMapper;
 
     /**

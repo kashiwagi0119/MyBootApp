@@ -138,14 +138,16 @@
 		</dependency>
 
 	    <!-- QueryDsl 本体 -->
-	    <dependency>
+<!-- 	    <dependency>
 	        <groupId>com.querydsl</groupId>
 	        <artifactId>querydsl-jpa</artifactId>
 	    </dependency>
 	    <dependency>
 	        <groupId>com.querydsl</groupId>
 	        <artifactId>querydsl-apt</artifactId>
-	    </dependency>
+	    </dependency> -->
+	    
+	    
 		<dependency>
 		    <groupId>org.apache.poi</groupId>
 		    <artifactId>poi-ooxml</artifactId>
@@ -169,7 +171,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			
-		    <plugin>
+<!-- 		    <plugin>
 		        <groupId>com.mysema.maven</groupId>
 		        <artifactId>apt-maven-plugin</artifactId>
 		        <executions>
@@ -183,7 +185,7 @@
 		                </configuration>
 		            </execution>
 		        </executions>
-		    </plugin>
+		    </plugin> -->
     
 			
 		</plugins>

@@ -6,9 +6,9 @@ jQuery(document).ready(function()
 		{xid:"12", comp_name:"有限会社エー", comp_kana:"180102"},
 	];
 
-//	for(var i=0; i<1000; i++){
-//		mydata.push({xid:"12", comp_name:"有限会社エー", comp_kana:"2018/01/02"});
-//	}
+	for(var i=0; i<2000; i++){
+		mydata.push({xid:"12", comp_name:"有限会社エー", comp_kana:"2018/01/02"});
+	}
 	
 	// 開始
 	$('#aaa').text(new Date());
@@ -28,22 +28,22 @@ jQuery(document).ready(function()
 	// editableは1000件 IE=1~2秒、2000件＝5秒
 	// editableなしは1000件 IE=1~2秒、2000件＝4から5秒
 	
-	// editableは1000件 IE=1~2秒、2000件＝5秒
-	jQuery("#grid").jqGrid({
-		data: mydata,
-		rowNum : 99999999,
-		datatype: "local",
-		colNames:['コード', '会社名', '日付'],
-		colModel:[
-			{index:'xid', name:'xid', width:'60px'},
-			{index:'comp_name', name:'comp_name', width:'150px', editable:true},
-			{name:'comp_kana', index:'comp_kana', width:'120px', editable:true, edittype:'custom', editoptions:{custom_element:elmDate, custom_value:valDate}},
-			],
-			height: '300px',
-			multiselect: true,
-			cellEdit: true,
-			cellsubmit: 'clientArray',
-	});	
+//	// editableは1000件 IE=1~2秒、2000件＝5秒
+//	jQuery("#grid").jqGrid({
+//		data: mydata,
+//		rowNum : 99999999,
+//		datatype: "local",
+//		colNames:['コード', '会社名', '日付'],
+//		colModel:[
+//			{index:'xid', name:'xid', width:'60px'},
+//			{index:'comp_name', name:'comp_name', width:'150px', editable:true},
+//			{name:'comp_kana', index:'comp_kana', width:'120px', editable:true, edittype:'custom', editoptions:{custom_element:elmDate, custom_value:valDate}},
+//			],
+//			height: '300px',
+//			multiselect: true,
+//			cellEdit: true,
+//			cellsubmit: 'clientArray',
+//	});	
 
 
 	
@@ -141,6 +141,26 @@ jQuery(document).ready(function()
 //			cellEdit: true,
 //			cellsubmit: 'clientArray',
 //	});	
+	
+	// 番外編 addRowData dataに指定するのと差は無し
+	jQuery("#grid").jqGrid({
+		rowNum : 99999999,
+		datatype: "local",
+		colNames:['コード', '会社名', 'カナ'],
+		colModel:[
+			{index:'xid', name:'xid', width:'60px'},
+			{index:'comp_name', name:'comp_name', width:'150px'},
+			{index:'comp_kana', name:'comp_kana', width:'150px'},
+			
+			],
+			height: '300px',
+			multiselect: true,
+	});	
+	if(mydata != undefined) {
+	    for (var i = 0; i <= mydata.length; i++) {
+	        $("#grid").jqGrid('addRowData', i + 1, mydata[i]);
+	    }
+	}
 	
 //	// editableなしは1000件 IE=1~2秒、2000件＝4から5秒
 //	jQuery("#grid").jqGrid({

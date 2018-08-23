@@ -12,9 +12,15 @@ import org.springframework.stereotype.Repository;
 import com.tuyano.springboot.entity.MyData;
 
 @Repository
-public interface MyDataRepository  extends JpaRepository<MyData, Long>, JpaSpecificationExecutor<MyData>, QuerydslPredicateExecutor<MyData> {
+public interface MyDataRepository  extends JpaRepository<MyData, Long>, JpaSpecificationExecutor<MyData> {
 
 	List<MyData> findByNameOrderByIdDesc(String name);
 
 }
+//@Repository
+//public interface MyDataRepository  extends JpaRepository<MyData, Long>, JpaSpecificationExecutor<MyData>, QuerydslPredicateExecutor<MyData> {
+//	
+//	List<MyData> findByNameOrderByIdDesc(String name);
+//	
+//}
 
