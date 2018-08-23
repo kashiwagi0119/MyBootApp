@@ -1,6 +1,9 @@
 
 
-datepickerで初期日付を設定
+
+bootboxアラートを移動可能にしたい
+
+
 
 
 

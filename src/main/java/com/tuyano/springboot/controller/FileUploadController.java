@@ -86,7 +86,8 @@ public class FileUploadController {
 	// ダウンロードSubmit既存ファイル
     @RequestMapping(value = "/FileDownloadKizon")
     public String downloadKizon(HttpServletResponse response) throws IOException {
-        File file = new File("C:\\Users\\kashi\\Desktop\\今やっている勉強\\あいう.csv");
+        File file = new File("\\\\win7\\data\\カスペルスキー.txt");
+//        File file = new File("C:\\Users\\kashi\\Desktop\\今やっている勉強\\あいう.csv");
 //        response.addHeader("Content-Type", "application/octet-stream");
         response.addHeader("Content-Disposition", "attachment; filename*=UTF-8''" + URLEncoder.encode(file.getName(), StandardCharsets.UTF_8.name()));
         Files.copy(file.toPath(), response.getOutputStream());
