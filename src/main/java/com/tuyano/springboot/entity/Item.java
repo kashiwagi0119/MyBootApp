@@ -22,7 +22,23 @@ public class Item implements Serializable {
 	@Column
 	private Long id;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
 	@Column(length = 50, nullable = false)
 	private String itemName;
-	
+
 }

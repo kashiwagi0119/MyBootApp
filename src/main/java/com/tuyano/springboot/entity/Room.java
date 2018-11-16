@@ -23,14 +23,38 @@ public class Room implements Serializable {
 	@Column
 	private Long id;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
 	@Column(length = 50, nullable = false)
 	private String name;
-	
+
 	@ManyToOne
 	private Item item;
-	
+
 	public Room() {
 		super();
 	}
-	
+
 }

@@ -7,10 +7,8 @@ import lombok.Getter;
 @Getter
 public enum Check2Enum {
 
-  チェック21("1", "チェック21"),
-  チェック22("2", "チェック22"),
-  チェック23("3", "チェック23");
+  チェック21,
+  チェック22,
+  チェック23;
 
-  private final String code;
-  private final String label;
 }

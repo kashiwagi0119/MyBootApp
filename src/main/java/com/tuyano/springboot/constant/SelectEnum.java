@@ -6,10 +6,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum SelectEnum {
-	SELECT1("1", "セレクトEnum1"),
-	SELECT2("2", "セレクトEnum2"),
-	SELECT3("3", "セレクトEnum3");
+	SELECT1,
+	SELECT2,
+	SELECT3;
 
-	private final String code;
-	private final String label;
 }
