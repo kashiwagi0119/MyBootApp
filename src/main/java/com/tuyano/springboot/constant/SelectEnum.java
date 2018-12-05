@@ -5,28 +5,20 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum SelectEnum {
+public enum SelectEnum implements BaseEnum {
 
 
-	SELECT1("1", "セレクトEnum1"),
-	SELECT2("2", "セレクトEnum2"),
-	SELECT3("3", "セレクトEnum3");
+	/**
+	 * 1 : 旧世代
+	 */
+	OLD_GENERATION("1", "旧")
 
-	public String getCode() {
-		return code;
-	}
+	/**
+	 * 2 : 現世代
+	 */
+	,CURRENT_GENERATION("2", "現")
 
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
-	}
+	;
 
 	/**
 	 * コード
@@ -40,11 +32,39 @@ public enum SelectEnum {
 
 	/**
 	 * コンストラクタ
+	 */
+	private SelectEnum() {
+	}
+
+	/**
+	 * コンストラクタ
+	 * @param code コード
+	 */
+	private SelectEnum(String code) {
+		this.code = code;
+	}
+
+	/**
+	 * コンストラクタ
 	 * @param code コード
 	 */
 	private SelectEnum(String code, String label) {
 		this.code = code;
 		this.label = label;
+	}
+
+	/**
+	 * 指定されたEnum定数に対応するコードを返す
+	 */
+	public String getCode() {
+		return this.code;
+	}
+
+	/**
+	 * ラベルを取得する
+	 */
+	public String getLabel() {
+		return this.label;
 	}
 
 

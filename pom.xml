@@ -47,10 +47,25 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
+
+
+
+
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.4</version>
 		</dependency>
+
+
+
+
+
+
+
+
+
+
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
@@ -79,7 +94,7 @@
 </dependency>
 
 
-		
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -146,8 +161,8 @@
 	        <groupId>com.querydsl</groupId>
 	        <artifactId>querydsl-apt</artifactId>
 	    </dependency> -->
-	    
-	    
+
+
 		<dependency>
 		    <groupId>org.apache.poi</groupId>
 		    <artifactId>poi-ooxml</artifactId>
@@ -165,12 +180,12 @@
 
 	<build>
 		<plugins>
-		
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			
+
 <!-- 		    <plugin>
 		        <groupId>com.mysema.maven</groupId>
 		        <artifactId>apt-maven-plugin</artifactId>
@@ -186,8 +201,8 @@
 		            </execution>
 		        </executions>
 		    </plugin> -->
-    
-			
+
+
 		</plugins>
 	</build>
 
