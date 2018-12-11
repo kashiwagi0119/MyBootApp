@@ -1,19 +1,10 @@
 package com.tuyano.springboot;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.sql.DataSource;
-
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.jpa.JpaVendorAdapter;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.Database;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.context.support.ResourceBundleMessageSource;
 
 @SpringBootApplication
 public class MyBootAppApplication {
@@ -21,7 +12,14 @@ public class MyBootAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MyBootAppApplication.class, args);
 	}
-	
+
+	@Bean
+	public MessageSource messageSource() {
+		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+		messageSource.setBasenames("MessageResources");
+		return messageSource;
+	}
+
 //	@Bean
 //	public JpaVendorAdapter jpaVenderAdapter() {
 //	  HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -30,7 +28,7 @@ public class MyBootAppApplication {
 //	  vendorAdapter.setShowSql(true);
 //	  return vendorAdapter;
 //	}
-//	
+//
 //   @Bean
 //   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 //      LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -46,10 +44,10 @@ public class MyBootAppApplication {
 //      properties.put("hibernate.show_sql", "true");
 //      em.setJpaPropertyMap(properties);
 //      em.afterPropertiesSet();
-//      
+//
 //      return em;
 //   }
-// 
+//
 //   @Bean
 //   public DataSource dataSource(){
 //      BasicDataSource dataSource = new BasicDataSource();
@@ -59,5 +57,5 @@ public class MyBootAppApplication {
 //	  dataSource.setPassword("0422");
 //      return dataSource;
 //   }
-	   
+
 }

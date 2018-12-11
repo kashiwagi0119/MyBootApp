@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<th:block th:include="templatehead :: templatehead" />
+
+
+</head>
+
+<body>
+
+<div class="card" style="height: 100vh">
+<h3 class="card-header bg-success text-white text-center">メッセージプロパティ</h3>
+<div class="card-body">
+<div class="container-fluid" id="container">
+
+
+
+<h4>メッセージプロパティをコントローラから表示</h4>
+<p th:text="${msg0}"></p>
+<p th:text="${msg2}"></p>
+
+
+
+<h4>メッセージプロパティをThymeleafで表示</h4>
+<p th:text="#{my.msg0}"></p>
+
+
+
+
+</div>
+</div>
+<th:block th:include="templatefoot :: templatefoot" />
+</div>
+
+</body>
+<th:block th:include="templatehead :: scripts" />
+<script src="/js/jqGrid.js"></script>
+</html>
