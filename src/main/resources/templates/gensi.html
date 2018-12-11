@@ -10,27 +10,26 @@
 <body>
 
 <div class="card" style="height: 100vh">
-<h3 class="card-header bg-success text-white text-center">メッセージプロパティ</h3>
+<h3 class="card-header bg-success text-white text-center">原紙</h3>
 <div class="card-body">
 <div class="container-fluid" id="container">
 
 
 
-	<h4>メッセージプロパティをコントローラから表示</h4>
-	<p th:text="${msg0}"></p>
-	<p th:text="${msg2}"></p>
+    <div class="row mb-1">
+    	<div class="col">
+			原紙・ここに表示したい内容を入れる
+		</div>
+	</div>
 
-
-
-	<h4>メッセージプロパティをThymeleafで表示</h4>
-	<p th:text="#{my.msg0}"></p>
-	<p th:text="#{my.msg2('引数1', '引数5')}"></p>
 
     <div class="row mb-1">
-      <div class="col">
-		<a class="btn btn-primary text-white" th:href="@{'/'}">戻る</a>
-	  </div>
+    	<div class="col">
+			<a class="btn btn-primary text-white" th:href="@{'/'}">戻る</a>
+		</div>
 	</div>
+
+
 
 </div>
 </div>
