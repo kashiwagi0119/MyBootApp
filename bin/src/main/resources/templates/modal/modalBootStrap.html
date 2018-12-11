@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<th:block th:include="templatehead :: templatehead" />
+</head>
+
+<body>
+<div class="card" style="height: 100vh">
+<h3 class="card-header bg-success text-white text-center">モーダル</h3>
+<div class="card-body">
+<div class="container-fluid" id="container">
+  	
+    <div class="form-group row">
+      <div class="col">
+		<button class="btn btn-primary" data-toggle="modal" data-target="#modal1">モーダル1</button>
+	  </div>
+	</div>
+	<div class="form-group row">
+	  <div class="col">
+		<button class="btn btn-primary" data-toggle="modal" data-target="#modal21">モーダル2</button>
+	  </div>
+	</div>
+	<div class="form-group row">
+	  <div class="col">
+		<button class="btn btn-primary" data-toggle="modal" data-target="#modal31">モーダル3</button>
+		<input type="text" readonly class="form-control-plaintext modal31CodeLabel" value="モーダル31の選択結果">
+	  </div>
+	</div>
+
+	<!-- モーダル1 -->
+	<div class="modal" id="modal1" data-backdrop="static">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">モーダル1のタイトル</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <p>モーダルのコンテンツ文。</p>
+	      </div>
+	      <div class="modal-footer">
+          	<div class="col">
+        	  <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+            </div>
+            <div class="col text-right">
+              <button type="button" class="btn btn-primary">保存</button>
+            </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- モーダル21 -->
+    <div class="modal" id="modal21" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+	        <h5 class="modal-title">モーダル21のタイトル</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+          </div>
+          <div class="modal-body">
+          	<p>モーダル21の内容</p>
+          </div>
+          <div class="modal-footer">
+          	<div class="col">
+        	  <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+            </div>
+            <div class="col text-right">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal22">モーダル22へ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	<!-- モーダル22 -->
+    <div class="modal" id="modal22" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+	        <h5 class="modal-title">モーダル22のタイトル</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+          </div>
+          <div class="modal-body">
+            <p>モーダル22の内容</p>
+          </div>
+          <div class="modal-footer">
+          	<div class="col">
+        	  <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+	<!-- モーダル31 -->
+    <div class="modal" id="modal31" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+	        <h5 class="modal-title">モーダル31のタイトル</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+          </div>
+          <div class="modal-body">
+          	<p>モーダル31の内容</p>
+          	<input type="text" class="form-control" id="modal31Code"/>
+          </div>
+          <div class="modal-footer">
+          	<div class="col">
+        	  <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+            </div>
+            <div class="col text-right">
+              <button type="button" class="btn btn-primary" onclick="modal31Save()">保存</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal32">モーダル32へ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	<!-- モーダル32 -->
+    <div class="modal" id="modal32" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+	        <h5 class="modal-title">モーダル32のタイトル</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+          </div>
+          <div class="modal-body">
+            <p>モーダル32の内容</p>
+          </div>
+          <div class="modal-footer">
+          	<div class="col">
+        	  <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	<div class="form-group row">
+	  <div class="col">
+		<button class="btn btn-primary" id="bootboxAlert">bootboxアラート</button>
+		<button class="btn btn-primary" id="bootboxConfirm">bootboxコンフォーム</button>
+		<button class="btn btn-primary" id="bootboxPrompt">bootbox入力</button>
+		<button class="btn btn-primary" id="test">テスト</button>
+	  </div>
+	</div>
+	
+	
+    <div class="form-group row mb-0">
+      <div class="col">
+		<a class="btn btn-primary text-white" th:href="@{'/'}">戻る</a>
+	  </div>
+	</div>
+	
+</div>
+</div>
+</div>
+
+<th:block th:include="templatefoot :: templatefoot" />
+
+</body>
+<th:block th:include="templatehead :: scripts" />
+<script src="/js/modalBootStrap.js"></script>
+</html>

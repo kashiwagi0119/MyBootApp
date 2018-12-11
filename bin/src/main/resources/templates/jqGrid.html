@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<th:block th:include="templatehead :: templatehead" />
+
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+  <link rel="stylesheet" href="/demos/style.css" />
+  
+  
+</head>
+
+<body>
+
+<div class="card" style="height: 100vh">
+<h3 class="card-header bg-success text-white text-center">JqGrid</h3>
+<div class="card-body">
+<div class="container-fluid" id="container">
+
+    <div class="form-group row">
+      <div class="col" id='griddiv'>
+		<table class="table-striped" id="grid"></table>
+	  </div>
+<!-- 	  <div id = "pager1"></div> -->
+	</div>
+
+	<div id="aaa">aaa</div>
+	<div id="bbb">bbb</div>
+	
+	
+	
+	
+            <input type="text" class="date" >
+    
+    
+    
+    
+	
+    <div class="form-group row mb-0">
+      <div class="col">
+		<a class="btn btn-primary text-white" th:href="@{'/'}">戻る</a>
+		<a class="btn btn-primary text-white" id="jqGridTest1">テスト1</a>
+		<a class="btn btn-primary text-white" id="jqGridTest2">テスト2</a>
+	  </div>
+	</div>
+
+</div>
+</div>
+<th:block th:include="templatefoot :: templatefoot" />
+</div>
+
+</body>
+<th:block th:include="templatehead :: scripts" />
+<script src="/js/jqGrid.js"></script>
+</html>

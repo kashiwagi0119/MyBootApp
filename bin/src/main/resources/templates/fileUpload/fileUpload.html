@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<th:block th:include="templatehead :: templatehead" />
+</head>
+
+<body>
+<div class="card" style="height: 100vh">
+<h3 class="card-header bg-success text-white text-center">ファイルアップロード</h3>
+<div class="card-body">
+<div class="container-fluid" id="container">
+  	
+  	<form class="form-horizontal" method="post" enctype="multipart/form-data" th:object="${fileUploadForm}">
+  	
+  	
+  		<div class="form-group row">
+			<label class="col-3 col-form-label text-right" for="name">名前：</label>
+			<div class="col-9">
+				<input type="text" class="form-control" th:field="*{name}" />
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<label class="col-3 col-form-label text-right" for="uploadedFile">ファイル選択：</label>
+			<div class="col-9">
+				<div class="custom-file">
+				  <input type="file" class="custom-file-input" th:field="*{uploadedFile}" lang="ja">
+				  <label class="custom-file-label" for="uploadedFile"></label>
+				</div>
+			</div>
+		</div>
+	
+	    <div class="form-group row">
+	      <div class="col">
+	        <button class="btn btn-primary" formaction="/FileUploadSubmit">アップロードSubmit</button>
+	        <button class="btn btn-primary" id="fileUploadAjax">アップロードAjax</button>
+	        <button class="btn btn-primary" formaction="/FileDownloadKizon">ダウンロードSubmit既存ファイル</button>
+	        <button class="btn btn-primary" formaction="/FileDownloadSinki">ダウンロードSubmit新規ファイル</button>
+	        <button class="btn btn-primary" id="fileDownloadAjax">ダウンロードAjax</button>
+	        
+	        <button class="btn btn-primary" formaction="/FileDownloadTest">ダウンロードテスト</button>
+	      </div>
+		</div>
+	
+	    <div class="form-group row">
+	      <div class="col">
+			<a class="btn btn-primary text-white" th:href="@{'/'}">戻る</a>
+		  </div>
+		</div>
+	</form>
+
+	
+</div>
+</div>
+<th:block th:include="templatefoot :: templatefoot" />
+</div>
+
+</body>
+<th:block th:include="templatehead :: scripts" />
+<script src="/js/fileUpload.js"></script>
+</html>

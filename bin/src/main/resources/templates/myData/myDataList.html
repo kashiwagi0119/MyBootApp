@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<th:block th:include="templatehead :: templatehead" />
+</head>
+
+<body>
+
+<div class="card" style="height: 100vh">
+<h3 class="card-header bg-success text-white text-center">検索画面</h3>
+<div class="card-body p-0">
+<div class="container-fluid mt-3" id="container">
+
+	<form class="form-horizontal" action="/" method="post" th:object="${myDataForm}">
+  	
+  	<div class="row">
+	  	<div class="col">
+			<th:block th:include="templatebody :: templateName" />
+			<th:block th:include="templatebody :: templatEmail" />
+			<th:block th:include="templatebody :: templateAgeFrom" />
+			<th:block th:include="templatebody :: templateAgeTo" />
+		</div>
+		<div class="col">
+			<th:block th:include="templatebody :: templateMemo" />
+			<th:block th:include="templatebody :: templateRoom" />
+			<th:block th:include="templatebody :: templateItem" />
+	  	</div>
+  	</div>
+		
+    <div class="row mb-1">
+      <div class="col">
+		<button class="btn btn-primary" id="myDataSearch">検索</button>
+		<button class="btn btn-primary" formaction="/MyData/insertwindow">新規登録画面へ</button>
+	  </div>
+	</div>
+	
+    <div class="row mb-1">
+      <div class="col" id='griddiv'>
+		<table class="table" id="grid"></table>
+	  </div>
+	  <div id = "pager1"></div>
+	</div>
+	
+    <div class="row mb-1">
+      <div class="col">
+		<a class="btn btn-primary text-white" th:href="@{'/'}">戻る</a>
+	  </div>
+	</div>
+	
+	</form>
+	
+</div>
+</div>
+<th:block th:include="templatefoot :: templatefoot" />
+</div>
+
+</body>
+<th:block th:include="templatehead :: scripts" />
+<script src="/js/myData.js"></script>
+</html>

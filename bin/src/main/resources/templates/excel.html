@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<th:block th:include="templatehead :: templatehead" />
+
+	
+</head>
+
+<body>
+
+<div class="card" style="height: 100vh">
+<h3 class="card-header bg-success text-white text-center">Excel</h3>
+<div class="card-body">
+<div class="container-fluid" id="container">
+
+    <div class="form-group row mb-0">
+      <div class="col">
+		<a class="btn btn-primary text-white" th:href="@{'/'}">戻る</a>
+		<a th:href="@{'/ExcelDownloadSinki'}" class="list-group-item list-group-item-action list-group-item-primary text-dark">Excelダウンロード新規</a>
+		<a th:href="@{'/ExcelDownloadTemplate'}" class="list-group-item list-group-item-action list-group-item-primary text-dark">Excelダウンロードテンプレート</a>
+		
+	  </div>
+	</div>
+
+</div>
+</div>
+<th:block th:include="templatefoot :: templatefoot" />
+</div>
+
+</body>
+<th:block th:include="templatehead :: scripts" />
+<script src="/js/jqGrid.js"></script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<th:block th:include="templatehead :: templatehead" />
+	<th:block th:include="templatehead :: scripts" />
+	<script src="/js/modalJQueryUI.js"></script>
+	
+<script>
+$(function() {
+	// 1.ボタン1を押したとき
+	$("#id1").click(function() {
+		$("#test1").dialog({
+			modal:true, //モーダル表示
+			title:"テストダイアログ1", //タイトル
+			buttons: { //ボタン
+			"確認": function() {
+				$(this).dialog("close");
+				}
+			}
+		});
+	});
+});
+</script>
+</head>
+<body >
+<div id="test1" style="display:none;">
+<p>メッセージ</p>
+</div>
+<input type="button" id="id1" value="ボタン1(BootStrapのほうが見た目がいいし移動もできた)" />
+
+</body>
+
+</html>
