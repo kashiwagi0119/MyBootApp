@@ -15,6 +15,7 @@ import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import com.tuyano.springboot.constant.BaseEnum;
@@ -120,6 +121,18 @@ public final class CommonUtil {
     	}
     	return result;
     }
+
+	/**
+	 * EXCELのセル値をStringで取得
+	 * @param row 行
+	 * @param col 列番号（１から）
+	 * @return
+	 */
+	public static String getCellStringValue(Row row, int col) {
+		Cell cell = row.getCell(col - 1);
+		return getCellStringValue(cell);
+	}
+
 
 	/**
 	 * EXCELのセル値をStringで取得
