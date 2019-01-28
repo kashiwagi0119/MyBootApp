@@ -25,12 +25,6 @@ public class Java11ExcelRead {
 			Iterator<Row> rows = sheet.rowIterator();
 			while(rows.hasNext()) {
 				Row row = rows.next();
-
-//				// cellを取得後にString取得
-//				Cell cell = row.getCell(0);
-//				String aaa = CommonUtil.getCellStringValue(cell);
-//				System.out.println(aaa);
-
 				// rowとcol番号でString取得
 				// 1列目
 				String b1 = CommonUtil.getCellStringValue(row, 1);
@@ -41,11 +35,14 @@ public class Java11ExcelRead {
 				// 3列目
 				String b3 = CommonUtil.getCellStringValue(row, 3);
 				System.out.println(b3);
-
-
 			}
 
-
+			// 指定行から最大行（2行目から）
+			int maxrow = sheet.getLastRowNum();  // 最大行-1を返す
+			for (int i = 1; i <= maxrow; i++) {
+				Row row = sheet.getRow(i);
+				System.out.println(CommonUtil.getCellStringValue(row, 1));
+			}
 
 
 
