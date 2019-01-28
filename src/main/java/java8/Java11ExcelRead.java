@@ -1,6 +1,6 @@
 package java8;
 
-import java.io.File;
+import java.io.FileInputStream;
 import java.util.Iterator;
 
 import org.apache.poi.ss.usermodel.Row;
@@ -16,7 +16,10 @@ public class Java11ExcelRead {
 
 
 		try {
-			Workbook workbook = WorkbookFactory.create(new File("C:\\kashi\\参考ソース\\EXCEL読込テスト.xlsx"));
+
+			Workbook workbook = WorkbookFactory.create(new FileInputStream("C:\\kashi\\参考ソース\\EXCEL読込テスト.xlsx"));
+			// ファイル開いてるとエラーになる
+//			Workbook workbook = WorkbookFactory.create(new File("C:\\kashi\\参考ソース\\EXCEL読込テスト.xlsx"));
 
 			// 1シート目
 			Sheet sheet = workbook.getSheetAt(0);
@@ -35,11 +38,13 @@ public class Java11ExcelRead {
 				// 3列目
 				String b3 = CommonUtil.getCellStringValue(row, 3);
 				System.out.println(b3);
+				System.out.println("=============");
 			}
 
 			// 指定行から最大行（2行目から）
+			int startrow = 2;
 			int maxrow = sheet.getLastRowNum();  // 最大行-1を返す
-			for (int i = 1; i <= maxrow; i++) {
+			for (int i = startrow - 1; i <= maxrow; i++) {
 				Row row = sheet.getRow(i);
 				System.out.println(CommonUtil.getCellStringValue(row, 1));
 			}
