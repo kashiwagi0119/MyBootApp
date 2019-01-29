@@ -122,6 +122,26 @@ public final class CommonUtil {
     	return result;
     }
 
+	public static List<String> getCellStringList(Row row, int maxCol) {
+		List<String> result = new ArrayList<String>();
+		if (row == null) {
+			return null;
+		}
+		// 全て空白の場合も終了
+		boolean hit = false;
+		for (int i = 1; i <= maxCol; i++) {
+			String data = CommonUtil.getCellStringValue(row, i);
+			result.add(data);
+			if (StringUtils.isNotBlank(data)) {
+				hit = true;
+			}
+		}
+		if (!hit) {
+			return null;
+		}
+		return result;
+	}
+
 	/**
 	 * EXCELのセル値をStringで取得
 	 * @param row 行
