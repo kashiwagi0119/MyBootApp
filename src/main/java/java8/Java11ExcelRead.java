@@ -29,6 +29,7 @@ public class Java11ExcelRead {
 			for (int rowIdx = startRow - 1; rowIdx < Integer.MAX_VALUE; rowIdx++) {
 				Row row = sheet.getRow(rowIdx);
 				List<String> stringList = CommonUtil.getCellStringList(row, maxCol);
+				// 空行の場合、読み込み終了
 				if (stringList == null) {
 					break;
 				}

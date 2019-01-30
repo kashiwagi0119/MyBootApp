@@ -122,6 +122,12 @@ public final class CommonUtil {
     	return result;
     }
 
+	/**
+	 * EXCELのセル値をList<String>で取得
+	 * @param row 行
+	 * @param maxCol 最大列（１から）
+	 * @return
+	 */
 	public static List<String> getCellStringList(Row row, int maxCol) {
 		List<String> result = new ArrayList<String>();
 		if (row == null) {
