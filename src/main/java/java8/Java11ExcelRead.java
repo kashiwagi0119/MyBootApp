@@ -16,19 +16,17 @@ public class Java11ExcelRead {
 
 	public static void main(String[] args) {
 
+		String inputFilePath = "C:\\kashi\\参考ソース\\EXCEL読込テスト.xlsx";
+		int rowStart = 2; // 開始行（1から）
+		int colEnd = 3; // 最大列（1から）
 
-		try {
-			String filePath = "C:\\\\kashi\\\\参考ソース\\\\EXCEL読込テスト.xlsx";
-			int startRow = 2; // 開始行（１から）
-			int maxCol = 3; // 最大列（１から）
-
-			Workbook workbook = WorkbookFactory.create(new FileInputStream(filePath));
+		try (Workbook workbook = WorkbookFactory.create(new FileInputStream(inputFilePath));) {
 			Sheet sheet = workbook.getSheetAt(0);
 
 			List<DataDTO> list = new ArrayList<DataDTO>();
-			for (int rowIdx = startRow - 1; rowIdx < Integer.MAX_VALUE; rowIdx++) {
+			for (int rowIdx = rowStart - 1; rowIdx < Integer.MAX_VALUE; rowIdx++) {
 				Row row = sheet.getRow(rowIdx);
-				List<String> stringList = CommonUtil.getCellStringList(row, maxCol);
+				List<String> stringList = CommonUtil.getCellStringList(row, colEnd);
 				// 空行の場合、読み込み終了
 				if (stringList == null) {
 					break;
@@ -41,7 +39,6 @@ public class Java11ExcelRead {
 				list.add(dto);
 			}
 			System.out.println(list);
-
 
 //			// 全行を繰り返し処理する場合
 //			Iterator<Row> rows = sheet.rowIterator();
@@ -68,15 +65,9 @@ public class Java11ExcelRead {
 //				System.out.println(CommonUtil.getCellStringValue(row, 1));
 //			}
 
-
-
-
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-
 	}
 
 }

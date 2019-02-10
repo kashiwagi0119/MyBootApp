@@ -11,11 +11,13 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import com.tuyano.springboot.constant.BaseEnum;
@@ -216,6 +218,43 @@ public final class CommonUtil {
 			return "";
 		}
 	}
+
+	/**
+	 * EXCELのセルを取得
+	 * @param rowData
+	 * @param col
+	 * @param cellStyle
+	 * @return
+	 */
+	public static Cell getCell(Row rowData, int col, List<CellStyle> cellStyle) {
+		Cell cell = rowData.getCell(col - 1);
+		if (cell == null) {
+			cell = rowData.createCell(col - 1);
+			cell.setCellStyle(cellStyle.get(col - 1));
+		}
+		return cell;
+	}
+
+	/**
+	 * EXCELのセル書式を取得
+	 * @param workbook
+	 * @param sheet
+	 * @param rowStart
+	 * @param colEnd
+	 * @return
+	 */
+	public static List<CellStyle> getCellStyle(Workbook workbook, Sheet sheet, int rowStart, int colEnd) {
+		List<CellStyle> cellStyle = new ArrayList<CellStyle>();
+        Row baseRow = sheet.getRow(rowStart - 1);
+        for (int col = 0; col < colEnd ; col++) {
+        	Cell baseCell = baseRow.getCell(col);
+        	CellStyle s = workbook.createCellStyle();
+        	s.cloneStyleFrom(baseCell.getCellStyle());
+        	cellStyle.add(s);
+        }
+		return cellStyle;
+	}
+
 
 	/**
 	 * 文字列（ファイル名）を環境に合わせた文字コードに変換する.
