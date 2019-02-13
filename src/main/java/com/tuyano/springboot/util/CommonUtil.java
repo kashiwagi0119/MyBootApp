@@ -1,14 +1,15 @@
 package com.tuyano.springboot.util;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -28,72 +29,6 @@ import com.tuyano.springboot.dto.SelectItemDTO;
  * 共通ユーティリティ
  */
 public final class CommonUtil {
-
-    /**
-     * 日付チェック
-     * @param strDate
-     * @return 日付形式の場合、True
-     */
-    public static boolean checkDate(String strDate) {
-        if (strDate == null || strDate.length() != 10) {
-            return false;
-        }
-        DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-        format.setLenient(false);
-        try {
-            format.parse(strDate);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    /**
-     * 日付チェック
-     * @param strDate
-     * @return 日付形式の場合、True
-     */
-    public static boolean checkDateYYMMDD(String strDate) {
-        if (strDate == null || strDate.length() != 6) {
-            return false;
-        }
-        DateFormat format = new SimpleDateFormat("yyMMdd");
-        format.setLenient(false);
-        try {
-            format.parse(strDate);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    /**
-     * 日付形式変換 yyMMdd → yyyy/MM/dd
-     * @param strDate
-     * @return yyyy/MM/dd型式
-     */
-    public static String cnvDateYYMMDD_YYYYMMDD(String strDate) {
-    	String result = strDate;
-    	if (strDate.length() != 6) {
-    		return result;
-    	}
-    	result = "20" + StringUtils.substring(strDate, 0, 2) + "/" + StringUtils.substring(strDate, 2, 4) + "/" + StringUtils.substring(strDate, 4, 6);
-    	return result;
-    }
-
-    /**
-     * 日付形式変換 yyyy/MM/dd → yyMMdd
-     * @param strDate
-     * @return yyMMdd型式
-     */
-    public static String cnvDateYYYYMMDD_YYMMDD(String strDate) {
-    	String result = strDate;
-    	if (strDate.length() != 10) {
-    		return result;
-    	}
-    	result = StringUtils.substring(strDate, 2, 4) + StringUtils.substring(strDate, 5, 7) + StringUtils.substring(strDate, 8, 10);
-    	return result;
-    }
 
     /**
      * Enumからセレクトアイテムに変換
@@ -123,6 +58,189 @@ public final class CommonUtil {
     	}
     	return result;
     }
+
+	/**
+	 * 桁数チェック
+	 * @param str 入力文字列
+	 * @param length 桁数
+	 * @return true = チェックOK、false = チェックNG
+	 */
+	public static boolean checkLength(String str, int length) {
+		// ブランクの場合、チェックOK（エラーではない）
+		if (StringUtils.isBlank(str)) {
+			return true;
+		}
+		// 桁数チェック
+		if (str.length() > length) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 数値チェック
+	 * @param str 入力文字列
+	 * @return true = チェックOK、false = チェックNG
+	 */
+	public static boolean checkNumber(String str) {
+		// ブランクの場合、チェックOK（エラーではない）
+		if (StringUtils.isBlank(str)) {
+			return true;
+		}
+		// 数値チェック
+		if (!NumberUtils.isNumber(str)) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 数値チェック（整数部・小数部）
+	 * @param str 入力文字列
+	 * @param integral 整数部桁数
+	 * @param decimal 小数部桁数
+	 * @return true = チェックOK、false = チェックNG
+	 */
+	public static boolean checkBigDecimal(String str, int integral, int decimal) {
+		// ブランクの場合、チェックOK（エラーではない）
+		if (StringUtils.isBlank(str)) {
+			return true;
+		}
+		// 数値チェック
+		if (!NumberUtils.isNumber(str)) {
+			return false;
+		}
+		// 整数部が桁数内か？
+		BigDecimal bigdecimal = new BigDecimal(str);
+		if (bigdecimal.precision() - bigdecimal.scale() > integral) {
+			return false;
+		}
+		// 小数部が桁数内か？
+		if (bigdecimal.scale() > decimal) {
+			return false;
+		}
+		return true;
+	}
+
+    /**
+     * 日付チェック（yyyy/mm/dd）
+     * @param strDate
+     * @return true = チェックOK、false = チェックNG
+     */
+	public static boolean checkDateYYYY_MM_DD(String strDate) {
+		// ブランクの場合、チェックOK（エラーではない）
+        if (StringUtils.isBlank(strDate)) {
+            return true;
+        }
+        DateFormat format = DateFormat.getDateInstance();
+        format.setLenient(false);
+        try {
+            format.parse(strDate);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+	/**
+	 * 日付変換  String(yyyy/mm/dd)→Calendar
+	 * @param str
+	 * @return Calendar
+	 */
+	public static Calendar convStringCalendar(String str){
+		if (StringUtils.isBlank(str)) {
+			return null;
+		}
+		Calendar cal = new GregorianCalendar();
+		try {
+			cal.setTime(DateFormat.getDateInstance().parse(str));
+		} catch (Exception e) {
+			cal = null;
+		}
+		return cal;
+	}
+
+	/**
+	 * 数値変換  String→BigDecimal
+	 * @param str
+	 * @return BigDecimal
+	 */
+	public static BigDecimal convStringBigDecimal(String str){
+		if (StringUtils.isBlank(str)) {
+			return null;
+		}
+		BigDecimal result = null;
+		try {
+			result = new BigDecimal(str);
+		} catch (Exception e) {
+			result = null;
+		}
+		return result;
+	}
+
+	/**
+	 * 数値変換  String→Long
+	 * @param str
+	 * @return Long
+	 */
+	public static Long convStringLong(String str){
+		if (StringUtils.isBlank(str)) {
+			return null;
+		}
+		Long result = null;
+		try {
+			result = new Long(str);
+		} catch (Exception e) {
+			result = null;
+		}
+		return result;
+	}
+
+
+	/**
+	 * 数値変換  BigDecimal→Double
+	 * @param BigDecimal
+	 * @return Double
+	 */
+	public static Double convBigDecimalDouble(BigDecimal big){
+		if (big == null) {
+			return null;
+		}
+		Double result = null;
+		try {
+			result = big.doubleValue();
+		} catch (Exception e) {
+			result = null;
+		}
+		return result;
+	}
+
+	/**
+	 * EXCELのヘッダチェック
+	 * @param sheet
+	 * @param rowStart
+	 * @param headerList
+	 * @return
+	 */
+	public static boolean checkExcelHeader(Sheet sheet, int rowStart, List<String> headerList) {
+		if (sheet == null || headerList == null || headerList.isEmpty()) {
+			return true;
+		}
+		Row row = sheet.getRow(rowStart - 1);
+		if (row == null) {
+			return true;
+		}
+		for (int col = 0; col < headerList.size(); col++) {
+			Cell cell = row.getCell(col);
+			if (cell == null) {
+				return true;
+			}
+			if (!StringUtils.equals(getCellStringValue(cell), headerList.get(col))) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * EXCELのセル値をList<String>で取得
@@ -160,7 +278,6 @@ public final class CommonUtil {
 		Cell cell = row.getCell(col - 1);
 		return getCellStringValue(cell);
 	}
-
 
 	/**
 	 * EXCELのセル値をStringで取得
@@ -219,8 +336,24 @@ public final class CommonUtil {
 		}
 	}
 
+
 	/**
 	 * EXCELのセルを取得
+	 * @param rowData
+	 * @param col
+	 * @param cellStyle
+	 * @return
+	 */
+	public static Cell getCell(Row rowData, int col) {
+		Cell cell = rowData.getCell(col - 1);
+		if (cell == null) {
+			cell = rowData.createCell(col - 1);
+		}
+		return cell;
+	}
+
+	/**
+	 * EXCELのセルを取得（セル書式設定あり）
 	 * @param rowData
 	 * @param col
 	 * @param cellStyle
@@ -233,6 +366,47 @@ public final class CommonUtil {
 			cell.setCellStyle(cellStyle.get(col - 1));
 		}
 		return cell;
+	}
+
+	/**
+	 * EXCELのセルを設定（セル書式設定あり）
+	 * @param rowData
+	 * @param col
+	 * @param cellStyle
+	 * @param obj 出力オブジェクト
+	 */
+	public static void setCell(Row rowData, int col, List<CellStyle> cellStyle, Object obj) {
+		Cell cell = rowData.getCell(col - 1);
+		if (cell == null) {
+			cell = rowData.createCell(col - 1);
+			cell.setCellStyle(cellStyle.get(col - 1));
+		}
+		if (obj != null) {
+			if (obj instanceof String) {
+				cell.setCellValue((String)obj);
+			}
+			if (obj instanceof Long) {
+				cell.setCellValue((Long)obj);
+			}
+			if (obj instanceof Integer) {
+				cell.setCellValue((Integer)obj);
+			}
+			if (obj instanceof Float) {
+				cell.setCellValue((Float)obj);
+			}
+			if (obj instanceof Double) {
+				cell.setCellValue((Double)obj);
+			}
+			if (obj instanceof BigDecimal) {
+				cell.setCellValue(((BigDecimal)obj).doubleValue());
+			}
+			if (obj instanceof Boolean) {
+				cell.setCellValue((Boolean)obj);
+			}
+			if (obj instanceof Calendar) {
+				cell.setCellValue((Calendar)obj);
+			}
+		}
 	}
 
 	/**
@@ -253,27 +427,6 @@ public final class CommonUtil {
         	cellStyle.add(s);
         }
 		return cellStyle;
-	}
-
-
-	/**
-	 * 文字列（ファイル名）を環境に合わせた文字コードに変換する.
-	 *
-	 * @param str
-	 * @return 文字列
-	 */
-	public static String convertStrToFileName(final String str) {
-		StringBuffer tmpStr = new StringBuffer("attachment;filename=\"");
-		byte[] name = null;
-		try {
-			name = str.getBytes("Shift_JIS");
-			tmpStr.append(new String(name, "ISO8859_1"));
-		} catch (UnsupportedEncodingException ue) {
-			ue.printStackTrace();
-		}
-
-		tmpStr.append("\"");
-		return tmpStr.toString();
 	}
 
 	/**

@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -56,12 +57,11 @@ public class Java12ExcelWrite {
         		}
 
         		// 1列目
-        		CommonUtil.getCell(rowData, 1, cellStyle).setCellValue(dto.getData1());
+        		CommonUtil.setCell(rowData, 1, cellStyle, dto.getData1());
         		// 2列目
-        		CommonUtil.getCell(rowData, 2, cellStyle).setCellValue(Long.parseLong(dto.getData2()));
-        		// CommonUtil.getCell(rowData, 2, cellStyle); // 出力なし。書式のみコピー。
+        		CommonUtil.setCell(rowData, 2, cellStyle, 123L);
         		// 3列目
-        		CommonUtil.getCell(rowData, 3, cellStyle).setCellValue(Double.parseDouble(dto.getData3()));
+        		CommonUtil.setCell(rowData, 3, cellStyle, new BigDecimal("123.4567"));
 
         		row++;
         	}
