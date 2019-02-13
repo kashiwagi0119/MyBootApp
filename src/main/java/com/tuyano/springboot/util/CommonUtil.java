@@ -375,7 +375,7 @@ public final class CommonUtil {
 	 * @param cellStyle
 	 * @param obj 出力オブジェクト
 	 */
-	public static void setCell(Row rowData, int col, List<CellStyle> cellStyle, Object obj) {
+	public static void setCellValue(Row rowData, int col, List<CellStyle> cellStyle, Object obj) {
 		Cell cell = rowData.getCell(col - 1);
 		if (cell == null) {
 			cell = rowData.createCell(col - 1);

@@ -57,11 +57,11 @@ public class Java12ExcelWrite {
         		}
 
         		// 1列目
-        		CommonUtil.setCell(rowData, 1, cellStyle, dto.getData1());
+        		CommonUtil.setCellValue(rowData, 1, cellStyle, dto.getData1());
         		// 2列目
-        		CommonUtil.setCell(rowData, 2, cellStyle, 123L);
+        		CommonUtil.setCellValue(rowData, 2, cellStyle, 123L);
         		// 3列目
-        		CommonUtil.setCell(rowData, 3, cellStyle, new BigDecimal("123.4567"));
+        		CommonUtil.setCellValue(rowData, 3, cellStyle, new BigDecimal("123.4567"));
 
         		row++;
         	}
